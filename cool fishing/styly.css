@@ -1,0 +1,239 @@
+html,
+body {
+     min-height: 100%;
+     min-width: 100%;
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Helvetica Neue", sans-serif;
+     margin: 0;
+}
+
+.background {
+     background-position: center;
+     background-size: cover;
+     background-repeat: no-repeat;
+}
+
+.home {
+     background-image: url("background/home.jpg");
+}
+.aboutus {
+     background-image: url("background/about us.jpg");
+}
+.contact {
+     background-image: url("background/contact.jpg");
+}
+.gallery {
+     background-image: url("background/gallery.jpg");
+}
+
+.menu {
+     display: inline-block;
+     max-height: 12.5em;
+     float: right;
+     margin: 2em 0em 4em 0em;
+}
+
+.right {
+     position: relative;
+     float: right;
+     margin-right: 4px;
+}
+
+.rightbottom_logo {
+     width: 21.875em;
+     height: 17.9375em;
+     position: absolute;
+     bottom: 0px;
+     right: 0px;
+     margin: 0em 2em 1.5em 0em;
+     opacity: 40%;
+}
+
+.rightbottom_fish {
+     width: 15em;
+     height: 8.75em;
+     position: absolute;
+     bottom: 0px;
+     right: 0px;
+     margin: 0em 1em 1em 0em;
+}
+
+.contact_menu {
+     margin-bottom: 0.625em;
+     width: 15.0625em;
+     height: 12.0625em;
+     display: block;
+     background: transparent url("menu/contact.png") center top no-repeat;
+}
+.contact_menu:hover {
+     background-image: url("menu/contact rozklikle.png");
+}
+.gallery_menu {
+     margin-bottom: 0.625em;
+     width: 15.0625em;
+     height: 12.0625em;
+     display: block;
+     background: transparent url("menu/galery.png") center top no-repeat;
+}
+.gallery_menu:hover {
+     background-image: url("menu/galery rozklikla.png");
+}
+.aboutus_menu {
+     margin-bottom: 0.625em;
+     width: 15.0625em;
+     height: 12.0625em;
+     display: block;
+     background: transparent url("menu/about us.png") center top no-repeat;
+}
+.aboutus_menu:hover {
+     background-image: url("menu/about us rozklikle.png");
+}
+.home_menu {
+     margin-bottom: 0.625em;
+     width: 15.0625em;
+     height: 12.0625em;
+     display: block;
+     background: transparent url("menu/home.png") center top no-repeat;
+}
+.home_menu:hover {
+     background-image: url("menu/home rozklikle.png");
+}
+
+.kontakt_menu {
+     margin-bottom: 0.625em;
+     width: 15.0625em;
+     height: 12.0625em;
+     display: block;
+     background: transparent url("menucz/kontakt.png") center top no-repeat;
+}
+.kontakt_menu:hover {
+     background-image: url("menucz/kontakt rozklikle.png");
+}
+.galerie_menu {
+     margin-bottom: 0.625em;
+     width: 15.0625em;
+     height: 12.0625em;
+     display: block;
+     background: transparent url("menucz/galerie.png") center top no-repeat;
+}
+.galerie_menu:hover {
+     background-image: url("menucz/galerie rozklikle.png");
+}
+.onas_menu {
+     margin-bottom: 0.625em;
+     width: 15.0625em;
+     height: 12.0625em;
+     display: block;
+     background: transparent url("menucz/o nas.png") center top no-repeat;
+}
+.onas_menu:hover {
+     background-image: url("menucz/o nas rozklikle.png");
+}
+.domu_menu {
+     margin-bottom: 0.625em;
+     width: 15.0625em;
+     height: 12.125em;
+     display: block;
+     background: transparent url("menucz/domu.png") center top no-repeat;
+}
+.domu_menu:hover {
+     background-image: url("menucz/domu rozklikle.png");
+}
+
+.cz_menu {
+     width: 10.375em;
+     height: 9em;
+     display: block;
+     background: transparent url("menu/cz.png") center top no-repeat;
+}
+.usa_menu {
+     width: 10.4375em;
+     height: 9.1875em;
+     display: block;
+     background: transparent url("menu/usa.png") center top no-repeat;
+}
+.left {
+     display: inline-block;
+     position: relative;
+     float: left;
+     margin: 1em 0em 0em 3em;
+}
+.left_down {
+     display: inline-block;
+     position: absolute;
+     bottom: 0;
+     right: 0;
+     left: 0;
+     margin: 1em 0em 0em 3em;
+}
+
+.insta_menu {
+     margin-bottom: 0.4em;
+     width: 50px;
+     height: 50px;
+     display: block;
+     background: transparent url("menu/insta.png") center top no-repeat;
+}
+.facebook_menu {
+     margin-top: 0em;
+     width: 50px;
+     height: 50px;
+     display: block;
+     background: transparent url("menu/facebook.png") center top no-repeat;
+}
+
+.social {
+     margin: 3em 0 0 0.2em;
+     width: 50px;
+     height: 50px;
+}
+.texts_background {
+     width: 55em;
+     height: auto;
+     background-color: rgba(255, 255, 255, 0.6);
+     border-style: solid;
+     background-size: contain;
+     background-repeat: no-repeat;
+     position: relative;
+     margin: auto;
+     margin-top: 17em;
+     overflow: hidden;
+     padding: 1.5em 3em 1.5em 3em;
+}
+.text_big {
+     font-size: 1.6em;
+     font-weight: bold;
+}
+.text_small {
+     font-size: 1.3em;
+}
+
+.map {
+     z-index: 2;
+     float: right;
+     margin: 1em 1em 0em 0em;
+     height: 107px;
+     width: 170px;
+     background-image: url(background/mapa.png);
+}
+
+.gallery_photos {
+     position: relative;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     width: 90%;
+     margin-left: 5%;
+     margin-right: 5%;
+}
+
+.gallery_photos img {
+     transition: 1s;
+     padding: 5px;
+     width: 200px;
+}
+
+.gallery_photos img:hover {
+     filter: grayscale(100%);
+     transform: scale(1.1);
+}

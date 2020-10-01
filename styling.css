@@ -12,7 +12,6 @@ body {
 }
 
 body {
-  background-color: white;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -39,15 +38,6 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-image: url("images/back.jpg");
-}
-
-#logo {
-  color: white;
-  position: absolute;
-  font-size: 25px;
-  top: 3.5%;
-  left: 10%;
-  font-weight: 600;
 }
 
 #tree {
@@ -124,7 +114,6 @@ header a:hover:before {
 
 #reference,
 #aboutMe,
-#contact,
 #home {
   text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff;
   text-align: center;
@@ -135,7 +124,6 @@ header a:hover:before {
 
 #reference h1,
 #aboutMe h1,
-#contact h1,
 #home h1 {
   font-size: 2.25em;
 }
@@ -212,32 +200,19 @@ header a:hover:before {
           transform: scale(1.1);
 }
 
-#contact {
-  font-size: 1.875em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.phoneFooter {
+  display: none;
+  color: white;
+  font-size: 1.2em;
+  text-align: center;
 }
 
-#contact table {
-  font-size: 1.875em;
-  width: 50%;
-  height: 40%;
+.phoneFooter div {
+  margin-bottom: 0.3em;
 }
 
-#contact table tr {
-  height: 0.5em;
-}
-
-#contact table td {
-  width: 30%;
-  padding-left: 0%;
+.phoneFooter a {
+  color: white;
 }
 
 footer {
@@ -285,9 +260,6 @@ footer span {
 }
 
 @media only screen and (max-width: 1350px) {
-  #logo {
-    display: none;
-  }
   #airship {
     display: none;
   }
@@ -313,13 +285,11 @@ footer span {
   }
   #reference h1,
   #aboutMe h1,
-  #contact h1,
   #home h1 {
     font-size: 3em;
   }
   #reference h3,
   #aboutMe h3,
-  #contact h3,
   #home h3 {
     font-size: 2.25em;
   }
@@ -334,22 +304,11 @@ footer span {
         -ms-flex-pack: center;
             justify-content: center;
   }
-  footer table,
-  footer thead,
-  footer tbody,
-  footer th,
-  footer td,
-  footer tr {
-    display: block;
-  }
   footer table {
-    width: 100%;
-    margin: 0 0 0 0;
-    font-size: 2em;
-    text-align: center;
+    display: none;
   }
-  footer table td {
-    height: 1.5em;
+  footer .phoneFooter {
+    display: inline-block;
   }
   footer span {
     display: none;
@@ -362,13 +321,11 @@ footer span {
   }
   #reference h1,
   #aboutMe h1,
-  #contact h1,
   #home h1 {
     font-size: 2em;
   }
   #reference h3,
   #aboutMe h3,
-  #contact h3,
   #home h3 {
     font-size: 1.25em;
   }
@@ -413,13 +370,11 @@ footer span {
   }
   #reference h1,
   #aboutMe h1,
-  #contact h1,
   #home h1 {
     font-size: 1.5em;
   }
   #reference h3,
   #aboutMe h3,
-  #contact h3,
   #home h3 {
     font-size: 1em;
   }

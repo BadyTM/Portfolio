@@ -118,7 +118,7 @@ header a:hover:before {
 #aboutMe,
 #contact,
 #home {
-  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff;
+  text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff;
   text-align: center;
   margin: 0% 15% 0% 15%;
   width: 70%;

@@ -28,9 +28,17 @@ body {
   background: #555;
 }
 
-body {
-  background-image: url("images/back.jpg");
+#holder,
+#holder2,
+#holder3 {
+  min-height: 100%;
+  height: auto;
+  position: relative;
+  background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url("images/back.jpg");
 }
 
 #logo {
@@ -234,8 +242,9 @@ header a:hover:before {
 
 footer {
   position: absolute;
-  bottom: -15vh;
-  height: 15vh;
+  bottom: -10em;
+  height: auto;
+  min-height: 10em;
   width: 100%;
   background-color: #181818;
   display: -webkit-box;
@@ -318,8 +327,9 @@ footer span {
     width: 60%;
   }
   footer {
-    bottom: -30vh;
-    height: 30vh;
+    bottom: -15em;
+    height: auto;
+    min-height: 15em;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;

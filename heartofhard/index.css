@@ -69,10 +69,10 @@ header {
 }
 
 footer {
-     bottom: -2.5vh;
+     bottom: -1.25em;
      padding-top: 0.7em;
      position: absolute;
-     height: 2.5vh;
+     height: 2.5em;
      width: 100%;
      background-color: black;
      text-align: center;

@@ -114,6 +114,7 @@ header {
 
 #home {
      img {
+          margin-top: 3%;
           width: 40%;
           z-index: 2;
           border-radius: 30%;
@@ -196,7 +197,7 @@ footer {
 @media only screen and (max-width: 1024px) {
      header {
           background-color: #181818;
-          z-index: 99;
+          z-index: 2;
           justify-content: center;
           nav {
                right: auto;
@@ -220,7 +221,7 @@ footer {
      #reference {
           section {
                img {
-                    width: 60%;
+                    width: 50%;
                }
           }
      }
@@ -233,9 +234,8 @@ footer {
                display: none;
           }
           .phoneFooter {
-               display: inline-block;
+               display: block;
           }
-
           span {
                display: none;
           }
@@ -243,14 +243,10 @@ footer {
 }
 
 @media only screen and (max-width: 767px) {
-     footer {
-          table {
-               font-size: 1.2em;
-          }
-     }
      #reference,
      #aboutMe,
      #home {
+          min-height: 90vh;
           h1 {
                font-size: 2rem;
           }
@@ -258,18 +254,17 @@ footer {
                font-size: 1.25rem;
           }
      }
-     #reference {
-          min-height: 80vh;
-          section {
-               width: 100%;
-               img {
-                    width: 80%;
-               }
-          }
-     }
      #home {
           img {
                width: 60%;
+          }
+     }
+     #reference {
+          section {
+               width: 100%;
+               img {
+                    width: 70%;
+               }
           }
      }
 }
@@ -286,7 +281,7 @@ footer {
      header {
           nav {
                a {
-                    font-size: 0.5rem;
+                    font-size: 0.9rem;
                }
           }
      }
@@ -302,12 +297,9 @@ footer {
 }
 @media only screen and (max-width: 363px) {
      header {
-          background-color: #181818;
-          z-index: 99;
-          justify-content: center;
           nav {
-               right: auto;
-               left: auto;
+               -webkit-transform: scaleY(2);
+               transform: scaleY(2);
                a {
                     font-size: 0.6rem;
                }
@@ -315,12 +307,6 @@ footer {
      }
 }
 @media only screen and (max-width: 319px) {
-     header {
-          nav {
-               -webkit-transform: scaleY(2);
-               transform: scaleY(2);
-          }
-     }
      #reference,
      #aboutMe,
      #home {
@@ -329,11 +315,6 @@ footer {
           }
           h3 {
                font-size: 1rem;
-          }
-     }
-     footer {
-          table {
-               font-size: 1em;
           }
      }
 }

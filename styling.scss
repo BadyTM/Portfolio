@@ -38,8 +38,6 @@ body {
      position: absolute;
      left: 0;
      bottom: 0;
-     filter: grayscale(1);
-     filter: hue-rotate(0deg);
 }
 #coco {
      position: relative;
@@ -52,7 +50,6 @@ header {
      align-items: center;
      width: 100%;
      height: 5rem;
-     background-color: none;
      nav {
           right: 10%;
           position: absolute;
@@ -104,26 +101,26 @@ header {
      text-align: center;
      margin: 0% 15% 0% 15%;
      width: 70%;
-     min-height: 90vh;
      h1 {
           font-size: 2.25rem;
      }
 }
 
 #home {
-     min-height: 80vh;
+     min-height: 80%;
      display: flex;
      flex-wrap: wrap;
      align-content: center;
      justify-content: center;
      img {
-          z-index: 66;
+          width: 40%;
+          z-index: 2;
           border-radius: 30%;
      }
 }
 
 #aboutMe {
-     min-height: 80vh;
+     min-height: 80%;
      display: flex;
      flex-wrap: wrap;
      align-content: center;
@@ -131,7 +128,7 @@ header {
 }
 
 #reference {
-     min-height: 80vh;
+     min-height: 80%;
      display: flex;
      flex-wrap: wrap;
      align-content: center;
@@ -149,9 +146,6 @@ header {
                position: relative;
                width: 280px;
                margin: 0% 1rem 10% 1rem;
-               :hover {
-                    transform: scale(1.1);
-               }
           }
      }
 }

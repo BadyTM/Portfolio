@@ -45,10 +45,6 @@ body {
   position: absolute;
   left: 0;
   bottom: 0;
-  -webkit-filter: grayscale(1);
-          filter: grayscale(1);
-  -webkit-filter: hue-rotate(0deg);
-          filter: hue-rotate(0deg);
 }
 
 #coco {
@@ -68,7 +64,6 @@ header {
           align-items: center;
   width: 100%;
   height: 5rem;
-  background-color: none;
 }
 
 header nav {
@@ -125,7 +120,6 @@ header a:hover:before {
   text-align: center;
   margin: 0% 15% 0% 15%;
   width: 70%;
-  min-height: 90vh;
 }
 
 #reference h1,
@@ -135,7 +129,7 @@ header a:hover:before {
 }
 
 #home {
-  min-height: 80vh;
+  min-height: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -149,12 +143,13 @@ header a:hover:before {
 }
 
 #home img {
-  z-index: 66;
+  width: 40%;
+  z-index: 2;
   border-radius: 30%;
 }
 
 #aboutMe {
-  min-height: 80vh;
+  min-height: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -168,7 +163,7 @@ header a:hover:before {
 }
 
 #reference {
-  min-height: 80vh;
+  min-height: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -199,11 +194,6 @@ header a:hover:before {
   position: relative;
   width: 280px;
   margin: 0% 1rem 10% 1rem;
-}
-
-#reference section img :hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
 }
 
 .phoneFooter {

@@ -85,13 +85,16 @@ header a {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow: hidden;
-  margin: 0 0 0 0.5rem;
   padding-bottom: 0.2rem;
   font-size: 1.5625rem;
   color: white;
   text-decoration: none;
   font-weight: 900;
   letter-spacing: 1px;
+}
+
+header a:nth-child(n + 2) {
+  margin: 0 0 0 0.5rem;
 }
 
 header a:before {

@@ -311,18 +311,12 @@ footer {
                right: auto;
                left: auto;
                a {
-                    font-size: 0.7rem;
+                    font-size: 0.5rem;
                }
           }
      }
 }
 @media only screen and (max-width: 400px) {
-     header {
-          nav {
-               -webkit-transform: scaleY(1.5);
-               transform: scaleY(1.5);
-          }
-     }
      #reference,
      #aboutMe,
      #home {

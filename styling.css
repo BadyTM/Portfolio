@@ -17,7 +17,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0.4em;
+  width: 0.4rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -67,7 +67,7 @@ header {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  height: 5em;
+  height: 5rem;
   background-color: none;
 }
 
@@ -85,9 +85,9 @@ header a {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow: hidden;
-  margin: 0 0 0 0.5em;
-  padding-bottom: 0.2em;
-  font-size: 1.5625em;
+  margin: 0 0 0 0.5rem;
+  padding-bottom: 0.2rem;
+  font-size: 1.5625rem;
   color: white;
   text-decoration: none;
   font-weight: 900;
@@ -128,7 +128,7 @@ header a:hover:before {
 #reference h1,
 #aboutMe h1,
 #home h1 {
-  font-size: 2.25em;
+  font-size: 2.25rem;
 }
 
 #home {
@@ -195,7 +195,7 @@ header a:hover:before {
   border-radius: 15%;
   position: relative;
   width: 280px;
-  margin: 0% 1em 10% 1em;
+  margin: 0% 1rem 10% 1rem;
 }
 
 #reference section img :hover {
@@ -206,12 +206,12 @@ header a:hover:before {
 .phoneFooter {
   display: none;
   color: white;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   text-align: center;
 }
 
 .phoneFooter div {
-  margin-bottom: 0.3em;
+  margin-bottom: 0.3rem;
 }
 
 .phoneFooter a {
@@ -220,9 +220,9 @@ header a:hover:before {
 
 footer {
   position: absolute;
-  bottom: -10em;
+  bottom: -10rem;
   height: auto;
-  min-height: 10em;
+  min-height: 10rem;
   width: 100%;
   background-color: #181818;
   display: -webkit-box;
@@ -236,12 +236,12 @@ footer {
 footer table {
   width: 30%;
   margin: 0 0 0 5%;
-  font-size: 1em;
+  font-size: 1rem;
   color: white;
 }
 
 footer table td {
-  height: 1.5em;
+  height: 1.5rem;
 }
 
 footer table a {
@@ -250,7 +250,7 @@ footer table a {
 
 footer span {
   position: absolute;
-  font-size: 3em;
+  font-size: 3rem;
   color: white;
   right: 5%;
   font-weight: 600;
@@ -284,25 +284,29 @@ footer span {
     left: auto;
   }
   header nav a {
-    font-size: 1.5em;
+    margin: 0 0 0 0rem;
+    padding-bottom: 0rem;
+    font-weight: 800;
+    letter-spacing: normal;
+    font-size: 1.5rem;
   }
   #reference h1,
   #aboutMe h1,
   #home h1 {
-    font-size: 3em;
+    font-size: 3rem;
   }
   #reference h3,
   #aboutMe h3,
   #home h3 {
-    font-size: 2.25em;
+    font-size: 2.25rem;
   }
   #reference section img {
     width: 60%;
   }
   footer {
-    bottom: -15em;
+    bottom: -15rem;
     height: auto;
-    min-height: 15em;
+    min-height: 15rem;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -325,12 +329,12 @@ footer span {
   #reference h1,
   #aboutMe h1,
   #home h1 {
-    font-size: 2em;
+    font-size: 2rem;
   }
   #reference h3,
   #aboutMe h3,
   #home h3 {
-    font-size: 1.25em;
+    font-size: 1.25rem;
   }
   #reference {
     min-height: 80vh;
@@ -359,7 +363,7 @@ footer span {
     left: auto;
   }
   header nav a {
-    font-size: 1em;
+    font-size: 1rem;
   }
 }
 
@@ -376,7 +380,7 @@ footer span {
     left: auto;
   }
   header nav a {
-    font-size: 0.8em;
+    font-size: 0.8rem;
   }
 }
 
@@ -407,30 +411,27 @@ footer span {
     left: auto;
   }
   header nav a {
-    font-size: 0.7em;
+    font-size: 0.7rem;
   }
 }
 
-@media only screen and (max-width: 322px) {
+@media only screen and (max-width: 319px) {
   header nav {
     -webkit-transform: scaleY(2);
     transform: scaleY(2);
   }
-  header nav img {
-    display: none;
-  }
   header nav a {
-    font-size: 0.6em;
+    font-size: 0.6rem;
   }
   #reference h1,
   #aboutMe h1,
   #home h1 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
   }
   #reference h3,
   #aboutMe h3,
   #home h3 {
-    font-size: 1em;
+    font-size: 1rem;
   }
   footer table {
     font-size: 1em;

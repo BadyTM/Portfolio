@@ -5,7 +5,6 @@ body {
      padding: 0;
      scroll-behavior: smooth;
      font-family: Arial;
-     text-size-adjust: 100%;
 }
 * {
      box-sizing: border-box;
@@ -25,6 +24,7 @@ body {
 #holder2,
 #holder3 {
      min-height: 100%;
+     width: 100%;
      height: auto;
      position: relative;
      background-position: center;
@@ -46,11 +46,12 @@ body {
 }
 header {
      display: flex;
-     flex-wrap: nowrap;
      align-items: center;
      width: 100%;
      height: 5rem;
      nav {
+          display: flex;
+          flex-wrap: nowrap;
           right: 10%;
           position: absolute;
      }
@@ -101,17 +102,17 @@ header {
      text-align: center;
      margin: 0% 15% 0% 15%;
      width: 70%;
+     min-height: 80%;
+     display: flex;
+     flex-wrap: wrap;
+     align-content: center;
+     justify-content: center;
      h1 {
           font-size: 2.25rem;
      }
 }
 
 #home {
-     min-height: 80%;
-     display: flex;
-     flex-wrap: wrap;
-     align-content: center;
-     justify-content: center;
      img {
           width: 40%;
           z-index: 2;
@@ -119,21 +120,7 @@ header {
      }
 }
 
-#aboutMe {
-     min-height: 80%;
-     display: flex;
-     flex-wrap: wrap;
-     align-content: center;
-     justify-content: center;
-}
-
 #reference {
-     min-height: 80%;
-     display: flex;
-     flex-wrap: wrap;
-     align-content: center;
-     justify-content: center;
-
      section {
           position: relative;
           display: flex;
@@ -215,8 +202,6 @@ footer {
                right: auto;
                left: auto;
                a {
-                    padding-bottom: 0rem;
-                    font-weight: 800;
                     letter-spacing: normal;
                     font-size: 1.4rem;
                }
@@ -290,12 +275,7 @@ footer {
 }
 @media only screen and (max-width: 647px) {
      header {
-          background-color: #181818;
-          z-index: 99;
-          justify-content: center;
           nav {
-               right: auto;
-               left: auto;
                a {
                     font-size: 1.1rem;
                }
@@ -304,12 +284,7 @@ footer {
 }
 @media only screen and (max-width: 500px) {
      header {
-          background-color: #181818;
-          z-index: 99;
-          justify-content: center;
           nav {
-               right: auto;
-               left: auto;
                a {
                     font-size: 0.5rem;
                }
@@ -342,8 +317,6 @@ footer {
 @media only screen and (max-width: 319px) {
      header {
           nav {
-               img {
-               }
                -webkit-transform: scaleY(2);
                transform: scaleY(2);
           }

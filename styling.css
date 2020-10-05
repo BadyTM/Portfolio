@@ -290,7 +290,7 @@ footer span {
     padding-bottom: 0rem;
     font-weight: 800;
     letter-spacing: normal;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   #reference h1,
   #aboutMe h1,
@@ -365,7 +365,7 @@ footer span {
     left: auto;
   }
   header nav a {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -382,7 +382,7 @@ footer span {
     left: auto;
   }
   header nav a {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 }
 
@@ -413,7 +413,7 @@ footer span {
     left: auto;
   }
   header nav a {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
 }
 
@@ -421,9 +421,6 @@ footer span {
   header nav {
     -webkit-transform: scaleY(2);
     transform: scaleY(2);
-  }
-  header nav a {
-    font-size: 0.6rem;
   }
   #reference h1,
   #aboutMe h1,

@@ -283,7 +283,7 @@ footer span {
     left: auto;
   }
   header nav a {
-    font-size: 3.4vw;
+    font-size: 1.5em;
   }
   #reference h1,
   #aboutMe h1,
@@ -345,6 +345,40 @@ footer span {
   }
 }
 
+@media only screen and (max-width: 647px) {
+  header {
+    background-color: #181818;
+    z-index: 99;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  header nav {
+    right: auto;
+    left: auto;
+  }
+  header nav a {
+    font-size: 1em;
+  }
+}
+
+@media only screen and (max-width: 444px) {
+  header {
+    background-color: #181818;
+    z-index: 99;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  header nav {
+    right: auto;
+    left: auto;
+  }
+  header nav a {
+    font-size: 0.8em;
+  }
+}
+
 @media only screen and (max-width: 400px) {
   header nav {
     -webkit-transform: scaleY(1.5);
@@ -359,7 +393,24 @@ footer span {
   }
 }
 
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 363px) {
+  header {
+    background-color: #181818;
+    z-index: 99;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  header nav {
+    right: auto;
+    left: auto;
+  }
+  header nav a {
+    font-size: 0.7em;
+  }
+}
+
+@media only screen and (max-width: 322px) {
   header nav {
     -webkit-transform: scaleY(2);
     transform: scaleY(2);
@@ -368,7 +419,7 @@ footer span {
     display: none;
   }
   header nav a {
-    font-size: 3.5vw;
+    font-size: 0.6em;
   }
   #reference h1,
   #aboutMe h1,

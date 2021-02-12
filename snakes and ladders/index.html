@@ -1,0 +1,135 @@
+<html lang="en">
+     <head>
+          <meta charset="UTF-8" />
+          <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1.0"
+          />
+          <link rel="stylesheet" type="text/css" href="styling.css" />
+
+          <title>Game</title>
+          <style></style>
+     </head>
+     <body>
+          <div id="holder">
+               <div id="game">
+                    <div id="player3" style="bottom: 0%; left: 0%"></div>
+                    <div id="player4" style="bottom: 0%; left: 0%"></div>
+                    <div id="player1" style="bottom: 0%; left: 0%"></div>
+                    <div id="player2" style="bottom: 0%; left: 0%"></div>
+                    <div id="startingPage">
+                         <div class="number_of_players">
+                              <h3>Choose number of players</h3>
+                              <button onclick="onePlayer()">1</button
+                              ><button onclick="twoPlayers()">2</button
+                              ><button onclick="threePlayers()">3</button
+                              ><button onclick="fourPlayers()">4</button>
+                         </div>
+                         <div class="player_avatars">
+                              <div id="player_1_avatar">
+                                   <h3>Player 1</h3>
+                                   <button
+                                        class="avatar_blue"
+                                        onclick="player1Avatar(`blue`)"
+                                   ></button>
+                                   <button
+                                        class="avatar_green"
+                                        onclick="player1Avatar(`green`)"
+                                   ></button
+                                   ><button
+                                        class="avatar_yellow"
+                                        onclick="player1Avatar(`yellow`)"
+                                   ></button
+                                   ><button
+                                        class="avatar_pink"
+                                        onclick="player1Avatar(`pink`)"
+                                   ></button>
+                              </div>
+                              <div id="player_2_avatar">
+                                   <h3>Player 2</h3>
+                                   <button
+                                        class="avatar_blue"
+                                        onclick="player2Avatar(`blue`)"
+                                   ></button>
+                                   <button
+                                        class="avatar_green"
+                                        onclick="player2Avatar(`green`)"
+                                   ></button
+                                   ><button
+                                        class="avatar_yellow"
+                                        onclick="player2Avatar(`yellow`)"
+                                   ></button
+                                   ><button
+                                        class="avatar_pink"
+                                        onclick="player2Avatar(`pink`)"
+                                   ></button>
+                              </div>
+                              <div id="player_3_avatar">
+                                   <h3>Player 3</h3>
+                                   <button
+                                        class="avatar_blue"
+                                        onclick="player3Avatar(`blue`)"
+                                   ></button>
+                                   <button
+                                        class="avatar_green"
+                                        onclick="player3Avatar(`green`)"
+                                   ></button
+                                   ><button
+                                        class="avatar_yellow"
+                                        onclick="player3Avatar(`yellow`)"
+                                   ></button
+                                   ><button
+                                        class="avatar_pink"
+                                        onclick="player3Avatar(`pink`)"
+                                   ></button>
+                              </div>
+                              <div id="player_4_avatar">
+                                   <h3>Player 4</h3>
+                                   <button
+                                        class="avatar_blue"
+                                        onclick="player4Avatar(`blue`)"
+                                   ></button>
+                                   <button
+                                        class="avatar_green"
+                                        onclick="player4Avatar(`green`)"
+                                   ></button
+                                   ><button
+                                        class="avatar_yellow"
+                                        onclick="player4Avatar(`yellow`)"
+                                   ></button
+                                   ><button
+                                        class="avatar_pink"
+                                        onclick="player4Avatar(`pink`)"
+                                   ></button>
+                              </div>
+                         </div>
+
+                         <button id="start_button" onclick="startGame()">
+                              Start Game
+                         </button>
+                    </div>
+               </div>
+               <div id="dice">
+                    <div id="dice1" class="diceNumber">
+                         <button onclick="showNumber()"></button>
+                    </div>
+                    <div id="dice2" class="diceNumber">
+                         <button onclick="showNumber()"></button>
+                    </div>
+                    <div id="dice3" class="diceNumber">
+                         <button onclick="showNumber()"></button>
+                    </div>
+                    <div id="dice4" class="diceNumber">
+                         <button onclick="showNumber()"></button>
+                    </div>
+                    <div id="dice5" class="diceNumber">
+                         <button onclick="showNumber()"></button>
+                    </div>
+                    <div id="dice6" class="diceNumber">
+                         <button onclick="showNumber()"></button>
+                    </div>
+               </div>
+          </div>
+          <script src="script.js"></script>
+     </body>
+</html>

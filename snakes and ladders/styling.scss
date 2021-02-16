@@ -15,8 +15,8 @@ body {
      background-image: url("images/board.jpg");
      background-position: center;
      background-size: contain;
-     width: 50em;
-     height: 50em;
+     width: 80vh;
+     height: 80vh;
      position: relative;
 }
 
@@ -45,7 +45,7 @@ body {
      justify-content: center;
      align-items: center;
      button {
-          width: 3em;
+          width: 2vw;
           font-weight: 800;
           margin: 0 1%;
      }
@@ -67,8 +67,8 @@ body {
                margin: 3% 1%;
           }
           button {
-               width: 3em;
-               height: 3em;
+               width: 2vw;
+               height: 2vw;
                font-weight: 800;
                margin: 0 1%;
           }
@@ -104,9 +104,9 @@ body {
 
 #dice {
      position: relative;
-     margin-left: 1em;
-     width: 10em;
-     height: 10em;
+     margin-left: 1vw;
+     width: 15vh;
+     height: 15vh;
      div {
           width: 100%;
           height: 100%;
@@ -170,4 +170,72 @@ body {
      background-image: url("images/avatars/pink.png");
      background-size: cover;
      transition: 1s;
+}
+@media only screen and (max-width: 1024px) {
+     #startingPage {
+          padding: 0% 0;
+     }
+
+     #holder {
+          font-size: 2em;
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+     }
+     #game {
+          width: 95vw;
+          height: 95vw;
+     }
+
+     .player_avatars {
+          width: 80%;
+          margin: 0 10%;
+
+          div {
+               button {
+                    width: 10vw;
+                    height: 10vw;
+                    margin: 0 0%;
+               }
+          }
+     }
+     #start_button {
+          font-size: 1em;
+     }
+     .number_of_players {
+          width: 100%;
+          margin: 5% 0%;
+          button {
+               font-size: 1em;
+               width: 5vw;
+               height: 5vw;
+          }
+     }
+}
+@media only screen and (max-width: 812px) {
+     #holder {
+          font-size: 0.8em;
+     }
+     .player_avatars {
+          div {
+               button {
+                    width: 10vw;
+                    height: 10vw;
+                    margin: 0 0%;
+               }
+          }
+     }
+     #start_button {
+          font-size: 0.8em;
+     }
+     .number_of_players {
+          button {
+               font-size: 0.8em;
+               width: 6vw;
+               height: 6vw;
+          }
+     }
 }

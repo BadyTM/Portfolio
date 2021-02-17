@@ -24,6 +24,10 @@ body {
   background: #555;
 }
 
+header nav a:hover {
+  cursor: pointer;
+}
+
 #holder,
 #holder2,
 #holder3 {

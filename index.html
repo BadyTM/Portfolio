@@ -34,7 +34,7 @@
                                    id="coco"
                               />REFERENCE</a
                          >
-                         <a id="link4" href="#footer1"
+                         <a id="link4" onclick="scrollToFooter('footer1')"
                               ><img
                                    src="images/coco.png"
                                    alt="coconut"
@@ -147,7 +147,7 @@
                                    id="coco"
                               />REFERENCE</a
                          >
-                         <a id="link4" href="#footer2"
+                         <a id="link4" onclick="scrollToFooter('footer2')"
                               ><img
                                    src="images/coco.png"
                                    alt="coconut"
@@ -268,7 +268,7 @@
                                    id="coco"
                               />REFERENCE</a
                          >
-                         <a id="link4" href="#footer3"
+                         <a id="link4" onclick="scrollToFooter('footer3')"
                               ><img
                                    src="images/coco.png"
                                    alt="coconut"
@@ -364,6 +364,10 @@
                </footer>
           </div>
           <script>
+               function scrollToFooter(id) {
+                    let footer = document.getElementById(id);
+                    footer.scrollIntoView();
+               }
                function home() {
                     const hideAbout = document.getElementById("holder2");
                     const hideReference = document.getElementById("holder3");

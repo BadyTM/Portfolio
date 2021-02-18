@@ -11,30 +11,33 @@
      </head>
      <body>
           <div id="holder">
-               <header>
+               <header id="header">
                     <nav>
-                         <a id="link1" onclick="home()"
+                         <a
+                              onclick="menu('aboutMe', 'reference', 'home');hideBurger()"
                               ><img
                                    src="images/coco.png"
                                    alt="coconut"
                                    id="coco"
                               />DOMŮ</a
                          >
-                         <a id="link2" onclick="about()"
+                         <a
+                              onclick="menu('home', 'reference', 'aboutMe');hideBurger()"
                               ><img
                                    src="images/coco.png"
                                    alt="coconut"
                                    id="coco"
                               />O MNĚ</a
                          >
-                         <a id="link3" onclick="reference()"
+                         <a
+                              onclick="menu('home', 'aboutMe', 'reference');hideBurger()"
                               ><img
                                    src="images/coco.png"
                                    alt="coconut"
                                    id="coco"
                               />REFERENCE</a
                          >
-                         <a id="link4" onclick="scrollToFooter('footer1')"
+                         <a onclick="scrollToFooter('footer');hideBurger()"
                               ><img
                                    src="images/coco.png"
                                    alt="coconut"
@@ -43,8 +46,12 @@
                          >
                     </nav>
                </header>
-
-               <img id="tree" src="images/palmBlack.png" alt="palmBlack" />
+               <img
+                    src="images/burger icon.png"
+                    alt="burger"
+                    id="burger"
+                    onclick="hamburgerMenu()"
+               />
                <div id="home">
                     <section>
                          <img src="images/portrait.jpg" alt="" />
@@ -56,107 +63,6 @@
                     </section>
                </div>
 
-               <footer id="footer1">
-                    <table>
-                         <tr>
-                              <td>Miroslav Kalenský</td>
-                              <td>
-                                   Linkedin:
-                                   <a
-                                        href="https://www.linkedin.com/in/miroslavkalensky1999/"
-                                        >miroslavkalensky1999</a
-                                   >
-                              </td>
-                         </tr>
-                         <tr>
-                              <td>
-                                   Email:
-                                   <a href="mailto: mirek.kalensky@gmail.com"
-                                        >mirek.kalensky@gmail.com</a
-                                   >
-                              </td>
-                              <td>
-                                   Github:
-                                   <a href="https://github.com/BadyTM"
-                                        >BadyTM</a
-                                   >
-                              </td>
-                         </tr>
-                         <tr>
-                              <td>Tel: 607612362</td>
-                              <td>
-                                   Codewars:
-                                   <a
-                                        href="https://www.codewars.com/users/BadyTM"
-                                        >BadyTM</a
-                                   >
-                              </td>
-                         </tr>
-                    </table>
-                    <section class="phoneFooter">
-                         <div>Miroslav Kalenský</div>
-                         <div>
-                              Linkedin:
-                              <a
-                                   href="https://www.linkedin.com/in/miroslavkalensky1999/"
-                                   >miroslavkalensky1999</a
-                              >
-                         </div>
-                         <div>
-                              Email:
-                              <a href="mailto: mirek.kalensky@gmail.com"
-                                   >mirek.kalensky@gmail.com</a
-                              >
-                         </div>
-                         <div>
-                              Github:
-                              <a href="https://github.com/BadyTM">BadyTM</a>
-                         </div>
-                         <div>
-                              Codewars
-                              <a href="https://www.codewars.com/users/BadyTM"
-                                   >BadyTM</a
-                              >
-                         </div>
-                         <div>Tel: 607612362</div>
-                    </section>
-                    <span>MK</span>
-               </footer>
-          </div>
-          <div id="holder2">
-               <header>
-                    <nav>
-                         <a id="link1" onclick="home()"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />DOMŮ</a
-                         >
-                         <a id="link2" onclick="about()"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />O MNĚ</a
-                         >
-                         <a id="link3" onclick="reference()"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />REFERENCE</a
-                         >
-                         <a id="link4" onclick="scrollToFooter('footer2')"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />KONTAKT</a
-                         >
-                    </nav>
-               </header>
-               <img id="tree" src="images/palmBlack.png" alt="palmBlack" />
                <div id="aboutMe">
                     <section>
                          <h1>Něco málo o mně</h1>
@@ -177,126 +83,30 @@
                     </section>
                </div>
 
-               <footer id="footer2">
-                    <table>
-                         <tr>
-                              <td>Miroslav Kalenský</td>
-                              <td>
-                                   Linkedin:
-                                   <a
-                                        href="https://www.linkedin.com/in/miroslavkalensky1999/"
-                                        >miroslavkalensky1999</a
-                                   >
-                              </td>
-                         </tr>
-                         <tr>
-                              <td>
-                                   Email:
-                                   <a href="mailto: mirek.kalensky@gmail.com"
-                                        >mirek.kalensky@gmail.com</a
-                                   >
-                              </td>
-                              <td>
-                                   Github:
-                                   <a href="https://github.com/BadyTM"
-                                        >BadyTM</a
-                                   >
-                              </td>
-                         </tr>
-                         <tr>
-                              <td>Tel: 607612362</td>
-                              <td>
-                                   Codewars:
-                                   <a
-                                        href="https://www.codewars.com/users/BadyTM"
-                                        >BadyTM</a
-                                   >
-                              </td>
-                         </tr>
-                    </table>
-                    <section class="phoneFooter">
-                         <div>Miroslav Kalenský</div>
-                         <div>
-                              Linkedin:
-                              <a
-                                   href="https://www.linkedin.com/in/miroslavkalensky1999/"
-                                   >miroslavkalensky1999</a
-                              >
-                         </div>
-                         <div>
-                              Email:
-                              <a href="mailto: mirek.kalensky@gmail.com"
-                                   >mirek.kalensky@gmail.com</a
-                              >
-                         </div>
-                         <div>
-                              Github:
-                              <a href="https://github.com/BadyTM">BadyTM</a>
-                         </div>
-                         <div>
-                              Codewars
-                              <a href="https://www.codewars.com/users/BadyTM"
-                                   >BadyTM</a
-                              >
-                         </div>
-                         <div>Tel: 607612362</div>
-                    </section>
-                    <span>MK</span>
-               </footer>
-          </div>
-          <div id="holder3">
-               <header>
-                    <nav>
-                         <a id="link1" onclick="home()"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />DOMŮ</a
-                         >
-                         <a id="link2" onclick="about()"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />O MNĚ</a
-                         >
-                         <a id="link3" onclick="reference()"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />REFERENCE</a
-                         >
-                         <a id="link4" onclick="scrollToFooter('footer3')"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />KONTAKT</a
-                         >
-                    </nav>
-               </header>
-               <img id="tree" src="images/palmBlack.png" alt="palmBlack" />
-               <div id="reference">
-                    <h1>REFERENCE</h1>
-                    <section>
-                         <a href="cool fishing/domu.html"
-                              ><img src="images/cool fishing.jpg" alt="fishing"
-                         /></a>
-                         <a href="heartofhard/home.html"
-                              ><img
-                                   src="images/heart of hard.jpg"
-                                   alt="HOH" /></a
-                         ><a href="snakes and ladders/index.html"
-                              ><img
-                                   src="images/snakes and ladders.jpg"
-                                   alt="Snakes"
-                         /></a>
-                    </section>
+               <div id="reference" style="flex-wrap: wrap">
+                    <div>
+                         <h1>REFERENCE</h1>
+                         <section>
+                              <a href="cool fishing/domu.html"
+                                   ><img
+                                        src="images/cool fishing.jpg"
+                                        alt="fishing"
+                              /></a>
+                              <a href="heartofhard/home.html"
+                                   ><img
+                                        src="images/heart of hard.jpg"
+                                        alt="HOH" /></a
+                              ><a href="snakes and ladders/index.html"
+                                   ><img
+                                        src="images/snakes and ladders.jpg"
+                                        alt="Snakes"
+                              /></a>
+                         </section>
+                    </div>
                </div>
 
-               <footer id="footer3">
+               <img id="tree" src="images/palmBlack.png" alt="palmBlack" />
+               <footer id="footer">
                     <table>
                          <tr>
                               <td>Miroslav Kalenský</td>
@@ -363,36 +173,36 @@
                     <span>MK</span>
                </footer>
           </div>
+
           <script>
                function scrollToFooter(id) {
                     let footer = document.getElementById(id);
                     footer.scrollIntoView();
                }
-               function home() {
-                    const hideAbout = document.getElementById("holder2");
-                    const hideReference = document.getElementById("holder3");
-                    const showHome = document.getElementById("holder");
-                    hideAbout.style.display = "none";
-                    hideReference.style.display = "none";
-                    showHome.style.display = "block";
+               function menu(hide1, hide2, show) {
+                    const hideOne = document.getElementById(hide1);
+                    const hideTwo = document.getElementById(hide2);
+                    const showOne = document.getElementById(show);
+                    hideOne.style.display = "none";
+                    hideTwo.style.display = "none";
+                    showOne.style.display = "flex";
+                    if (window.innerWidth < 768) {
+                         scrollTo(0, 0);
+                    }
                }
-               function about() {
-                    const hideHome = document.getElementById("holder");
-                    const hideReference = document.getElementById("holder3");
-                    const showAbout = document.getElementById("holder2");
-                    hideHome.style.display = "none";
-                    hideReference.style.display = "none";
-                    showAbout.style.display = "block";
+               function hideBurger() {
+                    let header = document.getElementById("header");
+                    header.style.top = "-20vh";
                }
-               function reference() {
-                    const hideHome = document.getElementById("holder");
-                    const hideAbout = document.getElementById("holder2");
-                    const showReference = document.getElementById("holder3");
-                    hideHome.style.display = "none";
-                    hideAbout.style.display = "none";
-                    showReference.style.display = "block";
+               function hamburgerMenu() {
+                    let header = document.getElementById("header");
+                    if (header.style.top != "0vh") {
+                         header.style.top = "0vh";
+                    } else {
+                         header.style.top = "-20vh";
+                    }
                }
-               home();
+               menu("aboutMe", "reference", "home");
           </script>
      </body>
 </html>

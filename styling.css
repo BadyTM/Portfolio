@@ -64,7 +64,7 @@ header nav {
   display: flex;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  right: 10%;
+  right: 5%;
   position: absolute;
 }
 

@@ -61,7 +61,7 @@
 
       <div id="reference" style="flex-wrap: wrap">
         <div>
-          <h1>Tvorba</h1>
+          <h1>Ukázka mojí práce</h1>
           <section>
             <a href="cool fishing/domu.html"
               ><img src="images/cool fishing.jpg" alt="fishing"
@@ -75,7 +75,7 @@
         </div>
       </div>
 
-      <img id="tree" src="images/palmBlack.png" alt="palmBlack" />
+       
       <footer id="footer">
         <table>
           <tr>
@@ -153,14 +153,14 @@
       }
       function hideBurger() {
         let header = document.getElementById("header");
-        header.style.top = "-20vh";
+        header.style.right = "-50vh";
       }
       function hamburgerMenu() {
         let header = document.getElementById("header");
-        if (header.style.top != "0vh") {
-          header.style.top = "0vh";
+        if (header.style.right != "0vh") {
+          header.style.right = "0vh";
         } else {
-          header.style.top = "-20vh";
+          header.style.right = "-50vh";
         }
       }
       menu("aboutMe", "reference", "home");

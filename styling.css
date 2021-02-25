@@ -76,13 +76,12 @@ header a {
   backface-visibility: hidden;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
-  overflow: hidden;
   padding-bottom: 0.2rem;
-  font-size: 1.5625rem;
+  font-size: 22px;
   color: white;
   text-decoration: none;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-weight: 500;
+  letter-spacing: 2px;
 }
 
 header a:hover {
@@ -101,7 +100,7 @@ header a:before {
   right: 100%;
   bottom: -4.7;
   background: white;
-  height: 5px;
+  height: 2px;
   -webkit-transition-property: right;
   transition-property: right;
   -webkit-transition-duration: 0.3s;
@@ -139,8 +138,16 @@ header a:hover:before {
   font-size: 22px;
 }
 
-h1 {
+#reference h1,
+#aboutMe h1,
+#home h1 {
   font-size: 32px;
+}
+
+#reference span,
+#aboutMe span,
+#home span {
+  padding: 0;
 }
 
 #home img {
@@ -241,6 +248,11 @@ footer span {
   #home h3 {
     font-size: 1.5rem;
   }
+  #reference span br,
+  #aboutMe span br,
+  #home span br {
+    display: none;
+  }
   #home img {
     width: 30vw;
   }
@@ -253,10 +265,11 @@ footer span {
   header {
     -webkit-transition: 1s;
     transition: 1s;
-    top: -20vh;
+    right: -50vw;
     position: fixed;
     background-color: #181818;
-    height: 20vh;
+    height: 100vh;
+    width: 50vw;
     z-index: 2;
   }
   header nav {
@@ -272,19 +285,23 @@ footer span {
     width: auto;
     letter-spacing: normal;
     font-size: 1rem;
-    margin: 0 50vw 0 5vw;
+    margin: 0 0vw 0 5vw;
+  }
+  header nav a img {
+    display: none;
   }
   header nav a:nth-child(n + 2) {
-    margin: 0 50vw 0 5vw;
+    margin: 4vh 40vw 0 5vw;
   }
   #burger {
     position: fixed;
     z-index: 10;
-    right: 10;
-    top: 10;
+    right: 20;
+    top: 20;
     display: block;
     width: 10vw;
-    background-color: white;
+    border-radius: 20%;
+    background-color: rgba(255, 255, 255, 0.35);
   }
   * {
     font-size: 1rem;
@@ -301,12 +318,17 @@ footer span {
   #reference h1,
   #aboutMe h1,
   #home h1 {
-    font-size: 1.5rem;
+    font-size: 20px;
   }
-  #reference h3,
-  #aboutMe h3,
-  #home h3 {
-    font-size: 1rem;
+  #reference span,
+  #aboutMe span,
+  #home span {
+    font-size: 15px;
+  }
+  #reference span br,
+  #aboutMe span br,
+  #home span br {
+    display: none;
   }
   #home img {
     width: 50vw;

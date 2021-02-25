@@ -1,208 +1,169 @@
 <html>
-     <head>
-          <meta charset="UTF-8" />
-          <meta
-               name="viewport"
-               content="width=device-width, initial-scale=1.0"
-          />
-          <link rel="stylesheet" type="text/css" href="styling.css" />
-          <title>Portfolio</title>
-          <style></style>
-     </head>
-     <body>
-          <div id="holder">
-               <header id="header">
-                    <nav>
-                         <a
-                              onclick="menu('aboutMe', 'reference', 'home');hideBurger()"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />DOMŮ</a
-                         >
-                         <a
-                              onclick="menu('home', 'reference', 'aboutMe');hideBurger()"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />O MNĚ</a
-                         >
-                         <a
-                              onclick="menu('home', 'aboutMe', 'reference');hideBurger()"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />REFERENCE</a
-                         >
-                         <a onclick="scrollToFooter('footer');hideBurger()"
-                              ><img
-                                   src="images/coco.png"
-                                   alt="coconut"
-                                   id="coco"
-                              />KONTAKT</a
-                         >
-                    </nav>
-               </header>
-               <img
-                    src="images/burger icon.png"
-                    alt="burger"
-                    id="burger"
-                    onclick="hamburgerMenu()"
-               />
-               <div id="home">
-                    <section>
-                         <img src="images/portrait.jpg" alt="" />
-                         <h1>Vítám Vás na svém portfoliu</h1>
-                         <h3>
-                              Najdete zde ukázku mojí práce, něco málo o mně a
-                              také kontaktní údaje
-                         </h3>
-                    </section>
-               </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styling.css" />
+    <title>Portfolio</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="holder">
+      <header id="header">
+        <nav>
+          <a onclick="menu('aboutMe', 'reference', 'home');hideBurger()"
+            ><img src="images/coco.png" alt="coconut" id="coco" />DOMŮ</a
+          >
+          <a onclick="menu('home', 'reference', 'aboutMe');hideBurger()"
+            ><img src="images/coco.png" alt="coconut" id="coco" />O MNĚ</a
+          >
+          <a onclick="menu('home', 'aboutMe', 'reference');hideBurger()"
+            ><img src="images/coco.png" alt="coconut" id="coco" />TVORBA</a
+          >
+          <a onclick="scrollToFooter('footer');hideBurger()"
+            ><img src="images/coco.png" alt="coconut" id="coco" />KONTAKT</a
+          >
+        </nav>
+      </header>
+      <img
+        src="images/burger icon.png"
+        alt="burger"
+        id="burger"
+        onclick="hamburgerMenu()"
+      />
+      <div id="home">
+        <section>
+          <img src="images/portrait.jpg" alt="" />
+          <h1>Vítám Vás na svém portfoliu</h1>
+          <span>
+            Najdete zde ukázku mojí práce, něco málo o mně a také kontaktní
+            údaje
+          </span>
+        </section>
+      </div>
 
-               <div id="aboutMe">
-                    <section>
-                         <h1>Něco málo o mně</h1>
-                         <h3>
-                              Aktuálně studuji na Provozně ekonomické fakultě
-                              ČZU v Praze,<br />
-                              ale po objevení oblasti IT vím, že se chci
-                              rozvíjet raději tímto směrem.
-                              <br />
-                              Mám znalosti HTML, CSS (SASS) a základy
-                              Javascriptu (ES6), ve kterém se aktuálně učím
-                              React.
-                              <br />
-                              Dále mám zkušenosti s tvorbou emailových šablon a
-                              responsivní design považuji za naprostý standard.
-                              <br />
-                         </h3>
-                    </section>
-               </div>
+      <div id="aboutMe">
+        <section>
+          <h1>Něco málo o mně</h1>
+          <span>
+            Aktuálně studuji na Provozně ekonomické fakultě ČZU v Praze,<br />
+            ale po objevení oblasti IT vím, že se chci rozvíjet raději tímto
+            směrem.
+            <br />
+            Mám znalosti HTML, CSS (SASS) a základy Javascriptu (ES6), ve kterém
+            se aktuálně učím React.
+            <br />
+            Dále mám zkušenosti s tvorbou emailových šablon a responsivní design
+            považuji za naprostý standard.
+            <br />
+          </span>
+        </section>
+      </div>
 
-               <div id="reference" style="flex-wrap: wrap">
-                    <div>
-                         <h1>REFERENCE</h1>
-                         <section>
-                              <a href="cool fishing/domu.html"
-                                   ><img
-                                        src="images/cool fishing.jpg"
-                                        alt="fishing"
-                              /></a>
-                              <a href="heartofhard/home.html"
-                                   ><img
-                                        src="images/heart of hard.jpg"
-                                        alt="HOH" /></a
-                              ><a href="snakes and ladders/index.html"
-                                   ><img
-                                        src="images/snakes and ladders.jpg"
-                                        alt="Snakes"
-                              /></a>
-                         </section>
-                    </div>
-               </div>
+      <div id="reference" style="flex-wrap: wrap">
+        <div>
+          <h1>Tvorba</h1>
+          <section>
+            <a href="cool fishing/domu.html"
+              ><img src="images/cool fishing.jpg" alt="fishing"
+            /></a>
+            <a href="heartofhard/home.html"
+              ><img src="images/heart of hard.jpg" alt="HOH" /></a
+            ><a href="snakes and ladders/index.html"
+              ><img src="images/snakes and ladders.jpg" alt="Snakes"
+            /></a>
+          </section>
+        </div>
+      </div>
 
-               <img id="tree" src="images/palmBlack.png" alt="palmBlack" />
-               <footer id="footer">
-                    <table>
-                         <tr>
-                              <td>Miroslav Kalenský</td>
-                              <td>
-                                   Linkedin:
-                                   <a
-                                        href="https://www.linkedin.com/in/miroslavkalensky1999/"
-                                        >miroslavkalensky1999</a
-                                   >
-                              </td>
-                         </tr>
-                         <tr>
-                              <td>
-                                   Email:
-                                   <a href="mailto: mirek.kalensky@gmail.com"
-                                        >mirek.kalensky@gmail.com</a
-                                   >
-                              </td>
-                              <td>
-                                   Github:
-                                   <a href="https://github.com/BadyTM"
-                                        >BadyTM</a
-                                   >
-                              </td>
-                         </tr>
-                         <tr>
-                              <td>Tel: 607612362</td>
-                              <td>
-                                   Codewars:
-                                   <a
-                                        href="https://www.codewars.com/users/BadyTM"
-                                        >BadyTM</a
-                                   >
-                              </td>
-                         </tr>
-                    </table>
-                    <section class="phoneFooter">
-                         <div>Miroslav Kalenský</div>
-                         <div>
-                              Linkedin:
-                              <a
-                                   href="https://www.linkedin.com/in/miroslavkalensky1999/"
-                                   >miroslavkalensky1999</a
-                              >
-                         </div>
-                         <div>
-                              Email:
-                              <a href="mailto: mirek.kalensky@gmail.com"
-                                   >mirek.kalensky@gmail.com</a
-                              >
-                         </div>
-                         <div>
-                              Github:
-                              <a href="https://github.com/BadyTM">BadyTM</a>
-                         </div>
-                         <div>
-                              Codewars
-                              <a href="https://www.codewars.com/users/BadyTM"
-                                   >BadyTM</a
-                              >
-                         </div>
-                         <div>Tel: 607612362</div>
-                    </section>
-                    <span>MK</span>
-               </footer>
+      <img id="tree" src="images/palmBlack.png" alt="palmBlack" />
+      <footer id="footer">
+        <table>
+          <tr>
+            <td>Miroslav Kalenský</td>
+            <td>
+              Linkedin:
+              <a href="https://www.linkedin.com/in/miroslavkalensky1999/"
+                >miroslavkalensky1999</a
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Email:
+              <a href="mailto: mirek.kalensky@gmail.com"
+                >mirek.kalensky@gmail.com</a
+              >
+            </td>
+            <td>
+              Github:
+              <a href="https://github.com/BadyTM">BadyTM</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Tel: 607612362</td>
+            <td>
+              Codewars:
+              <a href="https://www.codewars.com/users/BadyTM">BadyTM</a>
+            </td>
+          </tr>
+        </table>
+        <section class="phoneFooter">
+          <div>Miroslav Kalenský</div>
+          <div>
+            Linkedin:
+            <a href="https://www.linkedin.com/in/miroslavkalensky1999/"
+              >miroslavkalensky1999</a
+            >
           </div>
+          <div>
+            Email:
+            <a href="mailto: mirek.kalensky@gmail.com"
+              >mirek.kalensky@gmail.com</a
+            >
+          </div>
+          <div>
+            Github:
+            <a href="https://github.com/BadyTM">BadyTM</a>
+          </div>
+          <div>
+            Codewars
+            <a href="https://www.codewars.com/users/BadyTM">BadyTM</a>
+          </div>
+          <div>Tel: 607612362</div>
+        </section>
+        <span>MK</span>
+      </footer>
+    </div>
 
-          <script>
-               function scrollToFooter(id) {
-                    let footer = document.getElementById(id);
-                    footer.scrollIntoView();
-               }
-               function menu(hide1, hide2, show) {
-                    const hideOne = document.getElementById(hide1);
-                    const hideTwo = document.getElementById(hide2);
-                    const showOne = document.getElementById(show);
-                    hideOne.style.display = "none";
-                    hideTwo.style.display = "none";
-                    showOne.style.display = "flex";
-                    if (window.innerWidth < 768) {
-                         scrollTo(0, 0);
-                    }
-               }
-               function hideBurger() {
-                    let header = document.getElementById("header");
-                    header.style.top = "-20vh";
-               }
-               function hamburgerMenu() {
-                    let header = document.getElementById("header");
-                    if (header.style.top != "0vh") {
-                         header.style.top = "0vh";
-                    } else {
-                         header.style.top = "-20vh";
-                    }
-               }
-               menu("aboutMe", "reference", "home");
-          </script>
-     </body>
+    <script>
+      function scrollToFooter(id) {
+        let footer = document.getElementById(id);
+        footer.scrollIntoView();
+      }
+      function menu(hide1, hide2, show) {
+        const hideOne = document.getElementById(hide1);
+        const hideTwo = document.getElementById(hide2);
+        const showOne = document.getElementById(show);
+        hideOne.style.display = "none";
+        hideTwo.style.display = "none";
+        showOne.style.display = "flex";
+        if (window.innerWidth < 768) {
+          scrollTo(0, 0);
+        }
+      }
+      function hideBurger() {
+        let header = document.getElementById("header");
+        header.style.top = "-20vh";
+      }
+      function hamburgerMenu() {
+        let header = document.getElementById("header");
+        if (header.style.top != "0vh") {
+          header.style.top = "0vh";
+        } else {
+          header.style.top = "-20vh";
+        }
+      }
+      menu("aboutMe", "reference", "home");
+    </script>
+  </body>
 </html>

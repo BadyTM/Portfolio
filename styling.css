@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  font-family: Arial;
+  font-family: Sans-serif;
 }
 
 * {
@@ -121,7 +121,7 @@ header a:hover:before {
 #reference,
 #aboutMe,
 #home {
-  text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff;
+  color: white;
   text-align: center;
   margin: auto 15% auto 15%;
   width: 70%;
@@ -135,12 +135,12 @@ header a:hover:before {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  line-height: 150%;
+  font-size: 22px;
 }
 
-#reference h1,
-#aboutMe h1,
-#home h1 {
-  font-size: 2.25rem;
+h1 {
+  font-size: 32px;
 }
 
 #home img {
@@ -284,7 +284,7 @@ footer span {
     top: 10;
     display: block;
     width: 10vw;
-    background-color: gray;
+    background-color: white;
   }
   * {
     font-size: 1rem;
@@ -292,6 +292,7 @@ footer span {
   #reference,
   #aboutMe,
   #home {
+    line-height: 100%;
     text-align: center;
     margin: 0 5% 0% 5%;
     width: 90%;

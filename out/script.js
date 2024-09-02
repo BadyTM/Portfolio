@@ -124,8 +124,6 @@ const hideNumbers = () => {
 const checkWin = () => {
     let playerLeft = document.getElementById(playerPlaying).style.left;
     let playerBottom = document.getElementById(playerPlaying).style.bottom;
-    console.log(playerLeft);
-    console.log(playerBottom);
     if ((playerLeft === "0%") && (playerBottom === "90%")) {
         alert("you won");
     }

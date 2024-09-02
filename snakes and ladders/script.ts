@@ -54,11 +54,11 @@ const changePlayer = (): void => {
 }
 
 /*moving*/
-let goBack = 0;
-const getDirection = (): void => {
-     let direction;
-     let playerLeft = document.getElementById(playerPlaying).style.left;
-     let playerBottom = document.getElementById(playerPlaying).style.bottom;
+let goBack: number = 0;
+const getDirection = (): string => {
+     let direction: string;
+     let playerLeft: string = document.getElementById(playerPlaying).style.left;
+     let playerBottom: string = document.getElementById(playerPlaying).style.bottom;
      if (goBack === 1) {
           direction = "right";
      } else if ((playerBottom === "90%") && (playerLeft === "0%")) {
@@ -78,7 +78,7 @@ const getDirection = (): void => {
      return direction;
 }
 
-const move = (direction): void => {
+const move = (direction: string): void => {
      if (direction == "right") {
           document.getElementById(playerPlaying).style.left =
                parseInt(document.getElementById(playerPlaying).style.left) +
@@ -98,7 +98,7 @@ const move = (direction): void => {
 }
 
 const run = (): void => {
-     for (let i = 0; i < diceNumber; i++) {
+     for (let i: number = 0; i < diceNumber; i++) {
           runInterval(i);
      }
      setTimeout(function () {
@@ -106,7 +106,7 @@ const run = (): void => {
      }, 400 * diceNumber);
 }
 
-const runInterval = (i): void => {
+const runInterval = (i: number): void => {
      setTimeout(function () {
           let direction = getDirection();
           move(direction);
@@ -115,15 +115,13 @@ const runInterval = (i): void => {
 /*Dice with random number*/
 const hideNumbers = (): void => {
      const numbers: NodeListOf<HTMLElement> = document.querySelectorAll<HTMLElement>(".dice-number");
-     for (let i = 0; i < numbers.length; i++) {
+     for (let i: number = 0; i < numbers.length; i++) {
           numbers[i].classList.add("d-none");
      }
 }
 const checkWin = (): void => {
-     let playerLeft = document.getElementById(playerPlaying).style.left;
-     let playerBottom = document.getElementById(playerPlaying).style.bottom;
-     console.log(playerLeft);
-     console.log(playerBottom);
+     let playerLeft: string = document.getElementById(playerPlaying).style.left;
+     let playerBottom: string = document.getElementById(playerPlaying).style.bottom;
      if ((playerLeft === "0%") && (playerBottom === "90%")) {
           alert("you won");
      }
@@ -131,8 +129,8 @@ const checkWin = (): void => {
 const showNumber = (): void => {
      hideNumbers();
      diceNumber = Math.floor(Math.random() * 6) + 1;
-     let diceString = diceNumber.toString();
-     let diceID = `dice-${diceString}`;
+     let diceString: string = diceNumber.toString();
+     let diceID: string = `dice-${diceString}`;
      document.getElementById(diceID).classList.remove("d-none");
      document.getElementById(diceID).classList.add("d-block");
 
@@ -146,8 +144,8 @@ const showNumber = (): void => {
 /* Ladders */
 const ladders = (): void => {
      setTimeout(function() {
-          let playerLeft = document.getElementById(playerPlaying).style.left;
-          let playerBottom = document.getElementById(playerPlaying).style
+          let playerLeft: string = document.getElementById(playerPlaying).style.left;
+          let playerBottom: string = document.getElementById(playerPlaying).style
                .bottom;
 
           if ((playerLeft === "10%") && (playerBottom === "0%")) {
@@ -219,8 +217,8 @@ const ladders = (): void => {
 /*snakes*/
 const snakes = (): void => {
      setTimeout(function(): void {
-          let playerLeft = document.getElementById(playerPlaying).style.left;
-          let playerBottom = document.getElementById(playerPlaying).style.bottom;
+          let playerLeft: string = document.getElementById(playerPlaying).style.left;
+          let playerBottom: string = document.getElementById(playerPlaying).style.bottom;
 
           if ((playerLeft === "30%") && (playerBottom === "10%")) {
                let playerLeftNew = "20%";

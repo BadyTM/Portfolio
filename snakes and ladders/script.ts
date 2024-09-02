@@ -1,72 +1,43 @@
 /*Changing player every round*/
-let playersInGame = ["player1", "player2", "player3", "player4"];
-let diceNumber: number;
+let playersInGame: string[] = ["player-1", "player-2", "player-3", "player-4"];
+let diceNumber: number = Math.floor(Math.random() * 6) + 1;
+let m: number = 0;
+let playerPlaying: string = playersInGame[m];
+const maxAmountOfPlayers: number = 4;
 
-function onePlayer() {
-     playersInGame = ["player1"];
-     document.getElementById("player1").style.display = "block";
-     document.getElementById("player2").style.display = "none";
-     document.getElementById("player3").style.display = "none";
-     document.getElementById("player4").style.display = "none";
-     document.getElementById("player_2_avatar").style.display = "none";
-     document.getElementById("player_3_avatar").style.display = "none";
-     document.getElementById("player_4_avatar").style.display = "none";
+const togglePlayerVisibility = (playerId: string, showPlayer: boolean): void => {
+     const player: HTMLElement = document.getElementById(playerId);
+     const playerAvatar: HTMLElement = document.getElementById(playerId + "-avatar");
+     showPlayer ? player.classList.remove("d-none") : player.classList.add("d-none");
+     showPlayer ? playerAvatar.classList.remove("d-none") : playerAvatar.classList.add("d-none");
 }
-function twoPlayers() {
-     playersInGame = ["player1", "player2"];
-     document.getElementById("player1").style.display = "block";
-     document.getElementById("player2").style.display = "block";
-     document.getElementById("player3").style.display = "none";
-     document.getElementById("player4").style.display = "none";
-     document.getElementById("player_2_avatar").style.display = "flex";
-     document.getElementById("player_3_avatar").style.display = "none";
-     document.getElementById("player_4_avatar").style.display = "none";
-}
-function threePlayers() {
-     playersInGame = ["player1", "player2", "player3"];
-     document.getElementById("player1").style.display = "block";
-     document.getElementById("player2").style.display = "block";
-     document.getElementById("player3").style.display = "block";
-     document.getElementById("player4").style.display = "none";
-     document.getElementById("player_2_avatar").style.display = "flex";
-     document.getElementById("player_3_avatar").style.display = "flex";
-     document.getElementById("player_4_avatar").style.display = "none";
-}
-function fourPlayers() {
-     playersInGame = ["player1", "player2", "player3", "player4"];
-     document.getElementById("player1").style.display = "block";
-     document.getElementById("player2").style.display = "block";
-     document.getElementById("player3").style.display = "block";
-     document.getElementById("player4").style.display = "block";
-     document.getElementById("player_2_avatar").style.display = "flex";
-     document.getElementById("player_3_avatar").style.display = "flex";
-     document.getElementById("player_4_avatar").style.display = "flex";
-}
+
+const setAmountOfPlayers = (amount: number): void => {
+  playersInGame = [];
+  for (let i: number = 1; i <= maxAmountOfPlayers; i++) {
+    const playerId: string = `player-${i}`;
+    if (i <= amount) {
+      playersInGame.push(playerId);
+      togglePlayerVisibility(playerId, true);
+    } else {
+      togglePlayerVisibility(playerId, false);
+    }
+  }
+};
+
 /*player avatars*/
-function player1Avatar(color) {
-     document.getElementById("player1").style.backgroundImage =
+const setPlayerAvatar = (playerId: string, color: string): void => {
+     document.getElementById(playerId).style.backgroundImage =
           "url('images/avatars/" + color + ".png')";
 }
-function player2Avatar(color) {
-     document.getElementById("player2").style.backgroundImage =
-          "url('images/avatars/" + color + ".png')";
-}
-function player3Avatar(color) {
-     document.getElementById("player3").style.backgroundImage =
-          "url('images/avatars/" + color + ".png')";
-}
-function player4Avatar(color) {
-     document.getElementById("player4").style.backgroundImage =
-          "url('images/avatars/" + color + ".png')";
-}
+
 //start game
-function startGame() {
-     document.getElementById("startingPage").style.display = "none";
+const startGame = (): void => {
+     document.getElementById("starting-page").classList.add("d-none");
      playerPlaying = playersInGame[m];
 }
-let m = 0;
-let playerPlaying = playersInGame[m];
-function changePlayer() {
+
+const changePlayer = (): void => {
      setTimeout(function () {
           if ((diceNumber != 6) && (m < playersInGame.length - 1)) {
                m++;
@@ -84,7 +55,7 @@ function changePlayer() {
 
 /*moving*/
 let goBack = 0;
-function getDirection() {
+const getDirection = (): void => {
      let direction;
      let playerLeft = document.getElementById(playerPlaying).style.left;
      let playerBottom = document.getElementById(playerPlaying).style.bottom;
@@ -106,7 +77,8 @@ function getDirection() {
      }
      return direction;
 }
-function move(direction) {
+
+const move = (direction): void => {
      if (direction == "right") {
           document.getElementById(playerPlaying).style.left =
                parseInt(document.getElementById(playerPlaying).style.left) +
@@ -124,7 +96,8 @@ function move(direction) {
                "%";
      }
 }
-function run() {
+
+const run = (): void => {
      for (let i = 0; i < diceNumber; i++) {
           runInterval(i);
      }
@@ -133,20 +106,20 @@ function run() {
      }, 400 * diceNumber);
 }
 
-function runInterval(i) {
+const runInterval = (i): void => {
      setTimeout(function () {
           let direction = getDirection();
           move(direction);
      }, 400 * i);
 }
 /*Dice with random number*/
-function hideNumbers(): void {
-     const numbers: NodeListOf<HTMLElement> = document.querySelectorAll<HTMLElement>(".diceNumber");
+const hideNumbers = (): void => {
+     const numbers: NodeListOf<HTMLElement> = document.querySelectorAll<HTMLElement>(".dice-number");
      for (let i = 0; i < numbers.length; i++) {
-          numbers[i].style.display = "none";
+          numbers[i].classList.add("d-none");
      }
 }
-function checkWin() {
+const checkWin = (): void => {
      let playerLeft = document.getElementById(playerPlaying).style.left;
      let playerBottom = document.getElementById(playerPlaying).style.bottom;
      console.log(playerLeft);
@@ -155,12 +128,13 @@ function checkWin() {
           alert("you won");
      }
 }
-function showNumber() {
+const showNumber = (): void => {
      hideNumbers();
      diceNumber = Math.floor(Math.random() * 6) + 1;
      let diceString = diceNumber.toString();
-     let diceID = `dice${diceString}`;
-     document.getElementById(diceID).style.display = "block";
+     let diceID = `dice-${diceString}`;
+     document.getElementById(diceID).classList.remove("d-none");
+     document.getElementById(diceID).classList.add("d-block");
 
      run();
      ladders();
@@ -170,8 +144,8 @@ function showNumber() {
 }
 
 /* Ladders */
-function ladders() {
-     setTimeout(function () {
+const ladders = (): void => {
+     setTimeout(function() {
           let playerLeft = document.getElementById(playerPlaying).style.left;
           let playerBottom = document.getElementById(playerPlaying).style
                .bottom;
@@ -243,11 +217,10 @@ function ladders() {
      }, 400 * diceNumber);
 }
 /*snakes*/
-function snakes() {
-     setTimeout(function () {
+const snakes = (): void => {
+     setTimeout(function(): void {
           let playerLeft = document.getElementById(playerPlaying).style.left;
-          let playerBottom = document.getElementById(playerPlaying).style
-               .bottom;
+          let playerBottom = document.getElementById(playerPlaying).style.bottom;
 
           if ((playerLeft === "30%") && (playerBottom === "10%")) {
                let playerLeftNew = "20%";

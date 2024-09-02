@@ -1,6 +1,5 @@
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -10,15 +9,9 @@ body {
 #holder {
   height: 100%;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 #game {
@@ -30,114 +23,88 @@ body {
   position: relative;
 }
 
-#startingPage {
+#starting-page {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #d8d49c;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  background-color: rgb(216, 212, 156);
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   padding: 20% 0;
 }
 
-.number_of_players {
+.number-of-players {
   width: 60%;
   height: 10%;
   margin: 0 20%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
-.number_of_players button:focus {
+.number-of-players button:focus {
   background-color: yellow;
 }
-
-.number_of_players button {
+.number-of-players button {
   width: 2vw;
   font-weight: 800;
   margin: 0 1%;
 }
 
-.player_avatars {
+.player-avatars {
   width: 50%;
   margin: 0 25%;
 }
-
-.player_avatars div {
+.player-avatars div {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
-
-.player_avatars div button:focus {
+.player-avatars div button:focus {
   background-color: red;
 }
-
-.player_avatars div * {
+.player-avatars div * {
   margin: 3% 1%;
 }
-
-.player_avatars div button {
+.player-avatars div button {
   width: 2vw;
   height: 2vw;
   font-weight: 800;
   margin: 0 1%;
 }
 
-.avatar_blue {
+.avatar-blue {
   background-image: url("images/avatars/blue.png");
   background-size: cover;
   background-color: rgba(0, 0, 0, 0);
   border: none;
 }
 
-.avatar_green {
+.avatar-green {
   background-image: url("images/avatars/green.png");
   background-size: cover;
   background-color: rgba(0, 0, 0, 0);
   border: none;
 }
 
-.avatar_yellow {
+.avatar-yellow {
   background-image: url("images/avatars/yellow.png");
   background-size: cover;
   background-color: rgba(0, 0, 0, 0);
   border: none;
 }
 
-.avatar_pink {
+.avatar-pink {
   background-image: url("images/avatars/pink.png");
   background-size: cover;
   background-color: rgba(0, 0, 0, 0);
   border: none;
 }
 
-#start_button {
+#start-button {
   width: 15%;
 }
 
@@ -147,7 +114,6 @@ body {
   width: 15vh;
   height: 15vh;
 }
-
 #dice div {
   width: 100%;
   height: 100%;
@@ -155,141 +121,121 @@ body {
   border: 1px solid black;
   display: none;
 }
-
 #dice div button {
   width: 100%;
   height: 100%;
   opacity: 25%;
 }
-
-#dice #dice1 {
+#dice #dice-1 {
   display: block;
   background-image: url("images/1.png");
 }
-
-#dice #dice2 {
+#dice #dice-2 {
   background-image: url("images/2.png");
 }
-
-#dice #dice3 {
+#dice #dice-3 {
   background-image: url("images/3.png");
 }
-
-#dice #dice4 {
+#dice #dice-4 {
   background-image: url("images/4.png");
 }
-
-#dice #dice5 {
+#dice #dice-5 {
   background-image: url("images/5.png");
 }
-
-#dice #dice6 {
+#dice #dice-6 {
   background-image: url("images/6.png");
 }
 
-#player1 {
+#player-1 {
   position: absolute;
   width: 10%;
   height: 10%;
   background-image: url("images/avatars/blue.png");
   background-size: cover;
-  -webkit-transition: 1s;
   transition: 1s;
 }
 
-#player2 {
+#player-2 {
   position: absolute;
   width: 10%;
   height: 10%;
   background-image: url("images/avatars/green.png");
   background-size: cover;
-  -webkit-transition: 1s;
   transition: 1s;
 }
 
-#player3 {
+#player-3 {
   position: absolute;
   width: 10%;
   height: 10%;
   background-image: url("images/avatars/yellow.png");
   background-size: cover;
-  -webkit-transition: 1s;
   transition: 1s;
 }
 
-#player4 {
+#player-4 {
   position: absolute;
   width: 10%;
   height: 10%;
   background-image: url("images/avatars/pink.png");
   background-size: cover;
-  -webkit-transition: 1s;
   transition: 1s;
 }
 
 @media only screen and (max-width: 1024px) {
-  #startingPage {
+  #starting-page {
     padding: 0% 0;
   }
   #holder {
     font-size: 2em;
     height: 100%;
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
   #game {
     width: 95vw;
     height: 95vw;
   }
-  .player_avatars {
+  .player-avatars {
     width: 80%;
     margin: 0 10%;
   }
-  .player_avatars div button {
+  .player-avatars div button {
     width: 10vw;
     height: 10vw;
     margin: 0 0%;
   }
-  #start_button {
+  #start-button {
     font-size: 1em;
   }
-  .number_of_players {
+  .number-of-players {
     width: 100%;
     margin: 5% 0%;
   }
-  .number_of_players button {
+  .number-of-players button {
     font-size: 1em;
     width: 5vw;
     height: 5vw;
   }
 }
-
 @media only screen and (max-width: 812px) {
   #holder {
     font-size: 0.8em;
   }
-  .player_avatars div button {
+  .player-avatars div button {
     width: 10vw;
     height: 10vw;
     margin: 0 0%;
   }
-  #start_button {
+  #start-button {
     font-size: 0.8em;
   }
-  .number_of_players button {
+  .number-of-players button {
     font-size: 0.8em;
     width: 6vw;
     height: 6vw;
   }
-}
-/*# sourceMappingURL=styling.css.map */
+}/*# sourceMappingURL=styling.css.map */

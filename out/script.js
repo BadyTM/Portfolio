@@ -1,71 +1,39 @@
 /*Changing player every round*/
-let playersInGame = ["player1", "player2", "player3", "player4"];
-let diceNumber;
-function onePlayer() {
-    playersInGame = ["player1"];
-    document.getElementById("player1").style.display = "block";
-    document.getElementById("player2").style.display = "none";
-    document.getElementById("player3").style.display = "none";
-    document.getElementById("player4").style.display = "none";
-    document.getElementById("player_2_avatar").style.display = "none";
-    document.getElementById("player_3_avatar").style.display = "none";
-    document.getElementById("player_4_avatar").style.display = "none";
-}
-function twoPlayers() {
-    playersInGame = ["player1", "player2"];
-    document.getElementById("player1").style.display = "block";
-    document.getElementById("player2").style.display = "block";
-    document.getElementById("player3").style.display = "none";
-    document.getElementById("player4").style.display = "none";
-    document.getElementById("player_2_avatar").style.display = "flex";
-    document.getElementById("player_3_avatar").style.display = "none";
-    document.getElementById("player_4_avatar").style.display = "none";
-}
-function threePlayers() {
-    playersInGame = ["player1", "player2", "player3"];
-    document.getElementById("player1").style.display = "block";
-    document.getElementById("player2").style.display = "block";
-    document.getElementById("player3").style.display = "block";
-    document.getElementById("player4").style.display = "none";
-    document.getElementById("player_2_avatar").style.display = "flex";
-    document.getElementById("player_3_avatar").style.display = "flex";
-    document.getElementById("player_4_avatar").style.display = "none";
-}
-function fourPlayers() {
-    playersInGame = ["player1", "player2", "player3", "player4"];
-    document.getElementById("player1").style.display = "block";
-    document.getElementById("player2").style.display = "block";
-    document.getElementById("player3").style.display = "block";
-    document.getElementById("player4").style.display = "block";
-    document.getElementById("player_2_avatar").style.display = "flex";
-    document.getElementById("player_3_avatar").style.display = "flex";
-    document.getElementById("player_4_avatar").style.display = "flex";
-}
-/*player avatars*/
-function player1Avatar(color) {
-    document.getElementById("player1").style.backgroundImage =
-        "url('images/avatars/" + color + ".png')";
-}
-function player2Avatar(color) {
-    document.getElementById("player2").style.backgroundImage =
-        "url('images/avatars/" + color + ".png')";
-}
-function player3Avatar(color) {
-    document.getElementById("player3").style.backgroundImage =
-        "url('images/avatars/" + color + ".png')";
-}
-function player4Avatar(color) {
-    document.getElementById("player4").style.backgroundImage =
-        "url('images/avatars/" + color + ".png')";
-}
-//start game
-function startGame() {
-    document.getElementById("startingPage").style.display = "none";
-    playerPlaying = playersInGame[m];
-}
+let playersInGame = ["player-1", "player-2", "player-3", "player-4"];
+let diceNumber = Math.floor(Math.random() * 6) + 1;
 let m = 0;
 let playerPlaying = playersInGame[m];
-function changePlayer() {
+const maxAmountOfPlayers = 4;
+const togglePlayerVisibility = (playerId, showPlayer) => {
+    const player = document.getElementById(playerId);
+    const playerAvatar = document.getElementById(playerId + "-avatar");
+    showPlayer ? player.classList.remove("d-none") : player.classList.add("d-none");
+    showPlayer ? playerAvatar.classList.remove("d-none") : playerAvatar.classList.add("d-none");
+};
+const setAmountOfPlayers = (amount) => {
+    playersInGame = [];
+    for (let i = 1; i <= maxAmountOfPlayers; i++) {
+        const playerId = `player-${i}`;
+        if (i <= amount) {
+            playersInGame.push(playerId);
+            togglePlayerVisibility(playerId, true);
+        }
+        else {
+            togglePlayerVisibility(playerId, false);
+        }
+    }
+};
+/*player avatars*/
+const setPlayerAvatar = (playerId, color) => {
+    document.getElementById(playerId).style.backgroundImage =
+        "url('images/avatars/" + color + ".png')";
+};
+//start game
+const startGame = () => {
+    document.getElementById("starting-page").classList.add("d-none");
+    playerPlaying = playersInGame[m];
+};
+const changePlayer = () => {
     setTimeout(function () {
         if ((diceNumber != 6) && (m < playersInGame.length - 1)) {
             m++;
@@ -81,10 +49,10 @@ function changePlayer() {
             goBack = 0;
         }
     }, 400 * diceNumber);
-}
+};
 /*moving*/
 let goBack = 0;
-function getDirection() {
+const getDirection = () => {
     let direction;
     let playerLeft = document.getElementById(playerPlaying).style.left;
     let playerBottom = document.getElementById(playerPlaying).style.bottom;
@@ -111,8 +79,8 @@ function getDirection() {
         direction = "right";
     }
     return direction;
-}
-function move(direction) {
+};
+const move = (direction) => {
     if (direction == "right") {
         document.getElementById(playerPlaying).style.left =
             parseInt(document.getElementById(playerPlaying).style.left) +
@@ -131,29 +99,29 @@ function move(direction) {
                 10 +
                 "%";
     }
-}
-function run() {
+};
+const run = () => {
     for (let i = 0; i < diceNumber; i++) {
         runInterval(i);
     }
     setTimeout(function () {
         checkWin();
     }, 400 * diceNumber);
-}
-function runInterval(i) {
+};
+const runInterval = (i) => {
     setTimeout(function () {
         let direction = getDirection();
         move(direction);
     }, 400 * i);
-}
+};
 /*Dice with random number*/
-function hideNumbers() {
-    const numbers = document.querySelectorAll(".diceNumber");
+const hideNumbers = () => {
+    const numbers = document.querySelectorAll(".dice-number");
     for (let i = 0; i < numbers.length; i++) {
-        numbers[i].style.display = "none";
+        numbers[i].classList.add("d-none");
     }
-}
-function checkWin() {
+};
+const checkWin = () => {
     let playerLeft = document.getElementById(playerPlaying).style.left;
     let playerBottom = document.getElementById(playerPlaying).style.bottom;
     console.log(playerLeft);
@@ -161,20 +129,21 @@ function checkWin() {
     if ((playerLeft === "0%") && (playerBottom === "90%")) {
         alert("you won");
     }
-}
-function showNumber() {
+};
+const showNumber = () => {
     hideNumbers();
     diceNumber = Math.floor(Math.random() * 6) + 1;
     let diceString = diceNumber.toString();
-    let diceID = `dice${diceString}`;
-    document.getElementById(diceID).style.display = "block";
+    let diceID = `dice-${diceString}`;
+    document.getElementById(diceID).classList.remove("d-none");
+    document.getElementById(diceID).classList.add("d-block");
     run();
     ladders();
     snakes();
     changePlayer();
-}
+};
 /* Ladders */
-function ladders() {
+const ladders = () => {
     setTimeout(function () {
         let playerLeft = document.getElementById(playerPlaying).style.left;
         let playerBottom = document.getElementById(playerPlaying).style
@@ -222,13 +191,12 @@ function ladders() {
             document.getElementById(playerPlaying).style.bottom = playerBottomNew;
         }
     }, 400 * diceNumber);
-}
+};
 /*snakes*/
-function snakes() {
+const snakes = () => {
     setTimeout(function () {
         let playerLeft = document.getElementById(playerPlaying).style.left;
-        let playerBottom = document.getElementById(playerPlaying).style
-            .bottom;
+        let playerBottom = document.getElementById(playerPlaying).style.bottom;
         if ((playerLeft === "30%") && (playerBottom === "10%")) {
             let playerLeftNew = "20%";
             let playerBottomNew = "0%";
@@ -266,4 +234,4 @@ function snakes() {
             document.getElementById(playerPlaying).style.bottom = playerBottomNew;
         }
     }, 400 * diceNumber);
-}
+};

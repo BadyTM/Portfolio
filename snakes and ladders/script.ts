@@ -2,6 +2,7 @@ let playersInGame: string[] = ["player-1", "player-2", "player-3", "player-4"];
 let diceNumber: number = Math.floor(Math.random() * 6) + 1;
 let m: number = 0;
 const maxAmountOfPlayers: number = 4;
+const moveSpeed: number = 400;
 const directions = {
   up: "up",
   left: "left",
@@ -44,7 +45,7 @@ const changePlayer = (): void => {
       playersInGame.push(playersInGame.shift());
     }
     goBack = 0;
-  }, 400 * diceNumber);
+  }, moveSpeed * diceNumber);
 };
 //ok
 let goBack: number = 0;
@@ -88,21 +89,17 @@ const move = (direction: string): void => {
 
 const run = (): void => {
   for (let i: number = 0; i < diceNumber; i++) {
-    runInterval(i);
+    setTimeout(() => {
+      move(getDirection());
+    }, moveSpeed * i);
   }
-  setTimeout(function () {
+  setTimeout(() => {
     checkWin();
-  }, 400 * diceNumber);
+  }, moveSpeed * diceNumber);
 };
 
-const runInterval = (i: number): void => {
-  setTimeout(function () {
-    let direction = getDirection();
-    move(direction);
-  }, 400 * i);
-};
 //ok
-const hideNumbers = (): void => {
+const hideDiceNumbers = (): void => {
   const numbers = document.querySelectorAll<HTMLElement>(".dice-number");
   numbers.forEach((number) => number.classList.add("d-none"));
 };
@@ -118,21 +115,20 @@ const checkWin = (): void => {
 };
 
 const showNumber = (): void => {
-  hideNumbers();
+  hideDiceNumbers();
   diceNumber = Math.floor(Math.random() * 6) + 1;
-  let diceString: string = diceNumber.toString();
-  let diceID: string = `dice-${diceString}`;
+  const diceString: string = diceNumber.toString();
+  const diceID: string = `dice-${diceString}`;
   document.getElementById(diceID).classList.remove("d-none");
   document.getElementById(diceID).classList.add("d-block");
 
   run();
-  ladders();
-  snakes();
-
+  checkLadders();
+  checkSnakes();
   changePlayer();
 };
 //ok
-const ladders = (): void => {
+const checkLadders = (): void => {
   setTimeout(() => {
     const player: HTMLElement = playerPlaying();
     const playerLeft: string = player.style.left;
@@ -154,10 +150,10 @@ const ladders = (): void => {
       player.style.left = newPosition.left;
       player.style.bottom = newPosition.bottom;
     }
-  }, 400 * diceNumber);
+  }, moveSpeed * diceNumber);
 };
 //ok
-const snakes = (): void => {
+const checkSnakes = (): void => {
   setTimeout(() => {
     const player: HTMLElement = playerPlaying();
     const playerLeft: string = player.style.left;
@@ -178,5 +174,5 @@ const snakes = (): void => {
       player.style.left = newPosition.left;
       player.style.bottom = newPosition.bottom;
     }
-  }, 400 * diceNumber);
+  }, moveSpeed * diceNumber);
 };

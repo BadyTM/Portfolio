@@ -1,17 +1,22 @@
-/*Changing player every round*/
 let playersInGame: string[] = ["player-1", "player-2", "player-3", "player-4"];
 let diceNumber: number = Math.floor(Math.random() * 6) + 1;
 let m: number = 0;
-let playerPlaying: string = playersInGame[m];
 const maxAmountOfPlayers: number = 4;
-
+const directions = {
+  up: "up",
+  left: "left",
+  right: "right",
+};
+//ok
+const playerPlaying = (): HTMLElement => document.getElementById(playersInGame[0]);
+//ok
 const togglePlayerVisibility = (playerId: string, showPlayer: boolean): void => {
-     const player: HTMLElement = document.getElementById(playerId);
-     const playerAvatar: HTMLElement = document.getElementById(playerId + "-avatar");
-     showPlayer ? player.classList.remove("d-none") : player.classList.add("d-none");
-     showPlayer ? playerAvatar.classList.remove("d-none") : playerAvatar.classList.add("d-none");
-}
-
+  const player: HTMLElement = document.getElementById(playerId);
+  const playerAvatar: HTMLElement = document.getElementById(playerId + "-avatar");
+  showPlayer ? player.classList.remove("d-none") : player.classList.add("d-none");
+  showPlayer ? playerAvatar.classList.remove("d-none") : playerAvatar.classList.add("d-none");
+};
+//ok
 const setAmountOfPlayers = (amount: number): void => {
   playersInGame = [];
   for (let i: number = 1; i <= maxAmountOfPlayers; i++) {
@@ -24,256 +29,154 @@ const setAmountOfPlayers = (amount: number): void => {
     }
   }
 };
-
-/*player avatars*/
+//ok
 const setPlayerAvatar = (playerId: string, color: string): void => {
-     document.getElementById(playerId).style.backgroundImage =
-          "url('images/avatars/" + color + ".png')";
-}
-
-//start game
+  document.getElementById(playerId).style.backgroundImage = `url('images/avatars/${color}.png')`;
+};
+//ok
 const startGame = (): void => {
-     document.getElementById("starting-page").classList.add("d-none");
-     playerPlaying = playersInGame[m];
-}
-
+  document.getElementById("starting-page").classList.add("d-none");
+};
+//ok
 const changePlayer = (): void => {
-     setTimeout(function () {
-          if ((diceNumber != 6) && (m < playersInGame.length - 1)) {
-               m++;
-               playerPlaying = playersInGame[m];
-               goBack = 0;
-          } else if ((diceNumber != 6) && (m >= playersInGame.length - 1)) {
-               m = 0;
-               playerPlaying = playersInGame[m];
-               goBack = 0;
-          } else {
-               goBack = 0;
-          }
-     }, 400 * diceNumber);
-}
-
-/*moving*/
+  setTimeout(() => {
+    if (diceNumber != 6) {
+      playersInGame.push(playersInGame.shift());
+    }
+    goBack = 0;
+  }, 400 * diceNumber);
+};
+//ok
 let goBack: number = 0;
 const getDirection = (): string => {
-     let direction: string;
-     let playerLeft: string = document.getElementById(playerPlaying).style.left;
-     let playerBottom: string = document.getElementById(playerPlaying).style.bottom;
-     if (goBack === 1) {
-          direction = "right";
-     } else if ((playerBottom === "90%") && (playerLeft === "0%")) {
-          direction = "right";
-          goBack = 1;
-     } else if ((playerLeft === "90%") && (parseInt(playerBottom) % 20 === 0)) {
-          direction = "up";
-     } else if ((playerLeft === "0%") && (parseInt(playerBottom) % 20 != 0)) {
-          direction = "up";
-     } else if (parseInt(playerBottom) % 20 != 0) {
-          direction = "left";
-     } else if (parseInt(playerBottom) % 20 === 0) {
-          direction = "right";
-     } else {
-          direction = "right";
-     }
-     return direction;
-}
-
+  const player: HTMLElement = playerPlaying();
+  const playerLeft: number = parseInt(player.style.left);
+  const playerBottom: number = parseInt(player.style.bottom);
+  if (goBack === 1 || (playerBottom === 90 && playerLeft === 0)) {
+    goBack = 1;
+    return directions.right;
+  } else if (playerLeft === 90 && playerBottom % 20 === 0) {
+    return directions.up;
+  } else if (playerLeft === 0 && playerBottom % 20 !== 0) {
+    return directions.up;
+  } else if (playerBottom % 20 !== 0) {
+    return directions.left;
+  }
+  return directions.right;
+};
+//ok
 const move = (direction: string): void => {
-     if (direction == "right") {
-          document.getElementById(playerPlaying).style.left =
-               parseInt(document.getElementById(playerPlaying).style.left) +
-               10 +
-               "%";
-     } else if (direction == "up") {
-          document.getElementById(playerPlaying).style.bottom =
-               parseInt(document.getElementById(playerPlaying).style.bottom) +
-               10 +
-               "%";
-     } else if (direction == "left") {
-          document.getElementById(playerPlaying).style.left =
-               parseInt(document.getElementById(playerPlaying).style.left) -
-               10 +
-               "%";
-     }
-}
+  const player = playerPlaying();
+  const currentLeft = parseInt(player.style.left);
+  const currentBottom = parseInt(player.style.bottom);
+
+  switch (direction) {
+    case directions.right: {
+      player.style.left = `${currentLeft + 10}%`;
+      break;
+    }
+    case directions.up: {
+      player.style.bottom = `${currentBottom + 10}%`;
+      break;
+    }
+    case directions.left: {
+      player.style.left = `${currentLeft - 10}%`;
+      break;
+    }
+  }
+};
 
 const run = (): void => {
-     for (let i: number = 0; i < diceNumber; i++) {
-          runInterval(i);
-     }
-     setTimeout(function () {
-          checkWin();
-     }, 400 * diceNumber);
-}
+  for (let i: number = 0; i < diceNumber; i++) {
+    runInterval(i);
+  }
+  setTimeout(function () {
+    checkWin();
+  }, 400 * diceNumber);
+};
 
 const runInterval = (i: number): void => {
-     setTimeout(function () {
-          let direction = getDirection();
-          move(direction);
-     }, 400 * i);
-}
-/*Dice with random number*/
+  setTimeout(function () {
+    let direction = getDirection();
+    move(direction);
+  }, 400 * i);
+};
+//ok
 const hideNumbers = (): void => {
-     const numbers: NodeListOf<HTMLElement> = document.querySelectorAll<HTMLElement>(".dice-number");
-     for (let i: number = 0; i < numbers.length; i++) {
-          numbers[i].classList.add("d-none");
-     }
-}
+  const numbers = document.querySelectorAll<HTMLElement>(".dice-number");
+  numbers.forEach((number) => number.classList.add("d-none"));
+};
+//ok
 const checkWin = (): void => {
-     let playerLeft: string = document.getElementById(playerPlaying).style.left;
-     let playerBottom: string = document.getElementById(playerPlaying).style.bottom;
-     if ((playerLeft === "0%") && (playerBottom === "90%")) {
-          alert("you won");
-     }
-}
+  const player: HTMLElement = playerPlaying();
+  const playerLeft: number = parseInt(player.style.left);
+  const playerBottom: number = parseInt(player.style.bottom);
+
+  if (playerLeft === 0 && playerBottom === 90) {
+    alert("You won!");
+  }
+};
+
 const showNumber = (): void => {
-     hideNumbers();
-     diceNumber = Math.floor(Math.random() * 6) + 1;
-     let diceString: string = diceNumber.toString();
-     let diceID: string = `dice-${diceString}`;
-     document.getElementById(diceID).classList.remove("d-none");
-     document.getElementById(diceID).classList.add("d-block");
+  hideNumbers();
+  diceNumber = Math.floor(Math.random() * 6) + 1;
+  let diceString: string = diceNumber.toString();
+  let diceID: string = `dice-${diceString}`;
+  document.getElementById(diceID).classList.remove("d-none");
+  document.getElementById(diceID).classList.add("d-block");
 
-     run();
-     ladders();
-     snakes();
+  run();
+  ladders();
+  snakes();
 
-     changePlayer();
-}
-
-/* Ladders */
+  changePlayer();
+};
+//ok
 const ladders = (): void => {
-     setTimeout(function() {
-          let playerLeft: string = document.getElementById(playerPlaying).style.left;
-          let playerBottom: string = document.getElementById(playerPlaying).style
-               .bottom;
+  setTimeout(() => {
+    const player: HTMLElement = playerPlaying();
+    const playerLeft: string = player.style.left;
+    const playerBottom: string = player.style.bottom;
 
-          if ((playerLeft === "10%") && (playerBottom === "0%")) {
-               let playerLeftNew = "0%";
-               let playerBottomNew = "40%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          } else if ((playerLeft === "40%") && (playerBottom === "10%")) {
-               let playerLeftNew = "60%";
-               let playerBottomNew = "80%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          } else if ((playerLeft === "90%") && (playerBottom === "20%")) {
-               let playerLeftNew = "80%";
-               let playerBottomNew = "60%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          } else if ((playerLeft === "30%") && (playerBottom === "30%")) {
-               let playerLeftNew = "40%";
-               let playerBottomNew = "50%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          } else if ((playerLeft === "10%") && (playerBottom === "50%")) {
-               let playerLeftNew = "20%";
-               let playerBottomNew = "80%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          } else if ((playerLeft === "50%") && (playerBottom === "70%")) {
-               let playerLeftNew = "40%";
-               let playerBottomNew = "90%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          } else if ((playerLeft === "60%") && (playerBottom === "40%")) {
-               let playerLeftNew = "60%";
-               let playerBottomNew = "60%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          }
-     }, 400 * diceNumber);
-}
-/*snakes*/
+    const ladderMap: Record<string, { left: string; bottom: string }> = {
+      "10%-0%": { left: "0%", bottom: "40%" },
+      "40%-10%": { left: "60%", bottom: "80%" },
+      "90%-20%": { left: "80%", bottom: "60%" },
+      "30%-30%": { left: "40%", bottom: "50%" },
+      "10%-50%": { left: "20%", bottom: "80%" },
+      "50%-70%": { left: "40%", bottom: "90%" },
+      "60%-40%": { left: "60%", bottom: "60%" },
+    };
+    const key: string = `${playerLeft}-${playerBottom}`;
+    const newPosition: { left: string; bottom: string } = ladderMap[key];
+
+    if (newPosition) {
+      player.style.left = newPosition.left;
+      player.style.bottom = newPosition.bottom;
+    }
+  }, 400 * diceNumber);
+};
+//ok
 const snakes = (): void => {
-     setTimeout(function(): void {
-          let playerLeft: string = document.getElementById(playerPlaying).style.left;
-          let playerBottom: string = document.getElementById(playerPlaying).style.bottom;
+  setTimeout(() => {
+    const player: HTMLElement = playerPlaying();
+    const playerLeft: string = player.style.left;
+    const playerBottom: string = player.style.bottom;
 
-          if ((playerLeft === "30%") && (playerBottom === "10%")) {
-               let playerLeftNew = "20%";
-               let playerBottomNew = "0%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          } else if ((playerLeft === "70%") && (playerBottom === "50%")) {
-               let playerLeftNew = "70%";
-               let playerBottomNew = "10%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          } else if ((playerLeft === "40%") && (playerBottom === "70%")) {
-               let playerLeftNew = "20%";
-               let playerBottomNew = "20%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          } else if ((playerLeft === "20%") && (playerBottom === "90%")) {
-               let playerLeftNew = "20%";
-               let playerBottomNew = "40%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          } else if ((playerLeft === "80%") && (playerBottom === "90%")) {
-               let playerLeftNew = "90%";
-               let playerBottomNew = "50%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          } else if ((playerLeft === "0%") && (playerBottom === "50%")) {
-               let playerLeftNew = "20%";
-               let playerBottomNew = "30%";
-               document.getElementById(
-                    playerPlaying
-               ).style.left = playerLeftNew;
-               document.getElementById(
-                    playerPlaying
-               ).style.bottom = playerBottomNew;
-          }
-     }, 400 * diceNumber);
-}
+    const snakeMap: Record<string, { left: string; bottom: string }> = {
+      "30%_10%": { left: "20%", bottom: "0%" },
+      "70%_50%": { left: "70%", bottom: "10%" },
+      "40%_70%": { left: "20%", bottom: "20%" },
+      "20%_90%": { left: "20%", bottom: "40%" },
+      "80%_90%": { left: "90%", bottom: "50%" },
+      "0%_50%": { left: "20%", bottom: "30%" },
+    };
+    const key: string = `${playerLeft}_${playerBottom}`;
+    const newPosition: { left: string; bottom: string } = snakeMap[key];
+
+    if (newPosition) {
+      player.style.left = newPosition.left;
+      player.style.bottom = newPosition.bottom;
+    }
+  }, 400 * diceNumber);
+};

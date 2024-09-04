@@ -1,15 +1,22 @@
-/*Changing player every round*/
 let playersInGame = ["player-1", "player-2", "player-3", "player-4"];
 let diceNumber = Math.floor(Math.random() * 6) + 1;
 let m = 0;
-let playerPlaying = playersInGame[m];
 const maxAmountOfPlayers = 4;
+const directions = {
+    up: "up",
+    left: "left",
+    right: "right",
+};
+//ok
+const playerPlaying = () => document.getElementById(playersInGame[0]);
+//ok
 const togglePlayerVisibility = (playerId, showPlayer) => {
     const player = document.getElementById(playerId);
     const playerAvatar = document.getElementById(playerId + "-avatar");
     showPlayer ? player.classList.remove("d-none") : player.classList.add("d-none");
     showPlayer ? playerAvatar.classList.remove("d-none") : playerAvatar.classList.add("d-none");
 };
+//ok
 const setAmountOfPlayers = (amount) => {
     playersInGame = [];
     for (let i = 1; i <= maxAmountOfPlayers; i++) {
@@ -23,81 +30,62 @@ const setAmountOfPlayers = (amount) => {
         }
     }
 };
-/*player avatars*/
+//ok
 const setPlayerAvatar = (playerId, color) => {
-    document.getElementById(playerId).style.backgroundImage =
-        "url('images/avatars/" + color + ".png')";
+    document.getElementById(playerId).style.backgroundImage = `url('images/avatars/${color}.png')`;
 };
-//start game
+//ok
 const startGame = () => {
     document.getElementById("starting-page").classList.add("d-none");
-    playerPlaying = playersInGame[m];
 };
+//ok
 const changePlayer = () => {
-    setTimeout(function () {
-        if ((diceNumber != 6) && (m < playersInGame.length - 1)) {
-            m++;
-            playerPlaying = playersInGame[m];
-            goBack = 0;
+    setTimeout(() => {
+        if (diceNumber != 6) {
+            playersInGame.push(playersInGame.shift());
         }
-        else if ((diceNumber != 6) && (m >= playersInGame.length - 1)) {
-            m = 0;
-            playerPlaying = playersInGame[m];
-            goBack = 0;
-        }
-        else {
-            goBack = 0;
-        }
+        goBack = 0;
     }, 400 * diceNumber);
 };
-/*moving*/
+//ok
 let goBack = 0;
 const getDirection = () => {
-    let direction;
-    let playerLeft = document.getElementById(playerPlaying).style.left;
-    let playerBottom = document.getElementById(playerPlaying).style.bottom;
-    if (goBack === 1) {
-        direction = "right";
-    }
-    else if ((playerBottom === "90%") && (playerLeft === "0%")) {
-        direction = "right";
+    const player = playerPlaying();
+    const playerLeft = parseInt(player.style.left);
+    const playerBottom = parseInt(player.style.bottom);
+    if (goBack === 1 || (playerBottom === 90 && playerLeft === 0)) {
         goBack = 1;
+        return directions.right;
     }
-    else if ((playerLeft === "90%") && (parseInt(playerBottom) % 20 === 0)) {
-        direction = "up";
+    else if (playerLeft === 90 && playerBottom % 20 === 0) {
+        return directions.up;
     }
-    else if ((playerLeft === "0%") && (parseInt(playerBottom) % 20 != 0)) {
-        direction = "up";
+    else if (playerLeft === 0 && playerBottom % 20 !== 0) {
+        return directions.up;
     }
-    else if (parseInt(playerBottom) % 20 != 0) {
-        direction = "left";
+    else if (playerBottom % 20 !== 0) {
+        return directions.left;
     }
-    else if (parseInt(playerBottom) % 20 === 0) {
-        direction = "right";
-    }
-    else {
-        direction = "right";
-    }
-    return direction;
+    return directions.right;
 };
+//ok
 const move = (direction) => {
-    if (direction == "right") {
-        document.getElementById(playerPlaying).style.left =
-            parseInt(document.getElementById(playerPlaying).style.left) +
-                10 +
-                "%";
-    }
-    else if (direction == "up") {
-        document.getElementById(playerPlaying).style.bottom =
-            parseInt(document.getElementById(playerPlaying).style.bottom) +
-                10 +
-                "%";
-    }
-    else if (direction == "left") {
-        document.getElementById(playerPlaying).style.left =
-            parseInt(document.getElementById(playerPlaying).style.left) -
-                10 +
-                "%";
+    const player = playerPlaying();
+    const currentLeft = parseInt(player.style.left);
+    const currentBottom = parseInt(player.style.bottom);
+    switch (direction) {
+        case directions.right: {
+            player.style.left = `${currentLeft + 10}%`;
+            break;
+        }
+        case directions.up: {
+            player.style.bottom = `${currentBottom + 10}%`;
+            break;
+        }
+        case directions.left: {
+            player.style.left = `${currentLeft - 10}%`;
+            break;
+        }
     }
 };
 const run = () => {
@@ -114,18 +102,18 @@ const runInterval = (i) => {
         move(direction);
     }, 400 * i);
 };
-/*Dice with random number*/
+//ok
 const hideNumbers = () => {
     const numbers = document.querySelectorAll(".dice-number");
-    for (let i = 0; i < numbers.length; i++) {
-        numbers[i].classList.add("d-none");
-    }
+    numbers.forEach((number) => number.classList.add("d-none"));
 };
+//ok
 const checkWin = () => {
-    let playerLeft = document.getElementById(playerPlaying).style.left;
-    let playerBottom = document.getElementById(playerPlaying).style.bottom;
-    if ((playerLeft === "0%") && (playerBottom === "90%")) {
-        alert("you won");
+    const player = playerPlaying();
+    const playerLeft = parseInt(player.style.left);
+    const playerBottom = parseInt(player.style.bottom);
+    if (playerLeft === 0 && playerBottom === 90) {
+        alert("You won!");
     }
 };
 const showNumber = () => {
@@ -140,96 +128,48 @@ const showNumber = () => {
     snakes();
     changePlayer();
 };
-/* Ladders */
+//ok
 const ladders = () => {
-    setTimeout(function () {
-        let playerLeft = document.getElementById(playerPlaying).style.left;
-        let playerBottom = document.getElementById(playerPlaying).style
-            .bottom;
-        if ((playerLeft === "10%") && (playerBottom === "0%")) {
-            let playerLeftNew = "0%";
-            let playerBottomNew = "40%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
-        }
-        else if ((playerLeft === "40%") && (playerBottom === "10%")) {
-            let playerLeftNew = "60%";
-            let playerBottomNew = "80%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
-        }
-        else if ((playerLeft === "90%") && (playerBottom === "20%")) {
-            let playerLeftNew = "80%";
-            let playerBottomNew = "60%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
-        }
-        else if ((playerLeft === "30%") && (playerBottom === "30%")) {
-            let playerLeftNew = "40%";
-            let playerBottomNew = "50%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
-        }
-        else if ((playerLeft === "10%") && (playerBottom === "50%")) {
-            let playerLeftNew = "20%";
-            let playerBottomNew = "80%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
-        }
-        else if ((playerLeft === "50%") && (playerBottom === "70%")) {
-            let playerLeftNew = "40%";
-            let playerBottomNew = "90%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
-        }
-        else if ((playerLeft === "60%") && (playerBottom === "40%")) {
-            let playerLeftNew = "60%";
-            let playerBottomNew = "60%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
+    setTimeout(() => {
+        const player = playerPlaying();
+        const playerLeft = player.style.left;
+        const playerBottom = player.style.bottom;
+        const ladderMap = {
+            "10%-0%": { left: "0%", bottom: "40%" },
+            "40%-10%": { left: "60%", bottom: "80%" },
+            "90%-20%": { left: "80%", bottom: "60%" },
+            "30%-30%": { left: "40%", bottom: "50%" },
+            "10%-50%": { left: "20%", bottom: "80%" },
+            "50%-70%": { left: "40%", bottom: "90%" },
+            "60%-40%": { left: "60%", bottom: "60%" },
+        };
+        const key = `${playerLeft}-${playerBottom}`;
+        const newPosition = ladderMap[key];
+        if (newPosition) {
+            player.style.left = newPosition.left;
+            player.style.bottom = newPosition.bottom;
         }
     }, 400 * diceNumber);
 };
-/*snakes*/
+//ok
 const snakes = () => {
-    setTimeout(function () {
-        let playerLeft = document.getElementById(playerPlaying).style.left;
-        let playerBottom = document.getElementById(playerPlaying).style.bottom;
-        if ((playerLeft === "30%") && (playerBottom === "10%")) {
-            let playerLeftNew = "20%";
-            let playerBottomNew = "0%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
-        }
-        else if ((playerLeft === "70%") && (playerBottom === "50%")) {
-            let playerLeftNew = "70%";
-            let playerBottomNew = "10%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
-        }
-        else if ((playerLeft === "40%") && (playerBottom === "70%")) {
-            let playerLeftNew = "20%";
-            let playerBottomNew = "20%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
-        }
-        else if ((playerLeft === "20%") && (playerBottom === "90%")) {
-            let playerLeftNew = "20%";
-            let playerBottomNew = "40%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
-        }
-        else if ((playerLeft === "80%") && (playerBottom === "90%")) {
-            let playerLeftNew = "90%";
-            let playerBottomNew = "50%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
-        }
-        else if ((playerLeft === "0%") && (playerBottom === "50%")) {
-            let playerLeftNew = "20%";
-            let playerBottomNew = "30%";
-            document.getElementById(playerPlaying).style.left = playerLeftNew;
-            document.getElementById(playerPlaying).style.bottom = playerBottomNew;
+    setTimeout(() => {
+        const player = playerPlaying();
+        const playerLeft = player.style.left;
+        const playerBottom = player.style.bottom;
+        const snakeMap = {
+            "30%_10%": { left: "20%", bottom: "0%" },
+            "70%_50%": { left: "70%", bottom: "10%" },
+            "40%_70%": { left: "20%", bottom: "20%" },
+            "20%_90%": { left: "20%", bottom: "40%" },
+            "80%_90%": { left: "90%", bottom: "50%" },
+            "0%_50%": { left: "20%", bottom: "30%" },
+        };
+        const key = `${playerLeft}_${playerBottom}`;
+        const newPosition = snakeMap[key];
+        if (newPosition) {
+            player.style.left = newPosition.left;
+            player.style.bottom = newPosition.bottom;
         }
     }, 400 * diceNumber);
 };

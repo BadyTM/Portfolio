@@ -9,7 +9,7 @@ const directions = {
     right: "right",
 };
 //ok
-const playerPlaying = () => document.getElementById(playersInGame[0]);
+const getPlayingPlayer = () => document.getElementById(playersInGame[0]);
 //ok
 const togglePlayerVisibility = (playerId, showPlayer) => {
     const player = document.getElementById(playerId);
@@ -41,17 +41,15 @@ const startGame = () => {
 };
 //ok
 const changePlayer = () => {
-    setTimeout(() => {
-        if (diceNumber != 6) {
-            playersInGame.push(playersInGame.shift());
-        }
+    if (diceNumber != 6) {
+        playersInGame.push(playersInGame.shift());
         goBack = 0;
-    }, moveSpeed * diceNumber);
+    }
 };
 //ok
 let goBack = 0;
-const getDirection = () => {
-    const player = playerPlaying();
+const getMovingDirection = () => {
+    const player = getPlayingPlayer();
     const playerLeft = parseInt(player.style.left);
     const playerBottom = parseInt(player.style.bottom);
     if (goBack === 1 || (playerBottom === 90 && playerLeft === 0)) {
@@ -71,7 +69,7 @@ const getDirection = () => {
 };
 //ok
 const move = (direction) => {
-    const player = playerPlaying();
+    const player = getPlayingPlayer();
     const currentLeft = parseInt(player.style.left);
     const currentBottom = parseInt(player.style.bottom);
     switch (direction) {
@@ -90,47 +88,43 @@ const move = (direction) => {
     }
 };
 const run = () => {
+    const player = getPlayingPlayer();
     for (let i = 0; i < diceNumber; i++) {
         setTimeout(() => {
-            move(getDirection());
+            move(getMovingDirection());
         }, moveSpeed * i);
     }
     setTimeout(() => {
-        checkWin();
+        checkWin(player);
+        checkLadders(player);
+        checkSnakes(player);
+        changePlayer();
     }, moveSpeed * diceNumber);
 };
 //ok
-const hideDiceNumbers = () => {
-    const numbers = document.querySelectorAll(".dice-number");
-    numbers.forEach((number) => number.classList.add("d-none"));
-};
-//ok
-const checkWin = () => {
-    const player = playerPlaying();
-    const playerLeft = parseInt(player.style.left);
-    const playerBottom = parseInt(player.style.bottom);
+const checkWin = (playingPlayer) => {
+    const playerLeft = parseInt(playingPlayer.style.left);
+    const playerBottom = parseInt(playingPlayer.style.bottom);
     if (playerLeft === 0 && playerBottom === 90) {
         alert("You won!");
     }
 };
-const showNumber = () => {
-    hideDiceNumbers();
+//check this
+const toggleDice = () => {
+    const numbers = document.querySelectorAll(".dice-number");
+    numbers.forEach((number) => number.classList.add("d-none"));
     diceNumber = Math.floor(Math.random() * 6) + 1;
     const diceString = diceNumber.toString();
     const diceID = `dice-${diceString}`;
     document.getElementById(diceID).classList.remove("d-none");
     document.getElementById(diceID).classList.add("d-block");
     run();
-    checkLadders();
-    checkSnakes();
-    changePlayer();
 };
 //ok
-const checkLadders = () => {
+const checkLadders = (playingPlayer) => {
     setTimeout(() => {
-        const player = playerPlaying();
-        const playerLeft = player.style.left;
-        const playerBottom = player.style.bottom;
+        const playerLeft = playingPlayer.style.left;
+        const playerBottom = playingPlayer.style.bottom;
         const ladderMap = {
             "10%-0%": { left: "0%", bottom: "40%" },
             "40%-10%": { left: "60%", bottom: "80%" },
@@ -143,17 +137,16 @@ const checkLadders = () => {
         const key = `${playerLeft}-${playerBottom}`;
         const newPosition = ladderMap[key];
         if (newPosition) {
-            player.style.left = newPosition.left;
-            player.style.bottom = newPosition.bottom;
+            playingPlayer.style.left = newPosition.left;
+            playingPlayer.style.bottom = newPosition.bottom;
         }
     }, moveSpeed * diceNumber);
 };
 //ok
-const checkSnakes = () => {
+const checkSnakes = (playingPlayer) => {
     setTimeout(() => {
-        const player = playerPlaying();
-        const playerLeft = player.style.left;
-        const playerBottom = player.style.bottom;
+        const playerLeft = playingPlayer.style.left;
+        const playerBottom = playingPlayer.style.bottom;
         const snakeMap = {
             "30%_10%": { left: "20%", bottom: "0%" },
             "70%_50%": { left: "70%", bottom: "10%" },
@@ -165,8 +158,8 @@ const checkSnakes = () => {
         const key = `${playerLeft}_${playerBottom}`;
         const newPosition = snakeMap[key];
         if (newPosition) {
-            player.style.left = newPosition.left;
-            player.style.bottom = newPosition.bottom;
+            playingPlayer.style.left = newPosition.left;
+            playingPlayer.style.bottom = newPosition.bottom;
         }
     }, moveSpeed * diceNumber);
 };

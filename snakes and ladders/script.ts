@@ -1,27 +1,44 @@
 let playersInGame: string[] = ["player-1", "player-2", "player-3", "player-4"];
 let diceNumber: number = Math.floor(Math.random() * 6) + 1;
-let m: number = 0;
-const maxAmountOfPlayers: number = 4;
-const moveSpeed: number = 400;
+let goBack = 0;
+const maxAmountOfPlayers = 4;
+const moveSpeed = 400;
 const directions = {
   up: "up",
   left: "left",
   right: "right",
 };
-//ok
-const getPlayingPlayer = (): HTMLElement => document.getElementById(playersInGame[0]);
-//ok
-const togglePlayerVisibility = (playerId: string, showPlayer: boolean): void => {
-  const player: HTMLElement = document.getElementById(playerId);
-  const playerAvatar: HTMLElement = document.getElementById(playerId + "-avatar");
-  showPlayer ? player.classList.remove("d-none") : player.classList.add("d-none");
-  showPlayer ? playerAvatar.classList.remove("d-none") : playerAvatar.classList.add("d-none");
+const ladderMap: Record<string, { left: string; bottom: string }> = {
+  "10-0": { left: "0%", bottom: "40%" },
+  "40-10": { left: "60%", bottom: "80%" },
+  "90-20": { left: "80%", bottom: "60%" },
+  "30-30": { left: "40%", bottom: "50%" },
+  "10-50": { left: "20%", bottom: "80%" },
+  "50-70": { left: "40%", bottom: "90%" },
+  "60-40": { left: "60%", bottom: "60%" },
 };
-//ok
+const snakeMap: Record<string, { left: string; bottom: string }> = {
+  "30-10": { left: "20%", bottom: "0%" },
+  "70-50": { left: "70%", bottom: "10%" },
+  "40-70": { left: "20%", bottom: "20%" },
+  "20-90": { left: "20%", bottom: "40%" },
+  "80-90": { left: "90%", bottom: "50%" },
+  "0-50": { left: "20%", bottom: "30%" },
+};
+
+const getPlayingPlayer = (): HTMLElement => document.getElementById(playersInGame[0]) as HTMLElement;
+
+const togglePlayerVisibility = (playerId: string, showPlayer: boolean): void => {
+  const player: HTMLElement = document.getElementById(playerId) as HTMLElement;
+  const playerAvatar: HTMLElement = document.getElementById(playerId + "-avatar") as HTMLElement;
+  player.classList.toggle("d-none", !showPlayer);
+  playerAvatar.classList.toggle("d-none", !showPlayer);
+};
+
 const setAmountOfPlayers = (amount: number): void => {
   playersInGame = [];
-  for (let i: number = 1; i <= maxAmountOfPlayers; i++) {
-    const playerId: string = `player-${i}`;
+  for (let i = 1; i <= maxAmountOfPlayers; i++) {
+    const playerId = `player-${i}`;
     if (i <= amount) {
       playersInGame.push(playerId);
       togglePlayerVisibility(playerId, true);
@@ -30,27 +47,23 @@ const setAmountOfPlayers = (amount: number): void => {
     }
   }
 };
-//ok
+
 const setPlayerAvatar = (playerId: string, color: string): void => {
-  document.getElementById(playerId).style.backgroundImage = `url('images/avatars/${color}.png')`;
+  (document.getElementById(playerId) as HTMLElement).style.backgroundImage = `url('images/avatars/${color}.png')`;
 };
-//ok
+
 const startGame = (): void => {
-  document.getElementById("starting-page").classList.add("d-none");
+  (document.getElementById("starting-page") as HTMLElement).classList.add("d-none");
 };
-//ok
+
 const changePlayer = (): void => {
   if (diceNumber != 6) {
-    playersInGame.push(playersInGame.shift());
+    playersInGame.push(playersInGame.shift() as string);
     goBack = 0;
   }
 };
-//ok
-let goBack: number = 0;
-const getMovingDirection = (): string => {
-  const player: HTMLElement = getPlayingPlayer();
-  const playerLeft: number = parseInt(player.style.left);
-  const playerBottom: number = parseInt(player.style.bottom);
+
+const getMovingDirection = (playerLeft: number, playerBottom: number): string => {
   if (goBack === 1 || (playerBottom === 90 && playerLeft === 0)) {
     goBack = 1;
     return directions.right;
@@ -63,108 +76,62 @@ const getMovingDirection = (): string => {
   }
   return directions.right;
 };
-//ok
-const move = (direction: string): void => {
-  const player = getPlayingPlayer();
-  const currentLeft = parseInt(player.style.left);
-  const currentBottom = parseInt(player.style.bottom);
 
-  switch (direction) {
-    case directions.right: {
-      player.style.left = `${currentLeft + 10}%`;
-      break;
+const run = async (): Promise<void> => {
+  const playingPlayer = getPlayingPlayer();
+
+  for (let i = 0; i < diceNumber; i++) {
+    const currentLeft: number = parseInt(playingPlayer.style.left);
+    const currentBottom: number = parseInt(playingPlayer.style.bottom);
+    switch (getMovingDirection(currentLeft, currentBottom)) {
+      case directions.right: {
+        playingPlayer.style.left = `${currentLeft + 10}%`;
+        break;
+      }
+      case directions.up: {
+        playingPlayer.style.bottom = `${currentBottom + 10}%`;
+        break;
+      }
+      case directions.left: {
+        playingPlayer.style.left = `${currentLeft - 10}%`;
+        break;
+      }
     }
-    case directions.up: {
-      player.style.bottom = `${currentBottom + 10}%`;
-      break;
-    }
-    case directions.left: {
-      player.style.left = `${currentLeft - 10}%`;
-      break;
-    }
+    await new Promise((resolve) => setTimeout(resolve, moveSpeed));
   }
+  checkPosition(playingPlayer);
 };
 
-const run = (): void => {
-  const player = getPlayingPlayer();
-
-  for (let i: number = 0; i < diceNumber; i++) {
-    setTimeout(() => {
-      move(getMovingDirection());
-    }, moveSpeed * i);
-  }
-  setTimeout(() => {
-    checkWin(player);
-    checkLadders(player);
-    checkSnakes(player);
-    changePlayer();
-  }, moveSpeed * diceNumber);
-};
-//ok
-const checkWin = (playingPlayer: HTMLElement): void => {
+const checkPosition = (playingPlayer: HTMLElement): void => {
   const playerLeft: number = parseInt(playingPlayer.style.left);
   const playerBottom: number = parseInt(playingPlayer.style.bottom);
-
+  const positionKey = `${playerLeft}-${playerBottom}`;
   if (playerLeft === 0 && playerBottom === 90) {
     alert("You won!");
   }
+  checkLaddersSnakes(ladderMap, positionKey, playingPlayer);
+  checkLaddersSnakes(snakeMap, positionKey, playingPlayer);
+  changePlayer();
 };
-//check this
+
 const toggleDice = (): void => {
   const numbers = document.querySelectorAll<HTMLElement>(".dice-number");
-  numbers.forEach((number) => number.classList.add("d-none"));
-  
+  numbers.forEach((number) => {
+    number.classList.add("d-none");
+  });
   diceNumber = Math.floor(Math.random() * 6) + 1;
-  const diceString: string = diceNumber.toString();
-  const diceID: string = `dice-${diceString}`;
-  document.getElementById(diceID).classList.remove("d-none");
-  document.getElementById(diceID).classList.add("d-block");
+  const diceID = `dice-${diceNumber}`;
+  const diceElement = document.getElementById(diceID) as HTMLElement;
+
+  diceElement.classList.remove("d-none");
+  diceElement.classList.add("d-block");
   run();
 };
-//ok
-const checkLadders = (playingPlayer: HTMLElement): void => {
-  setTimeout(() => {
-    const playerLeft: string = playingPlayer.style.left;
-    const playerBottom: string = playingPlayer.style.bottom;
 
-    const ladderMap: Record<string, { left: string; bottom: string }> = {
-      "10%-0%": { left: "0%", bottom: "40%" },
-      "40%-10%": { left: "60%", bottom: "80%" },
-      "90%-20%": { left: "80%", bottom: "60%" },
-      "30%-30%": { left: "40%", bottom: "50%" },
-      "10%-50%": { left: "20%", bottom: "80%" },
-      "50%-70%": { left: "40%", bottom: "90%" },
-      "60%-40%": { left: "60%", bottom: "60%" },
-    };
-    const key: string = `${playerLeft}-${playerBottom}`;
-    const newPosition: { left: string; bottom: string } = ladderMap[key];
-
-    if (newPosition) {
-      playingPlayer.style.left = newPosition.left;
-      playingPlayer.style.bottom = newPosition.bottom;
-    }
-  }, moveSpeed * diceNumber);
-};
-//ok
-const checkSnakes = (playingPlayer: HTMLElement): void => {
-  setTimeout(() => {
-    const playerLeft: string = playingPlayer.style.left;
-    const playerBottom: string = playingPlayer.style.bottom;
-
-    const snakeMap: Record<string, { left: string; bottom: string }> = {
-      "30%_10%": { left: "20%", bottom: "0%" },
-      "70%_50%": { left: "70%", bottom: "10%" },
-      "40%_70%": { left: "20%", bottom: "20%" },
-      "20%_90%": { left: "20%", bottom: "40%" },
-      "80%_90%": { left: "90%", bottom: "50%" },
-      "0%_50%": { left: "20%", bottom: "30%" },
-    };
-    const key: string = `${playerLeft}_${playerBottom}`;
-    const newPosition: { left: string; bottom: string } = snakeMap[key];
-
-    if (newPosition) {
-      playingPlayer.style.left = newPosition.left;
-      playingPlayer.style.bottom = newPosition.bottom;
-    }
-  }, moveSpeed * diceNumber);
+const checkLaddersSnakes = (map: Record<string, { left: string; bottom: string }>, positionKey: string, playingPlayer: HTMLElement): void => {
+  const newPosition = map[positionKey];
+  if (newPosition) {
+    playingPlayer.style.left = newPosition.left;
+    playingPlayer.style.bottom = newPosition.bottom;
+  }
 };

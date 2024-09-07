@@ -34,31 +34,31 @@ const snakeMap = {
     "80-90": { left: "90%", bottom: "50%" },
     "0-50": { left: "20%", bottom: "30%" },
 };
-const getPlayingPlayer = () => document.getElementById(playersInGame[0]);
-const togglePlayerVisibility = (playerId, showPlayer) => {
-    const player = document.getElementById(playerId);
-    const playerAvatar = document.getElementById(playerId + "-avatar");
+const getPlayingPlayer = () => document.querySelector(`.${playersInGame[0]}`);
+const togglePlayerVisibility = (playerClass, showPlayer) => {
+    const player = document.querySelector(playerClass);
+    const playerAvatar = document.getElementById(playerClass + "-avatar");
     player.classList.toggle("d-none", !showPlayer);
     playerAvatar.classList.toggle("d-none", !showPlayer);
 };
 const setAmountOfPlayers = (amount) => {
     playersInGame = [];
     for (let i = 1; i <= maxAmountOfPlayers; i++) {
-        const playerId = `player-${i}`;
+        const playerClass = `.player-${i}`;
         if (i <= amount) {
-            playersInGame.push(playerId);
-            togglePlayerVisibility(playerId, true);
+            playersInGame.push(playerClass);
+            togglePlayerVisibility(playerClass, true);
         }
         else {
-            togglePlayerVisibility(playerId, false);
+            togglePlayerVisibility(playerClass, false);
         }
     }
 };
-const setPlayerAvatar = (playerId, color) => {
-    document.getElementById(playerId).style.backgroundImage = `url('images/avatars/${color}.png')`;
+const setPlayerAvatar = (playerClass, color) => {
+    document.querySelector(playerClass).style.backgroundImage = `url('images/avatars/${color}.png')`;
 };
 const startGame = () => {
-    document.getElementById("starting-page").classList.add("d-none");
+    document.querySelector(".starting-page").classList.add("d-none");
 };
 const changePlayer = () => {
     if (diceNumber != 6) {

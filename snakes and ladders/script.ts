@@ -26,11 +26,11 @@ const snakeMap: Record<string, { left: string; bottom: string }> = {
   "0-50": { left: "20%", bottom: "30%" },
 };
 
-const getPlayingPlayer = (): HTMLElement => document.getElementById(playersInGame[0]) as HTMLElement;
+const getPlayingPlayer = (): HTMLElement => document.querySelector(`.${playersInGame[0]}`) as HTMLElement;
 
-const togglePlayerVisibility = (playerId: string, showPlayer: boolean): void => {
-  const player: HTMLElement = document.getElementById(playerId) as HTMLElement;
-  const playerAvatar: HTMLElement = document.getElementById(playerId + "-avatar") as HTMLElement;
+const togglePlayerVisibility = (playerClass: string, showPlayer: boolean): void => {
+  const player: HTMLElement = document.querySelector(playerClass) as HTMLElement;
+  const playerAvatar: HTMLElement = document.getElementById(playerClass + "-avatar") as HTMLElement;
   player.classList.toggle("d-none", !showPlayer);
   playerAvatar.classList.toggle("d-none", !showPlayer);
 };
@@ -38,22 +38,22 @@ const togglePlayerVisibility = (playerId: string, showPlayer: boolean): void => 
 const setAmountOfPlayers = (amount: number): void => {
   playersInGame = [];
   for (let i = 1; i <= maxAmountOfPlayers; i++) {
-    const playerId = `player-${i}`;
+    const playerClass = `.player-${i}`;
     if (i <= amount) {
-      playersInGame.push(playerId);
-      togglePlayerVisibility(playerId, true);
+      playersInGame.push(playerClass);
+      togglePlayerVisibility(playerClass, true);
     } else {
-      togglePlayerVisibility(playerId, false);
+      togglePlayerVisibility(playerClass, false);
     }
   }
 };
 
-const setPlayerAvatar = (playerId: string, color: string): void => {
-  (document.getElementById(playerId) as HTMLElement).style.backgroundImage = `url('images/avatars/${color}.png')`;
+const setPlayerAvatar = (playerClass: string, color: string): void => {
+  (document.querySelector(playerClass) as HTMLElement).style.backgroundImage = `url('images/avatars/${color}.png')`;
 };
 
 const startGame = (): void => {
-  (document.getElementById("starting-page") as HTMLElement).classList.add("d-none");
+  (document.querySelector(".starting-page") as HTMLElement).classList.add("d-none");
 };
 
 const changePlayer = (): void => {

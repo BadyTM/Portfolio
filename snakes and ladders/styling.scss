@@ -4,14 +4,14 @@
 body {
      font-family: Arial;
 }
-#holder {
+.holder {
      height: 100%;
      width: 100%;
      display: flex;
      align-items: center;
      justify-content: center;
 }
-#game {
+.game {
      background-image: url("images/board.jpg");
      background-position: center;
      background-size: contain;
@@ -20,7 +20,7 @@ body {
      position: relative;
 }
 
-#starting-page {
+.starting-page {
      position: absolute;
      width: 100%;
      height: 100%;
@@ -96,7 +96,7 @@ body {
      background-color: rgba(0, 0, 0, 0);
      border: none;
 }
-#start-button {
+.start-button {
      width: 15%;
 }
 
@@ -132,7 +132,7 @@ body {
           background-image: url("images/6.png");
      }
 }
-#player-1 {
+.player-1 {
      position: absolute;
      width: 10%;
      height: 10%;
@@ -140,7 +140,7 @@ body {
      background-size: cover;
      transition: 1s;
 }
-#player-2 {
+.player-2 {
      position: absolute;
      width: 10%;
      height: 10%;
@@ -148,7 +148,7 @@ body {
      background-size: cover;
      transition: 1s;
 }
-#player-3 {
+.player-3 {
      position: absolute;
      width: 10%;
      height: 10%;
@@ -156,7 +156,7 @@ body {
      background-size: cover;
      transition: 1s;
 }
-#player-4 {
+.player-4 {
      position: absolute;
      width: 10%;
      height: 10%;
@@ -165,11 +165,11 @@ body {
      transition: 1s;
 }
 @media only screen and (max-width: 1024px) {
-     #starting-page {
+     .starting-page {
           padding: 0% 0;
      }
 
-     #holder {
+     .holder {
           font-size: 2em;
           height: 100%;
           width: 100%;
@@ -178,7 +178,7 @@ body {
           align-items: center;
           justify-content: center;
      }
-     #game {
+     .game {
           width: 95vw;
           height: 95vw;
      }
@@ -195,7 +195,7 @@ body {
                }
           }
      }
-     #start-button {
+     .start-button {
           font-size: 1em;
      }
      .number-of-players {
@@ -209,7 +209,7 @@ body {
      }
 }
 @media only screen and (max-width: 812px) {
-     #holder {
+     .holder {
           font-size: 0.8em;
      }
      .player-avatars {
@@ -221,7 +221,7 @@ body {
                }
           }
      }
-     #start-button {
+     .start-button {
           font-size: 0.8em;
      }
      .number-of-players {

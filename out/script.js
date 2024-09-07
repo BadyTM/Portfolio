@@ -36,15 +36,15 @@ const snakeMap = {
 };
 const getPlayingPlayer = () => document.querySelector(`.${playersInGame[0]}`);
 const togglePlayerVisibility = (playerClass, showPlayer) => {
-    const player = document.querySelector(playerClass);
-    const playerAvatar = document.getElementById(playerClass + "-avatar");
+    const player = document.querySelector(`.${playerClass}`);
+    const playerAvatar = document.querySelector(`.${playerClass}-avatar`);
     player.classList.toggle("d-none", !showPlayer);
     playerAvatar.classList.toggle("d-none", !showPlayer);
 };
 const setAmountOfPlayers = (amount) => {
     playersInGame = [];
     for (let i = 1; i <= maxAmountOfPlayers; i++) {
-        const playerClass = `.player-${i}`;
+        const playerClass = `player-${i}`;
         if (i <= amount) {
             playersInGame.push(playerClass);
             togglePlayerVisibility(playerClass, true);
@@ -82,7 +82,7 @@ const getMovingDirection = (playerLeft, playerBottom) => {
     }
     return directions.right;
 };
-const run = (diceElement) => __awaiter(this, void 0, void 0, function* () {
+const run = () => __awaiter(this, void 0, void 0, function* () {
     const playingPlayer = getPlayingPlayer();
     for (let i = 0; i < diceNumber; i++) {
         const currentLeft = parseInt(playingPlayer.style.left);
@@ -103,7 +103,6 @@ const run = (diceElement) => __awaiter(this, void 0, void 0, function* () {
         }
         yield new Promise((resolve) => setTimeout(resolve, moveSpeed));
     }
-    diceElement.disabled = false;
     checkPosition(playingPlayer);
 });
 const checkPosition = (playingPlayer) => {
@@ -117,7 +116,7 @@ const checkPosition = (playingPlayer) => {
     checkLaddersSnakes(snakeMap, positionKey, playingPlayer);
     changePlayer();
 };
-const toggleDice = () => {
+const toggleDice = () => __awaiter(this, void 0, void 0, function* () {
     const numbers = document.querySelectorAll(".dice-number");
     numbers.forEach((number) => {
         number.classList.add("d-none");
@@ -128,8 +127,9 @@ const toggleDice = () => {
     diceElement.disabled = true;
     diceElement.classList.remove("d-none");
     diceElement.classList.add("d-block");
-    run(diceElement);
-};
+    yield run();
+    diceElement.disabled = false;
+});
 const checkLaddersSnakes = (map, positionKey, playingPlayer) => {
     const newPosition = map[positionKey];
     if (newPosition) {

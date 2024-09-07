@@ -1,128 +1,85 @@
 <html lang="en">
-     <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
-               rel="stylesheet" 
-               integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
-               crossorigin="anonymous">
-          <link rel="stylesheet" type="text/css" href="styling.css" />
-          <title>Game</title>
-     </head>
-     <body>
-          <div class="holder">
-               <div class="game">
-                    <div class="d-block player-1" style="bottom: 0%; left: 0%"></div>
-                    <div class="d-block player-2" style="bottom: 0%; left: 0%"></div>
-                    <div class="d-block player-3" style="bottom: 0%; left: 0%"></div>
-                    <div class="d-block player-4" style="bottom: 0%; left: 0%"></div>
-                    <div class="starting-page">
-                         <div class="number-of-players">
-                              <h3>Choose number of players</h3>
-                              <button onclick="setAmountOfPlayers(1)">1</button
-                              ><button onclick="setAmountOfPlayers(2)">2</button
-                              ><button onclick="setAmountOfPlayers(3)">3</button
-                              ><button onclick="setAmountOfPlayers(4)">4</button>
-                         </div>
-                         <div class="player-avatars">
-                              <div class="player-1-avatar">
-                                   <h3>Player 1</h3>
-                                   <button
-                                        class="avatar-blue"
-                                        onclick="setPlayerAvatar('.player-1', 'blue')"
-                                   ></button>
-                                   <button
-                                        class="avatar-green"
-                                        onclick="setPlayerAvatar('.player-1', 'green')"
-                                   ></button
-                                   ><button
-                                        class="avatar-yellow"
-                                        onclick="setPlayerAvatar('.player-1', 'yellow')"
-                                   ></button
-                                   ><button
-                                        class="avatar-pink"
-                                        onclick="setPlayerAvatar('.player-1', 'pink')"
-                                   ></button>
-                              </div>
-                              <div class="player-2-avatar">
-                                   <h3>Player 2</h3>
-                                   <button
-                                        class="avatar-blue"
-                                        onclick="setPlayerAvatar('.player-2', 'blue')"
-                                   ></button>
-                                   <button
-                                        class="avatar-green"
-                                        onclick="setPlayerAvatar('.player-2', 'green')"
-                                   ></button
-                                   ><button
-                                        class="avatar-yellow"
-                                        onclick="setPlayerAvatar('.player-2', 'yellow')"
-                                   ></button
-                                   ><button
-                                        class="avatar-pink"
-                                        onclick="setPlayerAvatar('.player-2', 'pink')"
-                                   ></button>
-                              </div>
-                              <div class="player-3-avatar">
-                                   <h3>Player 3</h3>
-                                   <button
-                                        class="avatar-blue"
-                                        onclick="setPlayerAvatar('.player-3', 'blue')"
-                                   ></button>
-                                   <button
-                                        class="avatar-green"
-                                        onclick="setPlayerAvatar('.player-3', 'green')"
-                                   ></button
-                                   ><button
-                                        class="avatar-yellow"
-                                        onclick="setPlayerAvatar('.player-3', 'yellow')"
-                                   ></button
-                                   ><button
-                                        class="avatar-pink"
-                                        onclick="setPlayerAvatar('.player-3', 'pink')"
-                                   ></button>
-                              </div>
-                              <div class="player-4-avatar">
-                                   <h3>Player 4</h3>
-                                   <button
-                                        class="avatar-blue"
-                                        onclick="setPlayerAvatar('.player-4', 'blue')"
-                                   ></button>
-                                   <button
-                                        class="avatar-green"
-                                        onclick="setPlayerAvatar('.player-4', 'green')"
-                                   ></button
-                                   ><button
-                                        class="avatar-yellow"
-                                        onclick="setPlayerAvatar('.player-4', 'yellow')"
-                                   ></button
-                                   ><button
-                                        class="avatar-pink"
-                                        onclick="setPlayerAvatar('.player-4', 'pink')"
-                                   ></button>
-                              </div>
-                         </div>
 
-                         <button class="start-button" onclick="startGame()">
-                              Start Game
-                         </button>
+<head>
+     <meta charset="utf-8">
+     <meta name="viewport" 
+           content="width=device-width, initial-scale=1">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+           rel="stylesheet"
+           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
+           crossorigin="anonymous">
+     <link rel="stylesheet" 
+           type="text/css" 
+           href="styling.css" />
+     <title>Game</title>
+</head>
+
+<body>
+     <div class="holder h-100 w-100 d-flex justify-content-center align-items-center">
+          <div class="game position-relative">
+               <div class="d-block player-1 position-absolute" style="bottom: 0%; left: 0%"></div>
+               <div class="d-block player-2 position-absolute" style="bottom: 0%; left: 0%"></div>
+               <div class="d-block player-3 position-absolute" style="bottom: 0%; left: 0%"></div>
+               <div class="d-block player-4 position-absolute" style="bottom: 0%; left: 0%"></div>
+               <div class="starting-page position-absolute w-100 h-100 d-flex flex-wrap justify-content-center align-items-center">
+                    <div class="number-of-players d-flex justify-content-center align-items-center">
+                         <h3>Choose number of players</h3>
+                         <button onclick="setAmountOfPlayers(1)">1</button>
+                         <button onclick="setAmountOfPlayers(2)">2</button>
+                         <button onclick="setAmountOfPlayers(3)">3</button>
+                         <button onclick="setAmountOfPlayers(4)">4</button>
                     </div>
-               </div>
-               <div class="dice-placeholder">
-                    <button  class="dice-1 dice-number" onclick="toggleDice()">
-                    </button>
-                    <button  class="dice-2 dice-number" onclick="toggleDice()">
-                    </button>
-                    <button  class="dice-3 dice-number" onclick="toggleDice()">
-                    </button>
-                    <button  class="dice-4 dice-number" onclick="toggleDice()">
-                    </button>
-                    <button  class="dice-5 dice-number" onclick="toggleDice()">
-                    </button>
-                    <button  class="dice-6 dice-number" onclick="toggleDice()">
+                    <div class="player-avatars">
+                         <div class="player-1-avatar d-flex justify-content-center align-items-center flex-wrap w-100">
+                              <h3>Player 1</h3>
+                              <button class="avatar-blue" onclick="setPlayerAvatar('.player-1', 'blue')"></button>
+                              <button class="avatar-green" onclick="setPlayerAvatar('.player-1', 'green')"></button>
+                              <button class="avatar-yellow" onclick="setPlayerAvatar('.player-1', 'yellow')"></button>
+                              <button class="avatar-pink" onclick="setPlayerAvatar('.player-1', 'pink')"></button>
+                         </div>
+                         <div class="player-2-avatar d-flex justify-content-center align-items-center flex-wrap w-100">
+                              <h3>Player 2</h3>
+                              <button class="avatar-blue" onclick="setPlayerAvatar('.player-2', 'blue')"></button>
+                              <button class="avatar-green" onclick="setPlayerAvatar('.player-2', 'green')"></button>
+                              <button class="avatar-yellow" onclick="setPlayerAvatar('.player-2', 'yellow')"></button>
+                              <button class="avatar-pink" onclick="setPlayerAvatar('.player-2', 'pink')"></button>
+                         </div>
+                         <div class="player-3-avatar d-flex justify-content-center align-items-center flex-wrap w-100">
+                              <h3>Player 3</h3>
+                              <button class="avatar-blue" onclick="setPlayerAvatar('.player-3', 'blue')"></button>
+                              <button class="avatar-green" onclick="setPlayerAvatar('.player-3', 'green')"></button>
+                              <button class="avatar-yellow" onclick="setPlayerAvatar('.player-3', 'yellow')"></button>
+                              <button class="avatar-pink" onclick="setPlayerAvatar('.player-3', 'pink')"></button>
+                         </div>
+                         <div class="player-4-avatar d-flex justify-content-center align-items-center flex-wrap w-100">
+                              <h3>Player 4</h3>
+                              <button class="avatar-blue" onclick="setPlayerAvatar('.player-4', 'blue')"></button>
+                              <button class="avatar-green" onclick="setPlayerAvatar('.player-4', 'green')"></button>
+                              <button class="avatar-yellow" onclick="setPlayerAvatar('.player-4', 'yellow')"></button>
+                              <button class="avatar-pink" onclick="setPlayerAvatar('.player-4', 'pink')"></button>
+                         </div>
+                    </div>
+
+                    <button class="start-button" onclick="startGame()">
+                         Start Game
                     </button>
                </div>
           </div>
-          <script src="../out/script.js"></script>
-     </body>
+          <div class="dice-placeholder position-relative">
+               <button class="dice-1 dice-number rounded w-100 h-100 d-block" onclick="toggleDice()">
+               </button>
+               <button class="dice-2 dice-number rounded w-100 h-100 d-none" onclick="toggleDice()">
+               </button>
+               <button class="dice-3 dice-number rounded w-100 h-100 d-none" onclick="toggleDice()">
+               </button>
+               <button class="dice-4 dice-number rounded w-100 h-100 d-none" onclick="toggleDice()">
+               </button>
+               <button class="dice-5 dice-number rounded w-100 h-100 d-none" onclick="toggleDice()">
+               </button>
+               <button class="dice-6 dice-number rounded w-100 h-100 d-none" onclick="toggleDice()">
+               </button>
+          </div>
+     </div>
+     <script src="../out/script.js"></script>
+</body>
 </html>

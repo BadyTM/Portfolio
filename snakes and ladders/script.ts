@@ -29,8 +29,8 @@ const snakeMap: Record<string, { left: string; bottom: string }> = {
 const getPlayingPlayer = (): HTMLElement => document.querySelector(`.${playersInGame[0]}`) as HTMLElement;
 
 const togglePlayerVisibility = (playerClass: string, showPlayer: boolean): void => {
-  const player: HTMLElement = document.querySelector(playerClass) as HTMLElement;
-  const playerAvatar: HTMLElement = document.getElementById(playerClass + "-avatar") as HTMLElement;
+  const player: HTMLElement = document.querySelector(`.${playerClass}`) as HTMLElement;
+  const playerAvatar: HTMLElement = document.querySelector(`.${playerClass}-avatar`) as HTMLElement;
   player.classList.toggle("d-none", !showPlayer);
   playerAvatar.classList.toggle("d-none", !showPlayer);
 };
@@ -38,7 +38,7 @@ const togglePlayerVisibility = (playerClass: string, showPlayer: boolean): void 
 const setAmountOfPlayers = (amount: number): void => {
   playersInGame = [];
   for (let i = 1; i <= maxAmountOfPlayers; i++) {
-    const playerClass = `.player-${i}`;
+    const playerClass = `player-${i}`;
     if (i <= amount) {
       playersInGame.push(playerClass);
       togglePlayerVisibility(playerClass, true);
@@ -77,7 +77,7 @@ const getMovingDirection = (playerLeft: number, playerBottom: number): string =>
   return directions.right;
 };
 
-const run = async (diceElement: HTMLButtonElement): Promise<void> => {
+const run = async (): Promise<void> => {
   const playingPlayer = getPlayingPlayer();
 
   for (let i = 0; i < diceNumber; i++) {
@@ -99,7 +99,6 @@ const run = async (diceElement: HTMLButtonElement): Promise<void> => {
     }
     await new Promise((resolve) => setTimeout(resolve, moveSpeed));
   }
-  diceElement.disabled = false;
   checkPosition(playingPlayer);
 };
 
@@ -115,7 +114,7 @@ const checkPosition = (playingPlayer: HTMLElement): void => {
   changePlayer();
 };
 
-const toggleDice = (): void => {
+const toggleDice = async (): Promise<void> => {
   const numbers = document.querySelectorAll<HTMLElement>(".dice-number");
   numbers.forEach((number) => {
     number.classList.add("d-none");
@@ -127,7 +126,8 @@ const toggleDice = (): void => {
   diceElement.disabled = true;
   diceElement.classList.remove("d-none");
   diceElement.classList.add("d-block");
-  run(diceElement);
+  await run();
+  diceElement.disabled = false;
 };
 
 const checkLaddersSnakes = (map: Record<string, { left: string; bottom: string }>, positionKey: string, playingPlayer: HTMLElement): void => {

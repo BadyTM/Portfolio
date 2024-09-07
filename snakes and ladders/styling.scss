@@ -100,40 +100,35 @@ body {
      width: 15%;
 }
 
-#dice {
+.dice-placeholder {
      position: relative;
      margin-left: 1vw;
      width: 15vh;
      height: 15vh;
-     div {
+     .dice-number {
           width: 100%;
           height: 100%;
           background-size: cover;
           border: 1px solid black;
           display: none;
-          button {
-               width: 100%;
-               height: 100%;
-               opacity: 25%;
-          }
      }
-     #dice-1 {
+     .dice-1 {
           display: block;
           background-image: url("images/1.png");
      }
-     #dice-2 {
+     .dice-2 {
           background-image: url("images/2.png");
      }
-     #dice-3 {
+     .dice-3 {
           background-image: url("images/3.png");
      }
-     #dice-4 {
+     .dice-4 {
           background-image: url("images/4.png");
      }
-     #dice-5 {
+     .dice-5 {
           background-image: url("images/5.png");
      }
-     #dice-6 {
+     .dice-6 {
           background-image: url("images/6.png");
      }
 }

@@ -77,7 +77,7 @@ const getMovingDirection = (playerLeft: number, playerBottom: number): string =>
   return directions.right;
 };
 
-const run = async (): Promise<void> => {
+const run = async (diceElement: HTMLButtonElement): Promise<void> => {
   const playingPlayer = getPlayingPlayer();
 
   for (let i = 0; i < diceNumber; i++) {
@@ -99,6 +99,7 @@ const run = async (): Promise<void> => {
     }
     await new Promise((resolve) => setTimeout(resolve, moveSpeed));
   }
+  diceElement.disabled = false;
   checkPosition(playingPlayer);
 };
 
@@ -120,12 +121,13 @@ const toggleDice = (): void => {
     number.classList.add("d-none");
   });
   diceNumber = Math.floor(Math.random() * 6) + 1;
-  const diceID = `dice-${diceNumber}`;
-  const diceElement = document.getElementById(diceID) as HTMLElement;
+  const diceIClass = `.dice-${diceNumber}`;
+  const diceElement = document.querySelector(diceIClass) as HTMLButtonElement;
 
+  diceElement.disabled = true;
   diceElement.classList.remove("d-none");
   diceElement.classList.add("d-block");
-  run();
+  run(diceElement);
 };
 
 const checkLaddersSnakes = (map: Record<string, { left: string; bottom: string }>, positionKey: string, playingPlayer: HTMLElement): void => {

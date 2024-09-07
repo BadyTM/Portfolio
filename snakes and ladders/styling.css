@@ -108,41 +108,36 @@ body {
   width: 15%;
 }
 
-#dice {
+.dice-placeholder {
   position: relative;
   margin-left: 1vw;
   width: 15vh;
   height: 15vh;
 }
-#dice div {
+.dice-placeholder .dice-number {
   width: 100%;
   height: 100%;
   background-size: cover;
   border: 1px solid black;
   display: none;
 }
-#dice div button {
-  width: 100%;
-  height: 100%;
-  opacity: 25%;
-}
-#dice #dice-1 {
+.dice-placeholder .dice-1 {
   display: block;
   background-image: url("images/1.png");
 }
-#dice #dice-2 {
+.dice-placeholder .dice-2 {
   background-image: url("images/2.png");
 }
-#dice #dice-3 {
+.dice-placeholder .dice-3 {
   background-image: url("images/3.png");
 }
-#dice #dice-4 {
+.dice-placeholder .dice-4 {
   background-image: url("images/4.png");
 }
-#dice #dice-5 {
+.dice-placeholder .dice-5 {
   background-image: url("images/5.png");
 }
-#dice #dice-6 {
+.dice-placeholder .dice-6 {
   background-image: url("images/6.png");
 }
 

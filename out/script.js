@@ -82,7 +82,7 @@ const getMovingDirection = (playerLeft, playerBottom) => {
     }
     return directions.right;
 };
-const run = () => __awaiter(this, void 0, void 0, function* () {
+const run = (diceElement) => __awaiter(this, void 0, void 0, function* () {
     const playingPlayer = getPlayingPlayer();
     for (let i = 0; i < diceNumber; i++) {
         const currentLeft = parseInt(playingPlayer.style.left);
@@ -103,6 +103,7 @@ const run = () => __awaiter(this, void 0, void 0, function* () {
         }
         yield new Promise((resolve) => setTimeout(resolve, moveSpeed));
     }
+    diceElement.disabled = false;
     checkPosition(playingPlayer);
 });
 const checkPosition = (playingPlayer) => {
@@ -122,11 +123,12 @@ const toggleDice = () => {
         number.classList.add("d-none");
     });
     diceNumber = Math.floor(Math.random() * 6) + 1;
-    const diceID = `dice-${diceNumber}`;
-    const diceElement = document.getElementById(diceID);
+    const diceIClass = `.dice-${diceNumber}`;
+    const diceElement = document.querySelector(diceIClass);
+    diceElement.disabled = true;
     diceElement.classList.remove("d-none");
     diceElement.classList.add("d-block");
-    run();
+    run(diceElement);
 };
 const checkLaddersSnakes = (map, positionKey, playingPlayer) => {
     const newPosition = map[positionKey];

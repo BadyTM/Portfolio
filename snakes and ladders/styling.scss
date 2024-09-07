@@ -14,8 +14,12 @@ body {
 }
 
 .starting-page {
-     background-color: rgb(216, 212, 156);
-     padding: 20% 0;
+  background: linear-gradient(
+    to top left,
+    #112f4d,
+    #16426a,
+    #112f4d,
+  );     padding: 20% 0;
 }
 
 .number-of-players {

@@ -23,36 +23,36 @@
                <div class="d-block player-4 position-absolute" style="bottom: 0%; left: 0%"></div>
                <div class="starting-page position-absolute w-100 h-100 d-flex flex-wrap justify-content-center align-items-center">
                     <div class="number-of-players d-flex justify-content-center align-items-center">
-                         <h3>Choose number of players</h3>
-                         <button onclick="setAmountOfPlayers(1)">1</button>
-                         <button onclick="setAmountOfPlayers(2)">2</button>
-                         <button onclick="setAmountOfPlayers(3)">3</button>
-                         <button onclick="setAmountOfPlayers(4)">4</button>
+                         <h3 class="text-white text-nowrap me-2">Choose number of players</h3>
+                         <button class="rounded" onclick="setAmountOfPlayers(1)">1</button>
+                         <button class="rounded" onclick="setAmountOfPlayers(2)">2</button>
+                         <button class="rounded" onclick="setAmountOfPlayers(3)">3</button>
+                         <button class="rounded" onclick="setAmountOfPlayers(4)">4</button>
                     </div>
                     <div class="player-avatars">
                          <div class="player-1-avatar d-flex justify-content-center align-items-center flex-wrap w-100">
-                              <h3>Player 1</h3>
+                              <h3 class="text-white">Player 1</h3>
                               <button class="avatar-blue" onclick="setPlayerAvatar('.player-1', 'blue')"></button>
                               <button class="avatar-green" onclick="setPlayerAvatar('.player-1', 'green')"></button>
                               <button class="avatar-yellow" onclick="setPlayerAvatar('.player-1', 'yellow')"></button>
                               <button class="avatar-pink" onclick="setPlayerAvatar('.player-1', 'pink')"></button>
                          </div>
                          <div class="player-2-avatar d-flex justify-content-center align-items-center flex-wrap w-100">
-                              <h3>Player 2</h3>
+                              <h3 class="text-white">Player 2</h3>
                               <button class="avatar-blue" onclick="setPlayerAvatar('.player-2', 'blue')"></button>
                               <button class="avatar-green" onclick="setPlayerAvatar('.player-2', 'green')"></button>
                               <button class="avatar-yellow" onclick="setPlayerAvatar('.player-2', 'yellow')"></button>
                               <button class="avatar-pink" onclick="setPlayerAvatar('.player-2', 'pink')"></button>
                          </div>
                          <div class="player-3-avatar d-flex justify-content-center align-items-center flex-wrap w-100">
-                              <h3>Player 3</h3>
+                              <h3 class="text-white">Player 3</h3>
                               <button class="avatar-blue" onclick="setPlayerAvatar('.player-3', 'blue')"></button>
                               <button class="avatar-green" onclick="setPlayerAvatar('.player-3', 'green')"></button>
                               <button class="avatar-yellow" onclick="setPlayerAvatar('.player-3', 'yellow')"></button>
                               <button class="avatar-pink" onclick="setPlayerAvatar('.player-3', 'pink')"></button>
                          </div>
                          <div class="player-4-avatar d-flex justify-content-center align-items-center flex-wrap w-100">
-                              <h3>Player 4</h3>
+                              <h3 class="text-white">Player 4</h3>
                               <button class="avatar-blue" onclick="setPlayerAvatar('.player-4', 'blue')"></button>
                               <button class="avatar-green" onclick="setPlayerAvatar('.player-4', 'green')"></button>
                               <button class="avatar-yellow" onclick="setPlayerAvatar('.player-4', 'yellow')"></button>
@@ -60,13 +60,13 @@
                          </div>
                     </div>
 
-                    <button class="start-button" onclick="startGame()">
+                    <button class="start-button rounded" onclick="startGame()">
                          Start Game
                     </button>
                </div>
           </div>
           <div class="dice-placeholder position-relative">
-               <button class="dice-1 dice-number rounded w-100 h-100 d-block" onclick="toggleDice()">
+               <button class="dice-1 dice-number rounded w-100 h-100 d-block" disabled onclick="toggleDice()">
                </button>
                <button class="dice-2 dice-number rounded w-100 h-100 d-none" onclick="toggleDice()">
                </button>

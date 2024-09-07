@@ -54,6 +54,7 @@ const setPlayerAvatar = (playerClass: string, color: string): void => {
 
 const startGame = (): void => {
   (document.querySelector(".starting-page") as HTMLElement).classList.add("d-none");
+  (document.querySelector(".dice-1") as HTMLButtonElement).disabled = false;
 };
 
 const changePlayer = (): void => {

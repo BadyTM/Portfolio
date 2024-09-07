@@ -59,6 +59,7 @@ const setPlayerAvatar = (playerClass, color) => {
 };
 const startGame = () => {
     document.querySelector(".starting-page").classList.add("d-none");
+    document.querySelector(".dice-1").disabled = false;
 };
 const changePlayer = () => {
     if (diceNumber != 6) {

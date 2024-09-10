@@ -1,199 +1,105 @@
 * {
   box-sizing: border-box;
+  font-family: Arial;
 }
 
-body {
-  font-family: Arial;
+.wrapper {
+  width: 100vw;
+  height: 100vh;
 }
 
 .game {
   background-image: url("images/board.jpg");
   background-position: center;
   background-size: contain;
-  width: 80vh;
-  height: 80vh;
+  height: 80%;
+  aspect-ratio: 1;
 }
 
 .starting-page {
   background: linear-gradient(to top left, #112f4d, #16426a, #112f4d);
-  padding: 20% 0;
 }
 
-.number-of-players {
-  width: 60%;
-  height: 10%;
-  margin: 0 20%;
-}
-.number-of-players button:focus {
-  background-color: yellow;
-}
-.number-of-players button {
-  width: 2vw;
-  font-weight: 800;
-  margin: 0 1%;
-}
-
-.player-avatars {
-  width: 50%;
-  margin: 0 25%;
-}
-.player-avatars div button:focus {
-  background-color: red;
-}
-.player-avatars div * {
-  margin: 3% 1%;
-}
-.player-avatars div button {
-  width: 2vw;
-  height: 2vw;
-  font-weight: 800;
-  margin: 0 1%;
-}
-
-.avatar-blue {
-  background-image: url("images/avatars/blue.png");
+.avatar-btn {
+  border: none;
   background-size: cover;
   background-color: rgba(0, 0, 0, 0);
-  border: none;
-}
-
-.avatar-green {
-  background-image: url("images/avatars/green.png");
-  background-size: cover;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-}
-
-.avatar-yellow {
-  background-image: url("images/avatars/yellow.png");
-  background-size: cover;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-}
-
-.avatar-pink {
-  background-image: url("images/avatars/pink.png");
-  background-size: cover;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-}
-
-.start-button {
   width: 15%;
+  aspect-ratio: 1;
+  opacity: 0.3;
+}
+.avatar-btn.avatar-blue {
+  background-image: url("images/avatars/blue.png");
+}
+.avatar-btn.avatar-green {
+  background-image: url("images/avatars/green.png");
+}
+.avatar-btn.avatar-yellow {
+  background-image: url("images/avatars/yellow.png");
+}
+.avatar-btn.avatar-pink {
+  background-image: url("images/avatars/pink.png");
 }
 
 .dice-placeholder {
-  margin-left: 1vw;
-  width: 15vh;
-  height: 15vh;
+  height: 15%;
+  aspect-ratio: 1;
 }
 .dice-placeholder .dice-number {
-  background-size: cover;
-  border: 1px solid black;
+  background-position: center;
+  background-size: contain;
+  height: 100%;
+  aspect-ratio: 1;
 }
 .dice-placeholder .dice-number[disabled] {
   opacity: 0.5;
 }
-.dice-placeholder .dice-1 {
+.dice-placeholder .dice-number.dice-1 {
   background-image: url("images/1.png");
 }
-.dice-placeholder .dice-2 {
+.dice-placeholder .dice-number.dice-2 {
   background-image: url("images/2.png");
 }
-.dice-placeholder .dice-3 {
+.dice-placeholder .dice-number.dice-3 {
   background-image: url("images/3.png");
 }
-.dice-placeholder .dice-4 {
+.dice-placeholder .dice-number.dice-4 {
   background-image: url("images/4.png");
 }
-.dice-placeholder .dice-5 {
+.dice-placeholder .dice-number.dice-5 {
   background-image: url("images/5.png");
 }
-.dice-placeholder .dice-6 {
+.dice-placeholder .dice-number.dice-6 {
   background-image: url("images/6.png");
 }
 
-.player-1 {
+.player {
+  position: absolute;
   width: 10%;
   height: 10%;
+  background-size: cover;
+  transition: 1s;
+}
+.player.player-1 {
   background-image: url("images/avatars/blue.png");
-  background-size: cover;
-  transition: 1s;
 }
-
-.player-2 {
-  width: 10%;
-  height: 10%;
+.player.player-2 {
   background-image: url("images/avatars/green.png");
-  background-size: cover;
-  transition: 1s;
 }
-
-.player-3 {
-  width: 10%;
-  height: 10%;
+.player.player-3 {
   background-image: url("images/avatars/yellow.png");
-  background-size: cover;
-  transition: 1s;
 }
-
-.player-4 {
-  width: 10%;
-  height: 10%;
+.player.player-4 {
   background-image: url("images/avatars/pink.png");
-  background-size: cover;
-  transition: 1s;
 }
 
-@media only screen and (max-width: 1024px) {
-  .starting-page {
-    padding: 0% 0;
-  }
-  .holder {
-    font-size: 2em;
-    flex-wrap: wrap;
-  }
+@media only screen and (max-width: 724px) {
   .game {
-    width: 95vw;
-    height: 95vw;
+    height: unset;
+    width: 95%;
   }
-  .player-avatars {
-    width: 80%;
-    margin: 0 10%;
-  }
-  .player-avatars div button {
-    width: 10vw;
-    height: 10vw;
-    margin: 0 0%;
-  }
-  .start-button {
-    font-size: 1em;
-  }
-  .number-of-players {
-    width: 100%;
-    margin: 5% 0%;
-  }
-  .number-of-players button {
-    font-size: 1em;
-    width: 5vw;
-    height: 5vw;
-  }
-}
-@media only screen and (max-width: 812px) {
-  .holder {
-    font-size: 0.8em;
-  }
-  .player-avatars div button {
-    width: 10vw;
-    height: 10vw;
-    margin: 0 0%;
-  }
-  .start-button {
-    font-size: 0.8em;
-  }
-  .number-of-players button {
-    font-size: 0.8em;
-    width: 6vw;
-    height: 6vw;
+  .dice-placeholder {
+    height: unset;
+    width: 15%;
   }
 }/*# sourceMappingURL=styling.css.map */

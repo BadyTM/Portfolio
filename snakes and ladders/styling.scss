@@ -4,15 +4,15 @@
 }
 
 .wrapper {
- width: 100vw;
- height: 100vh;
+     width: 100vw;
+     height: 100vh;
 }
 
 .game {
      background-image: url("images/board.jpg");
      background-position: center;
      background-size: contain;
-     height: 80%;    
+     height: 80%;
      aspect-ratio: 1;
 }
 
@@ -31,16 +31,19 @@
      width: 15%;
      aspect-ratio: 1;
      opacity: 0.3;
-     
+
      &.avatar-blue {
-     background-image: url("images/avatars/blue.png");
+          background-image: url("images/avatars/blue.png");
      }
+
      &.avatar-green {
           background-image: url("images/avatars/green.png");
      }
+
      &.avatar-yellow {
           background-image: url("images/avatars/yellow.png");
      }
+
      &.avatar-pink {
           background-image: url("images/avatars/pink.png");
      }
@@ -63,18 +66,23 @@
           &.dice-1 {
                background-image: url("images/1.png");
           }
+
           &.dice-2 {
                background-image: url("images/2.png");
           }
+
           &.dice-3 {
                background-image: url("images/3.png");
           }
+
           &.dice-4 {
                background-image: url("images/4.png");
           }
+
           &.dice-5 {
                background-image: url("images/5.png");
           }
+
           &.dice-6 {
                background-image: url("images/6.png");
           }
@@ -90,22 +98,25 @@
 
      &.player-1 {
           background-image: url("images/avatars/blue.png");
-     }     
+     }
+
      &.player-2 {
           background-image: url("images/avatars/green.png");
-     } 
+     }
+
      &.player-3 {
           background-image: url("images/avatars/yellow.png");
-     }  
+     }
+
      &.player-4 {
           background-image: url("images/avatars/pink.png");
      }
 }
 
-@media only screen and (max-width: 724px) {
-     .game{
+@media (max-aspect-ratio: 1/1) {
+     .game {
           height: unset;
-          width: 95%;
+          width: 85%;
      }
 
      .dice-placeholder {

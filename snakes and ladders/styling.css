@@ -93,10 +93,10 @@
   background-image: url("images/avatars/pink.png");
 }
 
-@media only screen and (max-width: 724px) {
+@media (max-aspect-ratio: 1/1) {
   .game {
     height: unset;
-    width: 95%;
+    width: 85%;
   }
   .dice-placeholder {
     height: unset;

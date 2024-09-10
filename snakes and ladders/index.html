@@ -15,7 +15,7 @@
 </head>
 
 <body>
-     <div class="wrapper d-flex flex-column justify-content-center align-items-center">
+     <div class="wrapper d-flex flex-column justify-content-evenly align-items-center">
           <div class="game position-relative">
                <div class="d-block player-1 player" style="bottom: 0%; left: 0%"></div>
                <div class="d-block player-2 player" style="bottom: 0%; left: 0%"></div>
@@ -59,13 +59,12 @@
                               <button class="avatar-pink avatar-btn" onclick="setPlayerAvatar('.player-4', 'pink')"></button>
                          </div>
                     </div>
-
                     <button class="start-button rounded" onclick="startGame()">
                          Start Game
                     </button>
                </div>    
           </div>
-          <div class="dice-placeholder mt-4 position-relative">
+          <div class="dice-placeholder position-relative">
                <button class="dice-1 dice-number rounded d-block" disabled onclick="toggleDice()">
                </button>
                <button class="dice-2 dice-number rounded d-none" onclick="toggleDice()">

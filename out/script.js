@@ -54,7 +54,21 @@ const setAmountOfPlayers = (amount) => {
         }
     }
 };
-const setPlayerAvatar = (playerClass, color) => {
+const setPlayerAvatar = (event, playerClass, color) => {
+    const clickedAvatarBtn = event.target;
+    const clickedColourClass = `.avatar-${color}`;
+    const parentRowElement = clickedAvatarBtn.closest(".avatar-row");
+    clickedAvatarBtn.classList.add("selected-avatar");
+    const buttonsToDisable = [
+        ...parentRowElement.querySelectorAll(".avatar-btn"),
+        ...document.querySelectorAll(clickedColourClass),
+    ];
+    buttonsToDisable.forEach((button) => {
+        if (button !== clickedAvatarBtn) {
+            button.disabled = true;
+            button.classList.remove("selected-avatar");
+        }
+    });
     document.querySelector(playerClass).style.backgroundImage = `url('images/avatars/${color}.png')`;
 };
 const startGame = () => {

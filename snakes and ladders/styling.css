@@ -26,6 +26,13 @@
   background-color: rgba(0, 0, 0, 0);
   width: 15%;
   aspect-ratio: 1;
+}
+.avatar-btn.selected-avatar {
+  border-radius: 50%;
+  border: 2px solid white;
+  border-style: dashed;
+}
+.avatar-btn:disabled {
   opacity: 0.3;
 }
 .avatar-btn.avatar-blue {

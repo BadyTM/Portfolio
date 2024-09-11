@@ -30,7 +30,16 @@
      background-color: rgba(0, 0, 0, 0);
      width: 15%;
      aspect-ratio: 1;
-     opacity: 0.3;
+
+     &.selected-avatar {
+          border-radius: 50%;
+          border: 2px solid white;
+          border-style: dashed;
+     }     
+     
+     &:disabled {
+          opacity: 0.3;
+     }
 
      &.avatar-blue {
           background-image: url("images/avatars/blue.png");

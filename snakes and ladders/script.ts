@@ -48,7 +48,24 @@ const setAmountOfPlayers = (amount: number): void => {
   }
 };
 
-const setPlayerAvatar = (playerClass: string, color: string): void => {
+const setPlayerAvatar = (event: Event, playerClass: string, color: string): void => {
+  const clickedAvatarBtn = event.target as HTMLButtonElement;
+  const clickedColourClass: string = `.avatar-${color}`;
+  const parentRowElement: HTMLDivElement = clickedAvatarBtn.closest(".avatar-row");
+
+  clickedAvatarBtn.classList.add("selected-avatar");
+  const buttonsToDisable: HTMLButtonElement[] = [
+    ...parentRowElement.querySelectorAll<HTMLButtonElement>(".avatar-btn"),
+    ...document.querySelectorAll<HTMLButtonElement>(clickedColourClass),
+  ];
+
+  buttonsToDisable.forEach((button) => {
+    if (button !== clickedAvatarBtn) {
+      button.disabled = true;
+      button.classList.remove("selected-avatar");
+    }
+  });
+
   (document.querySelector(playerClass) as HTMLElement).style.backgroundImage = `url('images/avatars/${color}.png')`;
 };
 

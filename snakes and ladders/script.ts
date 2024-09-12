@@ -27,8 +27,6 @@ const snakeMap: Record<string, { left: string; bottom: string }> = {
   "0-50": { left: "20%", bottom: "30%" },
 };
 
-const getPlayingPlayer = (): HTMLElement => document.querySelector(`.${playersInGame[0]}`) as HTMLElement;
-
 const togglePlayerVisibility = (playerClass: string, showPlayer: boolean): void => {
   const player: HTMLElement = document.querySelector(`.${playerClass}`) as HTMLElement;
   const playerAvatar: HTMLElement = document.querySelector(`.${playerClass}-avatar`) as HTMLElement;
@@ -47,6 +45,7 @@ const setAmountOfPlayers = (amount: number): void => {
       togglePlayerVisibility(playerClass, false);
     }
   }
+
   const avatarBtns = document.querySelectorAll(".avatar-btn");
   avatarBtns.forEach((button: HTMLButtonElement) => {
     button.disabled = false;
@@ -79,7 +78,7 @@ const setPlayerAvatar = (event: Event, playerClass: string, colour: string): voi
 };
 
 const toggleAvatarButtons = (buttons: NodeListOf<HTMLButtonElement>, clickedAvatarBtn: HTMLButtonElement, disable: boolean): void => {
-  buttons.forEach((button: HTMLButtonElement) => {
+  buttons.forEach((button) => {
     if (button !== clickedAvatarBtn) {
       button.disabled = disable;
       button.classList.remove("selected-avatar");
@@ -88,16 +87,15 @@ const toggleAvatarButtons = (buttons: NodeListOf<HTMLButtonElement>, clickedAvat
 };
 
 const startGame = (): void => {
-    const avatarRows = document.querySelectorAll<HTMLElement>(".avatar-row");
-    const avatarRowsWithoutSelected = [...avatarRows].filter(row => !row.querySelector(".selected-avatar"));
+  const avatarRows = document.querySelectorAll<HTMLElement>(".avatar-row");
+  const avatarRowsWithoutSelected = [...avatarRows].filter((row) => !row.querySelector(".selected-avatar"));
 
-    avatarRowsWithoutSelected.forEach(row => {
-      const buttons = row.querySelectorAll<HTMLButtonElement>('.avatar-btn:not([disabled])');
-      buttons.forEach(button => button.click());
-    });
-    console.log(avatarRowsWithoutSelected);
+  avatarRowsWithoutSelected.forEach((row) => {
+    const buttons = row.querySelectorAll<HTMLButtonElement>(".avatar-btn:not([disabled])");
+    buttons.forEach((button) => button.click());
+  });
 
-    (document.querySelector(".starting-page") as HTMLElement).classList.add("d-none");
+  (document.querySelector(".starting-page") as HTMLElement).classList.add("d-none");
   (document.querySelector(".dice-1") as HTMLButtonElement).disabled = false;
 };
 
@@ -123,7 +121,7 @@ const getMovingDirection = (playerLeft: number, playerBottom: number): string =>
 };
 
 const run = async (): Promise<void> => {
-  const playingPlayer = getPlayingPlayer();
+  const playingPlayer = document.querySelector(`.${playersInGame[0]}`) as HTMLElement;
 
   for (let i = 0; i < diceNumber; i++) {
     const currentLeft: number = parseInt(playingPlayer.style.left);

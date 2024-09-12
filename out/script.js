@@ -35,7 +35,6 @@ const snakeMap = {
     "80-90": { left: "90%", bottom: "50%" },
     "0-50": { left: "20%", bottom: "30%" },
 };
-const getPlayingPlayer = () => document.querySelector(`.${playersInGame[0]}`);
 const togglePlayerVisibility = (playerClass, showPlayer) => {
     const player = document.querySelector(`.${playerClass}`);
     const playerAvatar = document.querySelector(`.${playerClass}-avatar`);
@@ -92,12 +91,11 @@ const toggleAvatarButtons = (buttons, clickedAvatarBtn, disable) => {
 };
 const startGame = () => {
     const avatarRows = document.querySelectorAll(".avatar-row");
-    const avatarRowsWithoutSelected = [...avatarRows].filter(row => !row.querySelector(".selected-avatar"));
-    avatarRowsWithoutSelected.forEach(row => {
-        const buttons = row.querySelectorAll('.avatar-btn:not([disabled])');
-        buttons.forEach(button => button.click());
+    const avatarRowsWithoutSelected = [...avatarRows].filter((row) => !row.querySelector(".selected-avatar"));
+    avatarRowsWithoutSelected.forEach((row) => {
+        const buttons = row.querySelectorAll(".avatar-btn:not([disabled])");
+        buttons.forEach((button) => button.click());
     });
-    console.log(avatarRowsWithoutSelected);
     document.querySelector(".starting-page").classList.add("d-none");
     document.querySelector(".dice-1").disabled = false;
 };
@@ -124,7 +122,7 @@ const getMovingDirection = (playerLeft, playerBottom) => {
     return directions.right;
 };
 const run = () => __awaiter(this, void 0, void 0, function* () {
-    const playingPlayer = getPlayingPlayer();
+    const playingPlayer = document.querySelector(`.${playersInGame[0]}`);
     for (let i = 0; i < diceNumber; i++) {
         const currentLeft = parseInt(playingPlayer.style.left);
         const currentBottom = parseInt(playingPlayer.style.bottom);

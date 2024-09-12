@@ -3,6 +3,7 @@ let diceNumber: number = Math.floor(Math.random() * 6) + 1;
 let goBack = 0;
 const maxAmountOfPlayers = 4;
 const moveSpeed = 400;
+const availableColours = ["blue", "green", "yellow", "pink"];
 const directions = {
   up: "up",
   left: "left",
@@ -46,6 +47,11 @@ const setAmountOfPlayers = (amount: number): void => {
       togglePlayerVisibility(playerClass, false);
     }
   }
+  const avatarBtns = document.querySelectorAll(".avatar-btn");
+  avatarBtns.forEach((button: HTMLButtonElement) => {
+    button.disabled = false;
+    button.classList.remove("selected-avatar");
+  });
 };
 
 const setPlayerAvatar = (event: Event, playerClass: string, colour: string): void => {
@@ -82,7 +88,16 @@ const toggleAvatarButtons = (buttons: NodeListOf<HTMLButtonElement>, clickedAvat
 };
 
 const startGame = (): void => {
-  (document.querySelector(".starting-page") as HTMLElement).classList.add("d-none");
+    const avatarRows = document.querySelectorAll<HTMLElement>(".avatar-row");
+    const avatarRowsWithoutSelected = [...avatarRows].filter(row => !row.querySelector(".selected-avatar"));
+
+    avatarRowsWithoutSelected.forEach(row => {
+      const buttons = row.querySelectorAll<HTMLButtonElement>('.avatar-btn:not([disabled])');
+      buttons.forEach(button => button.click());
+    });
+    console.log(avatarRowsWithoutSelected);
+
+    (document.querySelector(".starting-page") as HTMLElement).classList.add("d-none");
   (document.querySelector(".dice-1") as HTMLButtonElement).disabled = false;
 };
 

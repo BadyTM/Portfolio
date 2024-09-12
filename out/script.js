@@ -54,22 +54,35 @@ const setAmountOfPlayers = (amount) => {
         }
     }
 };
-const setPlayerAvatar = (event, playerClass, color) => {
+const setPlayerAvatar = (event, playerClass, colour) => {
     const clickedAvatarBtn = event.target;
-    const clickedColourClass = `.avatar-${color}`;
     const parentRowElement = clickedAvatarBtn.closest(".avatar-row");
-    clickedAvatarBtn.classList.add("selected-avatar");
-    const buttonsToDisable = [
-        ...parentRowElement.querySelectorAll(".avatar-btn"),
-        ...document.querySelectorAll(clickedColourClass),
-    ];
-    buttonsToDisable.forEach((button) => {
+    const buttonsWithSameColour = document.querySelectorAll(`[colour="${colour}"]`);
+    const previouslySelectedBtn = parentRowElement.querySelector(".selected-avatar");
+    const previouslySelectedColour = previouslySelectedBtn === null || previouslySelectedBtn === void 0 ? void 0 : previouslySelectedBtn.getAttribute("colour");
+    const buttonsWithPreviouslySameColour = document.querySelectorAll(`[colour="${previouslySelectedColour}"]`);
+    if (!clickedAvatarBtn.classList.contains("selected-avatar") && !previouslySelectedBtn) {
+        clickedAvatarBtn.classList.add("selected-avatar");
+        toggleAvatarButtons(buttonsWithSameColour, clickedAvatarBtn, true);
+    }
+    else if (!clickedAvatarBtn.classList.contains("selected-avatar") && previouslySelectedBtn) {
+        clickedAvatarBtn.classList.add("selected-avatar");
+        toggleAvatarButtons(buttonsWithPreviouslySameColour, clickedAvatarBtn, false);
+        toggleAvatarButtons(buttonsWithSameColour, clickedAvatarBtn, true);
+    }
+    else {
+        clickedAvatarBtn.classList.remove("selected-avatar");
+        toggleAvatarButtons(buttonsWithSameColour, clickedAvatarBtn, false);
+    }
+    document.querySelector(playerClass).style.backgroundImage = `url('images/avatars/${colour}.png')`;
+};
+const toggleAvatarButtons = (buttons, clickedAvatarBtn, disable) => {
+    buttons.forEach((button) => {
         if (button !== clickedAvatarBtn) {
-            button.disabled = true;
+            button.disabled = disable;
             button.classList.remove("selected-avatar");
         }
     });
-    document.querySelector(playerClass).style.backgroundImage = `url('images/avatars/${color}.png')`;
 };
 const startGame = () => {
     document.querySelector(".starting-page").classList.add("d-none");

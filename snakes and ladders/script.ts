@@ -48,25 +48,37 @@ const setAmountOfPlayers = (amount: number): void => {
   }
 };
 
-const setPlayerAvatar = (event: Event, playerClass: string, color: string): void => {
+const setPlayerAvatar = (event: Event, playerClass: string, colour: string): void => {
   const clickedAvatarBtn = event.target as HTMLButtonElement;
-  const clickedColourClass: string = `.avatar-${color}`;
   const parentRowElement: HTMLDivElement = clickedAvatarBtn.closest(".avatar-row");
+  const buttonsWithSameColour = document.querySelectorAll<HTMLButtonElement>(`[colour="${colour}"]`);
 
-  clickedAvatarBtn.classList.add("selected-avatar");
-  const buttonsToDisable: HTMLButtonElement[] = [
-    ...parentRowElement.querySelectorAll<HTMLButtonElement>(".avatar-btn"),
-    ...document.querySelectorAll<HTMLButtonElement>(clickedColourClass),
-  ];
+  const previouslySelectedBtn = parentRowElement.querySelector<HTMLButtonElement>(".selected-avatar");
+  const previouslySelectedColour = previouslySelectedBtn?.getAttribute("colour");
+  const buttonsWithPreviouslySameColour = document.querySelectorAll<HTMLButtonElement>(`[colour="${previouslySelectedColour}"]`);
 
-  buttonsToDisable.forEach((button) => {
+  if (!clickedAvatarBtn.classList.contains("selected-avatar") && !previouslySelectedBtn) {
+    clickedAvatarBtn.classList.add("selected-avatar");
+    toggleAvatarButtons(buttonsWithSameColour, clickedAvatarBtn, true);
+  } else if (!clickedAvatarBtn.classList.contains("selected-avatar") && previouslySelectedBtn) {
+    clickedAvatarBtn.classList.add("selected-avatar");
+    toggleAvatarButtons(buttonsWithPreviouslySameColour, clickedAvatarBtn, false);
+    toggleAvatarButtons(buttonsWithSameColour, clickedAvatarBtn, true);
+  } else {
+    clickedAvatarBtn.classList.remove("selected-avatar");
+    toggleAvatarButtons(buttonsWithSameColour, clickedAvatarBtn, false);
+  }
+
+  (document.querySelector(playerClass) as HTMLElement).style.backgroundImage = `url('images/avatars/${colour}.png')`;
+};
+
+const toggleAvatarButtons = (buttons: NodeListOf<HTMLButtonElement>, clickedAvatarBtn: HTMLButtonElement, disable: boolean): void => {
+  buttons.forEach((button: HTMLButtonElement) => {
     if (button !== clickedAvatarBtn) {
-      button.disabled = true;
+      button.disabled = disable;
       button.classList.remove("selected-avatar");
     }
   });
-
-  (document.querySelector(playerClass) as HTMLElement).style.backgroundImage = `url('images/avatars/${color}.png')`;
 };
 
 const startGame = (): void => {

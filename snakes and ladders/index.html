@@ -62,7 +62,14 @@
                     <button class="btn btn-secondary start-button rounded" onclick="startGame()">
                          Start Game
                     </button>
-               </div>    
+               </div>
+               <div class="d-none winning-page position-absolute w-50 h-25 d-flex flex-wrap justify-content-center align-items-center rounded">
+                    <span class="text-white fw-bold fs-3 text-nowrap me-2">The winner is:</span>
+                    <span class="text-white fw-bold fs-3 text-nowrap winner-text"></span>
+                    <button class="btn btn-secondary start-button rounded" onclick="restartGame()">
+                         Restart Game
+                    </button>
+               </div>       
           </div>
           <div class="dice-placeholder position-relative">
                <button class="dice-1 dice-number rounded d-block" disabled onclick="toggleDice()">

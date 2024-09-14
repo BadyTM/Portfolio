@@ -16,12 +16,18 @@
      aspect-ratio: 1;
 }
 
-.starting-page {
+.starting-page,
+.winning-page {
      background: linear-gradient(to top left,
                #112f4d,
                #16426a,
                #112f4d,
           );
+}
+
+.winning-page {
+     height: 20%;
+     margin: 37.5% 25%;
 }
 
 .avatar-btn {

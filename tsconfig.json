@@ -4,9 +4,12 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "outDir": "out",
 
     "strict": true,
     "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   }

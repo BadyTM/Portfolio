@@ -31,8 +31,8 @@ let diceNumber: number = Math.floor(Math.random() * 6) + 1;
 let goBack = 0;
 
 const togglePlayerVisibility = (playerClass: string, showPlayer: boolean): void => {
-  const player: HTMLElement = document.querySelector(`.${playerClass}`) as HTMLElement;
-  const playerAvatar: HTMLElement = document.querySelector(`.${playerClass}-avatar`) as HTMLElement;
+  const player = document.querySelector(`.${playerClass}`) as HTMLElement;
+  const playerAvatar = document.querySelector(`.${playerClass}-avatar`) as HTMLElement;
   player.classList.toggle("d-none", !showPlayer);
   playerAvatar.classList.toggle("d-none", !showPlayer);
 };

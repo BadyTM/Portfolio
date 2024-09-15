@@ -8,6 +8,7 @@ const gameSettings = {
     right: "right",
   },
 };
+
 const ladderMap: Record<string, { left: string; bottom: string }> = {
   "10-0": { left: "0%", bottom: "40%" },
   "40-10": { left: "60%", bottom: "80%" },
@@ -28,7 +29,7 @@ const snakeMap: Record<string, { left: string; bottom: string }> = {
 
 let playersInGame: string[] = ["player-1", "player-2", "player-3", "player-4"];
 let diceNumber: number = Math.floor(Math.random() * 6) + 1;
-let goBack = 0;
+let goBack: boolean = false;
 
 const togglePlayerVisibility = (playerClass: string, showPlayer: boolean): void => {
   const player = document.querySelector(`.${playerClass}`) as HTMLElement;
@@ -56,6 +57,15 @@ const setAmountOfPlayers = (amount: number): void => {
   });
 };
 
+const toggleAvatarButtons = (buttons: NodeListOf<HTMLButtonElement>, clickedAvatarBtn: HTMLButtonElement, disable: boolean): void => {
+  buttons.forEach((button) => {
+    if (button !== clickedAvatarBtn) {
+      button.disabled = disable;
+      button.classList.remove("selected-avatar");
+    }
+  });
+};
+
 const setPlayerAvatar = (event: Event, playerClass: string, colour: string): void => {
   const clickedAvatarBtn = event.target as HTMLButtonElement;
   const parentRowElement = clickedAvatarBtn.closest(".avatar-row");
@@ -78,113 +88,6 @@ const setPlayerAvatar = (event: Event, playerClass: string, colour: string): voi
   }
 
   (document.querySelector(playerClass) as HTMLElement).style.backgroundImage = `url("images/avatars/${colour}.png")`;
-};
-
-const toggleAvatarButtons = (buttons: NodeListOf<HTMLButtonElement>, clickedAvatarBtn: HTMLButtonElement, disable: boolean): void => {
-  buttons.forEach((button) => {
-    if (button !== clickedAvatarBtn) {
-      button.disabled = disable;
-      button.classList.remove("selected-avatar");
-    }
-  });
-};
-
-const startGame = (): void => {
-  toggleDiceDisabling(false, false);
-  const avatarRows = document.querySelectorAll<HTMLElement>(".avatar-row");
-  const avatarRowsWithoutSelected = [...avatarRows].filter((row) => !row.querySelector(".selected-avatar"));
-
-  avatarRowsWithoutSelected.forEach((row) => {
-    const buttons = row.querySelectorAll<HTMLButtonElement>(".avatar-btn:not([disabled])");
-    buttons.forEach((button) => button.click());
-  });
-
-  (document.querySelector(".starting-page") as HTMLElement).classList.add("d-none");
-  (document.querySelector(".dice-1") as HTMLButtonElement).disabled = false;
-};
-
-const changePlayer = (): void => {
-  if (diceNumber != 6) {
-    playersInGame.push(playersInGame.shift() as string);
-    goBack = 0;
-  }
-};
-
-const getMovingDirection = (playerLeft: number, playerBottom: number): string => {
-  if (goBack === 1 || (playerBottom === 90 && playerLeft === 0)) {
-    goBack = 1;
-    return gameSettings.directions.right;
-  } else if (playerLeft === 90 && playerBottom % 20 === 0) {
-    return gameSettings.directions.up;
-  } else if (playerLeft === 0 && playerBottom % 20 !== 0) {
-    return gameSettings.directions.up;
-  } else if (playerBottom % 20 !== 0) {
-    return gameSettings.directions.left;
-  }
-  return gameSettings.directions.right;
-};
-
-const run = async (): Promise<void> => {
-  const playingPlayer = document.querySelector(`.${playersInGame[0]}`) as HTMLElement;
-
-  for (let i = 0; i < diceNumber; i++) {
-    const currentLeft: number = parseInt(playingPlayer.style.left);
-    const currentBottom: number = parseInt(playingPlayer.style.bottom);
-    switch (getMovingDirection(currentLeft, currentBottom)) {
-      case gameSettings.directions.right: {
-        playingPlayer.style.left = `${currentLeft + 10}%`;
-        break;
-      }
-      case gameSettings.directions.up: {
-        playingPlayer.style.bottom = `${currentBottom + 10}%`;
-        break;
-      }
-      case gameSettings.directions.left: {
-        playingPlayer.style.left = `${currentLeft - 10}%`;
-        break;
-      }
-    }
-    await new Promise((resolve) => setTimeout(resolve, gameSettings.moveSpeed));
-  }
-  goBack = 0;
-  checkPosition(playingPlayer);
-};
-
-const checkPosition = (playingPlayer: HTMLElement): void => {
-  const playerLeft: number = parseInt(playingPlayer.style.left);
-  const playerBottom: number = parseInt(playingPlayer.style.bottom);
-  const positionKey = `${playerLeft}-${playerBottom}`;
-  if (playerLeft === 0 && playerBottom === 90) {
-    showWinner();
-  }
-  checkLaddersSnakes(ladderMap, positionKey, playingPlayer);
-  checkLaddersSnakes(snakeMap, positionKey, playingPlayer);
-  changePlayer();
-};
-
-const showWinner = (): void => {
-  toggleDiceDisabling(true, false);
-  (document.querySelector(".winner-text") as HTMLElement).innerText = playersInGame[0].replace("-", " ");
-  (document.querySelector(".winning-page") as HTMLElement).classList.remove("d-none");
-};
-
-const restartGame = (): void => {
-  playersInGame.forEach((player: string) => {
-    const playerElement = document.querySelector(`.${player}`) as HTMLElement;
-    playerElement.style.bottom = "0%";
-    playerElement.style.left = "0%";
-  });
-  (document.querySelector(".starting-page") as HTMLElement).classList.remove("d-none");
-  (document.querySelector(".winning-page") as HTMLElement).classList.add("d-none");
-  sortPlayers();
-};
-
-const sortPlayers = (): void => {
-  playersInGame.sort((a, b) => {
-    const numA = parseInt(a.split("-")[1]);
-    const numB = parseInt(b.split("-")[1]);
-    return numA - numB;
-  });
 };
 
 const toggleDiceDisabling = (disable: boolean, handleClasses: boolean) => {
@@ -210,10 +113,108 @@ const toggleDice = async (): Promise<void> => {
   }
 };
 
+const startGame = (): void => {
+  toggleDiceDisabling(false, false);
+  const avatarRows = document.querySelectorAll<HTMLElement>(".avatar-row");
+  const avatarRowsWithoutSelected = [...avatarRows].filter((row) => !row.querySelector(".selected-avatar"));
+
+  avatarRowsWithoutSelected.forEach((row) => {
+    const buttons = row.querySelectorAll<HTMLButtonElement>(".avatar-btn:not([disabled])");
+    buttons.forEach((button) => button.click());
+  });
+
+  (document.querySelector(".starting-page") as HTMLElement).classList.add("d-none");
+  (document.querySelector(".dice-1") as HTMLButtonElement).disabled = false;
+};
+
+const changePlayer = (): void => {
+  if (diceNumber != 6) {
+    playersInGame.push(playersInGame.shift() as string);
+    goBack = false;
+  }
+};
+
+const getMovingDirection = (playerLeft: number, playerBottom: number): string => {
+  if (goBack === true || (playerBottom === 90 && playerLeft === 0)) {
+    goBack = true;
+    return gameSettings.directions.right;
+  } else if (playerLeft === 90 && playerBottom % 20 === 0) {
+    return gameSettings.directions.up;
+  } else if (playerLeft === 0 && playerBottom % 20 !== 0) {
+    return gameSettings.directions.up;
+  } else if (playerBottom % 20 !== 0) {
+    return gameSettings.directions.left;
+  }
+  return gameSettings.directions.right;
+};
+
+const showWinner = (): void => {
+  toggleDiceDisabling(true, false);
+  (document.querySelector(".winner-text") as HTMLElement).innerText = playersInGame[0].replace("-", " ");
+  (document.querySelector(".winning-page") as HTMLElement).classList.remove("d-none");
+};
+
 const checkLaddersSnakes = (map: Record<string, { left: string; bottom: string }>, positionKey: string, playingPlayer: HTMLElement): void => {
   const newPosition = map[positionKey];
   if (newPosition) {
     playingPlayer.style.left = newPosition.left;
     playingPlayer.style.bottom = newPosition.bottom;
   }
+};
+
+const checkPosition = (playingPlayer: HTMLElement): void => {
+  const playerLeft: number = parseInt(playingPlayer.style.left);
+  const playerBottom: number = parseInt(playingPlayer.style.bottom);
+  const positionKey = `${playerLeft}-${playerBottom}`;
+  if (playerLeft === 0 && playerBottom === 90) {
+    showWinner();
+  }
+  checkLaddersSnakes(ladderMap, positionKey, playingPlayer);
+  checkLaddersSnakes(snakeMap, positionKey, playingPlayer);
+  changePlayer();
+};
+
+const run = async (): Promise<void> => {
+  const playingPlayer = document.querySelector(`.${playersInGame[0]}`) as HTMLElement;
+
+  for (let i = 0; i < diceNumber; i++) {
+    const currentLeft: number = parseInt(playingPlayer.style.left);
+    const currentBottom: number = parseInt(playingPlayer.style.bottom);
+    switch (getMovingDirection(currentLeft, currentBottom)) {
+      case gameSettings.directions.right: {
+        playingPlayer.style.left = `${currentLeft + 10}%`;
+        break;
+      }
+      case gameSettings.directions.up: {
+        playingPlayer.style.bottom = `${currentBottom + 10}%`;
+        break;
+      }
+      case gameSettings.directions.left: {
+        playingPlayer.style.left = `${currentLeft - 10}%`;
+        break;
+      }
+    }
+    await new Promise((resolve) => setTimeout(resolve, gameSettings.moveSpeed));
+  }
+  goBack = false;
+  checkPosition(playingPlayer);
+};
+
+const sortPlayers = (): void => {
+  playersInGame.sort((a, b) => {
+    const numA = parseInt(a.split("-")[1]);
+    const numB = parseInt(b.split("-")[1]);
+    return numA - numB;
+  });
+};
+
+const restartGame = (): void => {
+  playersInGame.forEach((player: string) => {
+    const playerElement = document.querySelector(`.${player}`) as HTMLElement;
+    playerElement.style.bottom = "0%";
+    playerElement.style.left = "0%";
+  });
+  (document.querySelector(".starting-page") as HTMLElement).classList.remove("d-none");
+  (document.querySelector(".winning-page") as HTMLElement).classList.add("d-none");
+  sortPlayers();
 };

@@ -28,7 +28,7 @@ const snakeMap = {
 };
 let playersInGame = ["player-1", "player-2", "player-3", "player-4"];
 let diceNumber = Math.floor(Math.random() * 6) + 1;
-let goBack = 0;
+let goBack = false;
 const togglePlayerVisibility = (playerClass, showPlayer) => {
     const player = document.querySelector(`.${playerClass}`);
     const playerAvatar = document.querySelector(`.${playerClass}-avatar`);
@@ -53,6 +53,14 @@ const setAmountOfPlayers = (amount) => {
         button.classList.remove("selected-avatar");
     });
 };
+const toggleAvatarButtons = (buttons, clickedAvatarBtn, disable) => {
+    buttons.forEach((button) => {
+        if (button !== clickedAvatarBtn) {
+            button.disabled = disable;
+            button.classList.remove("selected-avatar");
+        }
+    });
+};
 const setPlayerAvatar = (event, playerClass, colour) => {
     const clickedAvatarBtn = event.target;
     const parentRowElement = clickedAvatarBtn.closest(".avatar-row");
@@ -75,13 +83,26 @@ const setPlayerAvatar = (event, playerClass, colour) => {
     }
     document.querySelector(playerClass).style.backgroundImage = `url("images/avatars/${colour}.png")`;
 };
-const toggleAvatarButtons = (buttons, clickedAvatarBtn, disable) => {
-    buttons.forEach((button) => {
-        if (button !== clickedAvatarBtn) {
-            button.disabled = disable;
-            button.classList.remove("selected-avatar");
-        }
+const toggleDiceDisabling = (disable, handleClasses) => {
+    const diceIClass = `.dice-${diceNumber}`;
+    const diceElement = document.querySelector(diceIClass);
+    if (handleClasses) {
+        diceElement.classList.remove("d-none");
+        diceElement.classList.add("d-block");
+    }
+    disable ? (diceElement.disabled = true) : (diceElement.disabled = false);
+};
+const toggleDice = async () => {
+    const numbers = document.querySelectorAll(".dice-number");
+    numbers.forEach((number) => {
+        number.classList.add("d-none");
     });
+    diceNumber = Math.floor(Math.random() * 6) + 1;
+    toggleDiceDisabling(true, true);
+    await run();
+    if (document.querySelector(".winning-page").classList.contains("d-none")) {
+        toggleDiceDisabling(false, false);
+    }
 };
 const startGame = () => {
     toggleDiceDisabling(false, false);
@@ -97,12 +118,12 @@ const startGame = () => {
 const changePlayer = () => {
     if (diceNumber != 6) {
         playersInGame.push(playersInGame.shift());
-        goBack = 0;
+        goBack = false;
     }
 };
 const getMovingDirection = (playerLeft, playerBottom) => {
-    if (goBack === 1 || (playerBottom === 90 && playerLeft === 0)) {
-        goBack = 1;
+    if (goBack === true || (playerBottom === 90 && playerLeft === 0)) {
+        goBack = true;
         return gameSettings.directions.right;
     }
     else if (playerLeft === 90 && playerBottom % 20 === 0) {
@@ -115,6 +136,29 @@ const getMovingDirection = (playerLeft, playerBottom) => {
         return gameSettings.directions.left;
     }
     return gameSettings.directions.right;
+};
+const showWinner = () => {
+    toggleDiceDisabling(true, false);
+    document.querySelector(".winner-text").innerText = playersInGame[0].replace("-", " ");
+    document.querySelector(".winning-page").classList.remove("d-none");
+};
+const checkLaddersSnakes = (map, positionKey, playingPlayer) => {
+    const newPosition = map[positionKey];
+    if (newPosition) {
+        playingPlayer.style.left = newPosition.left;
+        playingPlayer.style.bottom = newPosition.bottom;
+    }
+};
+const checkPosition = (playingPlayer) => {
+    const playerLeft = parseInt(playingPlayer.style.left);
+    const playerBottom = parseInt(playingPlayer.style.bottom);
+    const positionKey = `${playerLeft}-${playerBottom}`;
+    if (playerLeft === 0 && playerBottom === 90) {
+        showWinner();
+    }
+    checkLaddersSnakes(ladderMap, positionKey, playingPlayer);
+    checkLaddersSnakes(snakeMap, positionKey, playingPlayer);
+    changePlayer();
 };
 const run = async () => {
     const playingPlayer = document.querySelector(`.${playersInGame[0]}`);
@@ -137,24 +181,15 @@ const run = async () => {
         }
         await new Promise((resolve) => setTimeout(resolve, gameSettings.moveSpeed));
     }
-    goBack = 0;
+    goBack = false;
     checkPosition(playingPlayer);
 };
-const checkPosition = (playingPlayer) => {
-    const playerLeft = parseInt(playingPlayer.style.left);
-    const playerBottom = parseInt(playingPlayer.style.bottom);
-    const positionKey = `${playerLeft}-${playerBottom}`;
-    if (playerLeft === 0 && playerBottom === 90) {
-        showWinner();
-    }
-    checkLaddersSnakes(ladderMap, positionKey, playingPlayer);
-    checkLaddersSnakes(snakeMap, positionKey, playingPlayer);
-    changePlayer();
-};
-const showWinner = () => {
-    toggleDiceDisabling(true, false);
-    document.querySelector(".winner-text").innerText = playersInGame[0].replace("-", " ");
-    document.querySelector(".winning-page").classList.remove("d-none");
+const sortPlayers = () => {
+    playersInGame.sort((a, b) => {
+        const numA = parseInt(a.split("-")[1]);
+        const numB = parseInt(b.split("-")[1]);
+        return numA - numB;
+    });
 };
 const restartGame = () => {
     playersInGame.forEach((player) => {
@@ -165,39 +200,4 @@ const restartGame = () => {
     document.querySelector(".starting-page").classList.remove("d-none");
     document.querySelector(".winning-page").classList.add("d-none");
     sortPlayers();
-};
-const sortPlayers = () => {
-    playersInGame.sort((a, b) => {
-        const numA = parseInt(a.split("-")[1]);
-        const numB = parseInt(b.split("-")[1]);
-        return numA - numB;
-    });
-};
-const toggleDiceDisabling = (disable, handleClasses) => {
-    const diceIClass = `.dice-${diceNumber}`;
-    const diceElement = document.querySelector(diceIClass);
-    if (handleClasses) {
-        diceElement.classList.remove("d-none");
-        diceElement.classList.add("d-block");
-    }
-    disable ? (diceElement.disabled = true) : (diceElement.disabled = false);
-};
-const toggleDice = async () => {
-    const numbers = document.querySelectorAll(".dice-number");
-    numbers.forEach((number) => {
-        number.classList.add("d-none");
-    });
-    diceNumber = Math.floor(Math.random() * 6) + 1;
-    toggleDiceDisabling(true, true);
-    await run();
-    if (document.querySelector(".winning-page").classList.contains("d-none")) {
-        toggleDiceDisabling(false, false);
-    }
-};
-const checkLaddersSnakes = (map, positionKey, playingPlayer) => {
-    const newPosition = map[positionKey];
-    if (newPosition) {
-        playingPlayer.style.left = newPosition.left;
-        playingPlayer.style.bottom = newPosition.bottom;
-    }
 };

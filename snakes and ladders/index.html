@@ -21,13 +21,15 @@
                <div class="d-block player-2 player" style="bottom: 0%; left: 0%"></div>
                <div class="d-block player-3 player" style="bottom: 0%; left: 0%"></div>
                <div class="d-block player-4 player" style="bottom: 0%; left: 0%"></div>
-               <div class="starting-page position-absolute w-100 h-100 d-flex flex-column flex-wrap justify-content-center align-items-center ">
-                    <div class="d-flex mb-3 w-75 justify-content-center align-items-center">
-                         <span class="text-white fw-bold fs-5 text-nowrap me-2">Amount of players:</span>
-                         <button class="btn btn-secondary btn-sm rounded me-1" onclick="setAmountOfPlayers(1)">1</button>
-                         <button class="btn btn-secondary btn-sm rounded me-1" onclick="setAmountOfPlayers(2)">2</button>
-                         <button class="btn btn-secondary btn-sm rounded me-1" onclick="setAmountOfPlayers(3)">3</button>
-                         <button class="btn btn-secondary btn-sm rounded" onclick="setAmountOfPlayers(4)">4</button>
+               <div class="p-3 starting-page position-absolute w-100 h-100 d-flex flex-column flex-wrap justify-content-center align-items-center ">
+                    <div class="d-flex mb-3 w-75 justify-content-center align-items-center flex-wrap">
+                         <div class="text-white fw-bold fs-5 text-nowrap me-2">Amount of players:</div>
+                         <div>
+                              <button class="btn btn-secondary btn-sm rounded me-1" onclick="setAmountOfPlayers(1)">1</button>
+                              <button class="btn btn-secondary btn-sm rounded me-1" onclick="setAmountOfPlayers(2)">2</button>
+                              <button class="btn btn-secondary btn-sm rounded me-1" onclick="setAmountOfPlayers(3)">3</button>
+                              <button class="btn btn-secondary btn-sm rounded" onclick="setAmountOfPlayers(4)">4</button>
+                         </div>
                     </div>
                     <div class="player-avatars w-75 mb-3">
                          <div class="player-1-avatar avatar-row d-flex justify-content-center align-items-center flex-wrap w-100">
@@ -63,12 +65,15 @@
                          Start Game
                     </button>
                </div>
-               <div class="d-none winning-page position-absolute w-50 h-25 d-flex flex-wrap justify-content-center align-items-center rounded">
-                    <span class="text-white fw-bold fs-3 text-nowrap me-2">The winner is:</span>
-                    <span class="text-white fw-bold fs-3 text-nowrap winner-text"></span>
-                    <button class="btn btn-secondary start-button rounded" onclick="restartGame()">
-                         Restart Game
-                    </button>
+               <div class="d-none p-3 position-absolute winning-page d-flex flex-wrap justify-content-center align-items-center rounded">
+                    <div class="text-white fw-bold fs-5 text-nowrap me-2">The winner is:</div>
+                    <div class="text-white fw-bold fs-5 text-nowrap winner-text">Player 1</div>
+                    <div class="w-100 d-flex justify-content-center">
+                         <button class="btn btn-sm btn-secondary start-button rounded mt-2" onclick="restartGame()">
+                              Restart Game
+                         </button>
+                    </div>
+               
                </div>       
           </div>
           <div class="dice-placeholder position-relative">
